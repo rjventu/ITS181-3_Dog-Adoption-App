@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DED0C4"
+    tools:context=".Adoption_Applications_Page">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="412dp"
+        android:layout_height="60dp"
+        android:background="#D77A61"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="1dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="221dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/jost"
+        android:text="Doggo Forever"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="25.45dp"
+        android:layout_height="25.45dp"
+        android:layout_marginStart="314dp"
+        android:layout_marginTop="18dp"
+        android:backgroundTint="#00FFFFFF"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:src="@drawable/paw"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="354dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="#00FFFFFF"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:src="@drawable/user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:longClickable="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-81dp">
+
+        <LinearLayout
+            android:id="@+id/ADOPT"
+            android:layout_width="379dp"
+            android:layout_height="523dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/main_container"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="156dp"
+            android:layout_marginTop="752dp"
+            android:layout_marginEnd="155dp"
+            android:backgroundTint="#D77A61"
+            android:clickable="true"
+            android:fontFamily="@font/jost_black"
+            android:letterSpacing="0.5"
+            android:text="SUBMIT"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="353dp"
+            android:layout_height="885dp"
+            android:layout_marginTop="24dp"
+            android:contextClickable="true"
+            android:longClickable="true"
+            android:orientation="vertical"
+            android:gravity="top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="364dp"
+                android:layout_height="309dp"
+                android:src="@drawable/main_title_container" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="300dp"
+        android:layout_height="317dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="173dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="377dp"
+        android:fontFamily="@font/jost_black"
+        android:text="HI THERE,"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFFF"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="299dp"
+        android:layout_height="257dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="207dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="411dp"
+        android:fontFamily="@font/jost_black"
+        android:text="FURRY FRIEND!"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FFFF"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="276dp"
+        android:layout_height="175dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="173dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="377dp"
+        android:fontFamily="@font/jost_black"
+        android:text="#beourPAWtector"
+        android:textColor="#000000"
+        android:textColorLink="#000000"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="164dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="390dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="1050dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:srcCompat="@drawable/paws2" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="327dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="340dp"
+        android:background="@drawable/edit_text_border"
+        android:clickable="true"
+        android:ems="10"
+        android:hint=" Enter full name..."
+        android:inputType="text"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPhone3"
+        android:layout_width="327dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="460dp"
+        android:background="@drawable/edit_text_border"
+        android:clickable="true"
+        android:ems="10"
+        android:inputType="phone"
+        android:padding="5dp"
+        android:hint=" Enter phone number..."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPostalAddress"
+        android:layout_width="327dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="400dp"
+        android:background="@drawable/edit_text_border"
+        android:clickable="true"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:padding="5dp"
+        android:hint=" Enter full address..."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="327dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="520dp"
+        android:background="@drawable/edit_text_border"
+        android:clickable="true"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:padding="5dp"
+        android:hint=" Enter email address..."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="580dp"
+            android:fontFamily="@font/jost"
+            android:text="Reason(s) for adopting:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextText3"
+            android:layout_width="327dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="4dp"
+            android:gravity="top"
+            android:background="@drawable/border"
+            android:clickable="true"
+            android:ems="10"
+            android:inputType="text"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
