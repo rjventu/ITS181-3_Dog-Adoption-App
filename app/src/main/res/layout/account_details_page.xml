@@ -93,35 +93,24 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/stephen_account_rounded_box_white"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/jost_black"
-                    android:text="Welcome! [User]"
-                    android:textAlignment="center"
-                    android:textSize="10sp" />
-
                 <Button
-                    android:id="@+id/button_account_view"
+                    android:id="@+id/button_account_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/stephen_account_rounded_box_terracotta"
                     android:clickable="true"
                     android:focusable="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="40dp"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/jost_black"
-                    android:text="VIEW PROFILE DETAILS"
+                    android:text="EDIT PROFILE"
                     android:textSize="10sp" />
 
 
             </FrameLayout>
-            <!-- Dog Boxes -->
+            <!-- Account Details -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="220dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp">
@@ -131,31 +120,66 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/stephen_account_rounded_box_white"/>
 
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/stephen_account_rounded_box_terracotta"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center_horizontal"
+                    android:hint="[Insert Username Here]"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/edit_text_border"
+                    android:enabled="false"/> <!-- True or False -->
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="186dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/jost_black"
-                    android:text="[Dog Name]"
-                    android:textAlignment="center"
-                    android:textSize="10sp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center_horizontal"
+                    android:hint="[Insert Email Here]"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/edit_text_border"
+                    android:enabled="false"/>
 
-                <TextView
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center_horizontal"
+                    android:hint="[Insert Password Here]"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/edit_text_border"
+                    android:enabled="false"/>
+
+                <Button
+                    android:id="@+id/button_account_discard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="160dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:justificationMode="inter_word"
+                    android:background="@drawable/stephen_account_rounded_box_terracotta"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="20dp"
                     android:fontFamily="@font/jost_black"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    android:textSize="10sp" />
+                    android:text="DISCARD"
+                    android:textSize="10sp"/>
+
+                <Button
+                    android:id="@+id/button_account_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stephen_account_rounded_box_terracotta"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/jost_black"
+                    android:text="SAVE"
+                    android:textSize="10sp"/>
 
             </FrameLayout>
 
