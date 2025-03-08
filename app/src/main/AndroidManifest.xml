@@ -15,8 +15,9 @@
 
         <!--CHANGED TO HOME_PAGE-->
 
+        <!-- CURRENT SET TO TEST HAHA-->
         <activity
-            android:name=".Home_Page"
+            android:name=".DogAdoptionPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
