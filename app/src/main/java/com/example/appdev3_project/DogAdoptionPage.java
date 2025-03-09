@@ -21,15 +21,16 @@ public class DogAdoptionPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dog_adoption_page);
 
-        // Initialize RecyclerView
-        recyclerView = findViewById(R.id.recyclerView_dogs);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns grid
+        // RECYCLEVIEW CODE
+            // Initialize RecyclerView
+            recyclerView = findViewById(R.id.recyclerView_dogs);
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns grid
 
-        // Load dog data (sample data for now)
-        dogList = getSampleDogs();
-        dogAdapter = new DogAdapter(dogList);
+            // Load dog data (sample data for now)
+            dogList = getSampleDogs();
+            dogAdapter = new DogAdapter(dogList);
 
-        recyclerView.setAdapter(dogAdapter);
+            recyclerView.setAdapter(dogAdapter);
     }
 
     // Sample data
@@ -41,4 +42,12 @@ public class DogAdoptionPage extends AppCompatActivity {
         dogs.add(new Dog("Big Whitey", "Male", "2 years", "No", "Yes", R.drawable.big_whitey_male_adult, ""));
         return dogs;
     }
+
+    // go back
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }

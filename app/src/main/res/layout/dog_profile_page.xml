@@ -112,7 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/jost"
-                        android:layout_marginLeft="20dp"
+                        android:paddingLeft="30dp"
                         android:text="Age: 3 years"
                         android:textColor="#333"
                         android:textSize="18sp" />
@@ -122,8 +122,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/jost"
-                        android:layout_marginLeft="20dp"
-                        android:text="Gender: Male"
+                        android:paddingLeft="30dp"
+                        android:text="Gender: Female"
                         android:textColor="#333"
                         android:textSize="18sp" />
 
@@ -132,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/jost"
-                        android:layout_marginLeft="20dp"
+                        android:paddingLeft="30dp"
                         android:text="Vaccinated: Yes"
                         android:textColor="#333"
                         android:textSize="18sp" />
@@ -142,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/jost"
-                        android:layout_marginLeft="20dp"
+                        android:paddingLeft="30dp"
                         android:text="Sterilized: Yes"
                         android:textColor="#333"
                         android:textSize="18sp" />
@@ -156,13 +156,28 @@
                         android:elevation="2dp"
                         android:lineSpacingExtra="4dp"
                         android:layout_gravity="center_horizontal"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
                         android:paddingBottom="20dp"
                         android:fontFamily="@font/jost"
-                        android:text="Bio: This dog is friendly and loves playing outside!"
+                        android:text="Sarah is a sweet lady and a very playful and friendly dog. She's very good with kids, and is OK with multiple dogs and cats. If you're looking for a new and playful companion, Sarah is who you're looking for!"
                         android:textColor="#555"
                         android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/go_adopt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="30dp"
+                        android:backgroundTint="#D77A61"
+                        android:clickable="true"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/jost_black"
+                        android:text="ADOPT"
+                        android:textSize="16sp"
+                        android:background="@drawable/btn_rounded"/>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
