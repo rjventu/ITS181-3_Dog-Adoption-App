@@ -88,54 +88,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:fontFamily="@font/jost_black"
-                android:text="PROFILE DETAILS"
+                android:text="EDIT PROFILE DETAILS"
                 android:textSize="16sp" />
 
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/frameLayout2"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="300dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout3">
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout4"
+            tools:layout_editor_absoluteX="45dp">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/stephen_account_rounded_box_white" />
-
-            <Button
-                android:id="@+id/button_account_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/stephen_account_rounded_box_terracotta"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/jost_black"
-                android:text="EDIT PROFILE"
-                android:textSize="10sp" />
-
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/frameLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="235dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout4">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="235dp"
                 android:background="@drawable/stephen_account_rounded_box_white" />
 
             <EditText
@@ -197,6 +165,34 @@
                 android:enabled="false"
                 android:gravity="start|center_horizontal"
                 android:hint="[address]" />
+
+            <Button
+                android:id="@+id/button_account_discard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/stephen_account_rounded_box_terracotta"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/jost_black"
+                android:text="DISCARD"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/button_account_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/stephen_account_rounded_box_terracotta"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/jost_black"
+                android:text="SAVE"
+                android:textSize="10sp" />
 
         </FrameLayout>
 

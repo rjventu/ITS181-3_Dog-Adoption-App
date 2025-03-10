@@ -25,18 +25,30 @@ public class HomePage extends AppCompatActivity {
 
         // Find ImageButton NOT WORKING??? IDK WHY HUHU
         ImageButton goAdoption = findViewById(R.id.go_adoption);
+        ImageButton goProfile = findViewById(R.id.go_profile);
 
-        if (goAdoption == null) {
-            Log.e("HomePage", "go_adoption is NULL! Check XML ID.");
-        } else {
-            Log.d("HomePage", "go_adoption found!");
-        }
+//
+//        if (goAdoption == null) {
+//            Log.e("HomePage", "go_adoption is NULL! Check XML ID.");
+//        } else {
+//            Log.d("HomePage", "go_adoption found!");
+//        }
 
-        // Set click listener
+        // Set goAdoption click listener
         goAdoption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("HomePage", "go_adoption clicked!");
+//                Log.d("HomePage", "go_adoption clicked!");
+                Toast.makeText(HomePage.this, "Button Clicked!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomePage.this, DogAdoptionPage.class);
+                startActivity(intent);
+            }
+        });
+
+        // Set goProfile click listener
+        goProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Toast.makeText(HomePage.this, "Button Clicked!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(HomePage.this, DogAdoptionPage.class);
                 startActivity(intent);
