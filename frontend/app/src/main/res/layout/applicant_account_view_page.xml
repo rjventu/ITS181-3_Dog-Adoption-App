@@ -118,7 +118,7 @@
                 android:background="@drawable/stephen_account_rounded_box_white" />
 
             <Button
-                android:id="@+id/button_account_edit"
+                android:id="@+id/btn_applicant_account_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -148,7 +148,7 @@
                 android:background="@drawable/stephen_account_rounded_box_white" />
 
             <EditText
-                android:id="@+id/view_user_name"
+                android:id="@+id/applicant_view_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -161,7 +161,7 @@
                 android:hint="Enter your full name..." /> <!-- True or False -->
 
             <EditText
-                android:id="@+id/view_user_email"
+                android:id="@+id/applicant_view_user_email"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -174,7 +174,7 @@
                 android:hint="Enter your email..." />
 
             <EditText
-                android:id="@+id/view_user_pass"
+                android:id="@+id/applicant_view_user_pass"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -188,7 +188,7 @@
                 android:hint="Enter your password..." />
 
             <EditText
-                android:id="@+id/view_user_phone"
+                android:id="@+id/applicant_view_user_phone"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -201,7 +201,7 @@
                 android:hint="Enter your phone number..." />
 
             <EditText
-                android:id="@+id/view_user_address"
+                android:id="@+id/applicant_view_user_address"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"

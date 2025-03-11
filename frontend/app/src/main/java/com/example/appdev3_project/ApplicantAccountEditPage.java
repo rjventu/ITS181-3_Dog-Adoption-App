@@ -31,11 +31,11 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
         if (intent != null && intent.hasExtra("user")) {
             User user = (User) intent.getSerializableExtra("user");
 
-            EditText username = (EditText) findViewById(R.id.view_user_email);
-            EditText password = (EditText) findViewById(R.id.view_user_pass);
-            EditText name = (EditText) findViewById(R.id.view_user_name);
-            EditText phone = (EditText) findViewById(R.id.view_user_phone);
-            EditText address = (EditText) findViewById(R.id.view_user_address);
+            EditText username = (EditText) findViewById(R.id.applicant_edit_user_email);
+            EditText password = (EditText) findViewById(R.id.applicant_edit_user_pass);
+            EditText name = (EditText) findViewById(R.id.applicant_edit_user_name);
+            EditText phone = (EditText) findViewById(R.id.applicant_edit_user_phone);
+            EditText address = (EditText) findViewById(R.id.applicant_edit_user_address);
 
             // Display User details
             username.setText(user.getUsername());
@@ -46,7 +46,7 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
         }
 
         // Configure Cancel Button
-        Button cancelButton = findViewById(R.id.button_account_cancel);
+        Button cancelButton = findViewById(R.id.btn_applicant_account_cancel);
         cancelButton.setOnClickListener(view -> {
             if (intent != null && intent.hasExtra("user")) {
                 User user = (User) intent.getSerializableExtra("user");
@@ -57,7 +57,7 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
         });
 
         // Configure Save Button
-        Button saveButton = findViewById(R.id.button_account_save);
+        Button saveButton = findViewById(R.id.btn_applicant_account_save);
         saveButton.setOnClickListener(view -> {
             if (intent != null && intent.hasExtra("user")) {
                 User user = (User) intent.getSerializableExtra("user");

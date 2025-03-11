@@ -17,7 +17,7 @@
 
         <!-- CURRENT SET TO TEST -->
         <activity
-            android:name=".HomePage"
+            android:name=".AdminDashboardPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +37,7 @@
         <activity android:name=".ApplicantAccountEditPage" android:exported="true" />
         <activity android:name=".AdoptionApplicationsPage" android:exported="true" />
         <!-- ADMIN PANEL -->
+        <activity android:name=".HomePage" android:exported="true" />
 
 
         <meta-data

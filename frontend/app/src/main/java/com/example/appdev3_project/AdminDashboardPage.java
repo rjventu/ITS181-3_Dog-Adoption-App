@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdev3_project.adapter.AdoptionAdapter;
 import com.example.appdev3_project.model.Adoption;
@@ -21,50 +21,50 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApplicantDashboardPage extends AppCompatActivity {
-
-    private RecyclerView recyclerView;
-    private List<Dog> dogList;
-    private AdoptionAdapter adoptionAdapter;
-    private List<Adoption> adoptionList;
-
+public class AdminDashboardPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.applicant_dashboard_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.applicant_dashboard), (v, insets) -> {
+        setContentView(R.layout.admin_dashboard_page);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.admin_dashboard), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(ApplicantDashboardPage.this);
-
-        // RECYCLEVIEW CODE
-        // Initialize RecyclerView
-        recyclerView = findViewById(R.id.recyclerView_adoptions);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
-
-        // Generate sample data
-        dogList = getSampleDogs();
-        adoptionList = getSampleAdoptions(dogList);
-
-        // Use RecyclerView adapter
-        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
-        recyclerView.setAdapter(adoptionAdapter);
+        NavBarUtil.initializeNavBar(AdminDashboardPage.this);
 
         // Set welcome message
         User user = getSampleUser();
-        TextView welcome = (TextView) findViewById(R.id.applicant_dashboard_welcome_message);
-        welcome.setText("Welcome, " + user.getName().split(" ")[0] + "!");
+        TextView welcome = (TextView) findViewById(R.id.admin_dashboard_welcome_message);
+        welcome.setText("Welcome, Admin " + user.getName().split(" ")[0] + "!");
 
         // Configure View button
-        Button viewButton = findViewById(R.id.btn_applicant_account_view);
+        Button viewButton = findViewById(R.id.btn_admin_account_view);
         viewButton.setOnClickListener(view -> {
-            Intent intent = new Intent(ApplicantDashboardPage.this, ApplicantAccountViewPage.class);
-            intent.putExtra("user", user);
-            startActivity(intent);
+            Toast.makeText(AdminDashboardPage.this, "Clicked view button", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(AdminDashboardPage.this, ApplicantAccountViewPage.class);
+//            intent.putExtra("user", user);
+//            startActivity(intent);
+        });
+
+        // Configure Manage Dogs button
+        Button dogsButton = findViewById(R.id.btn_admin_manage_dogs);
+        dogsButton.setOnClickListener(view -> {
+            Toast.makeText(AdminDashboardPage.this, "Clicked manage dogs button", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(AdminDashboardPage.this, ApplicantAccountViewPage.class);
+//            intent.putExtra("user", user);
+//            startActivity(intent);
+        });
+
+        // Configure Manage  button
+        Button adoptionsButton = findViewById(R.id.btn_admin_manage_adoptions);
+        adoptionsButton.setOnClickListener(view -> {
+            Toast.makeText(AdminDashboardPage.this, "Clicked manage adoptions button", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(AdminDashboardPage.this, ApplicantAccountViewPage.class);
+//            intent.putExtra("user", user);
+//            startActivity(intent);
         });
     }
 

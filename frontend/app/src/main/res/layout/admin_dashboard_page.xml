@@ -65,7 +65,7 @@
     <!-- END NAV BAR -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/applicant_dashboard"
+        android:id="@+id/admin_dashboard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clickable="true"
@@ -76,26 +76,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <!-- RecyclerView for Adoptions -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_adoptions"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:overScrollMode="never"
-            android:foregroundGravity="center_horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:clipToPadding="false"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"/>
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="240dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,22 +93,22 @@
                 android:background="@drawable/stephen_account_rounded_box_white" />
 
             <TextView
-                android:id="@+id/applicant_dashboard_welcome_message"
+                android:id="@+id/admin_dashboard_welcome_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/jost_black"
                 android:text="Welcome! [User]"
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btn_applicant_account_view"
+                android:id="@+id/btn_admin_account_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="80dp"
                 android:backgroundTint="#D77A61"
                 android:clickable="true"
                 android:focusable="true"
@@ -131,8 +116,37 @@
                 android:text="VIEW PROFILE DETAILS"
                 android:textSize="10sp" />
 
+            <Button
+                android:id="@+id/btn_admin_manage_dogs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="130dp"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/jost_black"
+                android:textColor="#D77A61"
+                android:text="MANAGE DOG RECORDS"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_admin_manage_adoptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="180dp"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/jost_black"
+                android:textColor="#D77A61"
+                android:text="MANAGE ADOPTION RECORDS"
+                android:textSize="10sp" />
+
 
         </FrameLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

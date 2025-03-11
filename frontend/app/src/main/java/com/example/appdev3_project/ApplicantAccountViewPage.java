@@ -32,11 +32,11 @@ public class ApplicantAccountViewPage extends AppCompatActivity {
         if (intent != null && intent.hasExtra("user")) {
             User user = (User) intent.getSerializableExtra("user");
 
-            EditText username = (EditText) findViewById(R.id.view_user_email);
-            EditText password = (EditText) findViewById(R.id.view_user_pass);
-            EditText name = (EditText) findViewById(R.id.view_user_name);
-            EditText phone = (EditText) findViewById(R.id.view_user_phone);
-            EditText address = (EditText) findViewById(R.id.view_user_address);
+            EditText username = (EditText) findViewById(R.id.applicant_view_user_email);
+            EditText password = (EditText) findViewById(R.id.applicant_view_user_pass);
+            EditText name = (EditText) findViewById(R.id.applicant_view_user_name);
+            EditText phone = (EditText) findViewById(R.id.applicant_view_user_phone);
+            EditText address = (EditText) findViewById(R.id.applicant_view_user_address);
 
             // DIsplay User details
             username.setText(user.getUsername());
@@ -48,7 +48,7 @@ public class ApplicantAccountViewPage extends AppCompatActivity {
         }
 
         // Configure Edit Button
-        Button viewButton = findViewById(R.id.button_account_edit);
+        Button viewButton = findViewById(R.id.btn_applicant_account_edit);
         viewButton.setOnClickListener(view -> {
             if (intent != null && intent.hasExtra("user")) {
                 User user = (User) intent.getSerializableExtra("user");
