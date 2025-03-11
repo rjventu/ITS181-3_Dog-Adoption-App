@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -30,6 +31,12 @@ public class AuthController {
     @PostMapping("/sign-up")
     public ResponseEntity<?> register(@RequestBody User user) {
         if(!authService.usernameIsTaken(user.getUsername())){
+
+            // Set role to "USER" if not provided
+            if (user.getRole() == null || user.getRole().isEmpty()) {
+                user.setRole("USER");
+            }
+
             userService.addUser(user);
             return ResponseEntity.ok(Map.of("message", "User registered successfully!"));
         }
@@ -39,11 +46,16 @@ public class AuthController {
     @PostMapping("/sign-in")
     public ResponseEntity<?> login(HttpSession session, @RequestBody User user) {
         User existingUser = authService.matchesUsername(user.getUsername());
+        System.out.println(existingUser);
 
         if (existingUser != null){
             if (passwordService.checkPassword(user.getPassword(), existingUser.getPassword())) {
                 if(Objects.equals(existingUser.getRole(), "USER")){
-                    return createSession(session, user.getUsername());
+                    // Create map with user's email and role
+                    Map<String, String> response = new HashMap<>();
+                    response.put("username", existingUser.getUsername());
+                    response.put("role", existingUser.getRole());
+                    return ResponseEntity.ok(response); // return map and ok response
                 } else {
                     return ResponseEntity.badRequest().body(Map.of("message", "Please use the admin sign-in form."));
                 }
@@ -61,9 +73,13 @@ public class AuthController {
         if (existingUser != null){
             if (passwordService.checkPassword(user.getPassword(), existingUser.getPassword())) {
                 if(Objects.equals(existingUser.getRole(), "ADMIN")){
-                    return createSession(session, user.getUsername());
+                    // Create map with user's email and role
+                    Map<String, String> response = new HashMap<>();
+                    response.put("username", existingUser.getUsername());
+                    response.put("role", existingUser.getRole());
+                    return ResponseEntity.ok(response); // return map and ok response
                 } else {
-                    return ResponseEntity.badRequest().body(Map.of("message", "Please use the user sign-in form."));
+                    return ResponseEntity.badRequest().body(Map.of("message", "Please use the applicant sign-in form."));
                 }
             }else{
                 return ResponseEntity.badRequest().body(Map.of("message", "Incorrect password."));
@@ -72,27 +88,27 @@ public class AuthController {
         return ResponseEntity.badRequest().body(Map.of("message", "User not found."));
     }
 
-    public ResponseEntity<?> createSession(HttpSession session, String username) {
-        session.setAttribute("username", username);
-        return ResponseEntity.ok(Map.of("sessionId", session.getId()));
-    }
+//    public ResponseEntity<?> createSession(HttpSession session, String username) {
+//        session.setAttribute("username", username);
+//        return ResponseEntity.ok(Map.of("sessionId", session.getId()));
+//    }
+//
+//    @GetMapping("/session/get")
+//    public ResponseEntity<?> getSession(HttpSession session) {
+//        String username = (String) session.getAttribute("username");
+//
+//        if (username == null) {
+//            return ResponseEntity.badRequest().body(Map.of("message", "No user session active."));
+//        }
+//
+//        User user  = userService.getUserByUsername(username);
+//        return ResponseEntity.ok(Map.of("user", user));
+//    }
 
-    @GetMapping("/session/get")
-    public ResponseEntity<?> getSession(HttpSession session) {
-        String username = (String) session.getAttribute("username");
-
-        if (username == null) {
-            return ResponseEntity.badRequest().body(Map.of("message", "No user session active."));
-        }
-
-        User user  = userService.getUserByUsername(username);
-        return ResponseEntity.ok(Map.of("user", user));
-    }
-
-    @GetMapping("/session/invalidate")
-    public ResponseEntity<?> invalidateSession(HttpSession session) {
-        session.invalidate();
-        return ResponseEntity.ok(Map.of("message", "Logout successful!"));
-    }
+//    @GetMapping("/session/invalidate")
+//    public ResponseEntity<?> invalidateSession(HttpSession session) {
+//        session.invalidate();
+//        return ResponseEntity.ok(Map.of("message", "Logout successful!"));
+//    }
 
 }

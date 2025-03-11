@@ -1,7 +1,9 @@
 package com.example.appdev3_project;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,9 +34,26 @@ public class NavBarUtil {
         });
 
         // Set goProfile click listener
+//        goProfile.setOnClickListener(v -> {
+//            Intent intent = new Intent(activity, SignInApplicantPage.class);
+//            activity.startActivity(intent);
+//        });
+
+        // Set goProfile click listener with authentication check
         goProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(activity, SignInApplicantPage.class);
-            activity.startActivity(intent);
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+            String userRole = sharedPreferences.getString("role", null);
+
+            if ("USER".equals(userRole)) {
+                Intent intent = new Intent(activity, ApplicantDashboardPage.class);
+                activity.startActivity(intent);
+            } else if ("ADMIN".equals(userRole)) {
+                Intent intent = new Intent(activity, AdminDashboardPage.class);
+                activity.startActivity(intent);
+            } else {
+                Intent intent = new Intent(activity, SignInApplicantPage.class);
+                activity.startActivity(intent);
+            }
         });
     }
 

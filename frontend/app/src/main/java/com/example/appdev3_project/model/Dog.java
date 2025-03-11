@@ -9,6 +9,8 @@ public class Dog implements Serializable {
     private int age, imageResId;
     private boolean vaccination, sterilization;
 
+    public Dog() { }
+
     public Dog(String name, String gender, int age, boolean vaccination, boolean sterilization, int imageResId, String bio) {
         this.name = name;
         this.gender = gender;
@@ -19,18 +21,68 @@ public class Dog implements Serializable {
         this.bio = bio;
     }
 
-    // Getters
-    public String getName() { return name; }
-    public String getGender() { return gender; }
-    public int getAge() { return age; }
-    public boolean isVaccinated() { return vaccination; }
-    public boolean isSterilized() { return sterilization; }
-    public int getImageResId() { return imageResId; }
-    public String getBio() { return bio; }
+    public Long getId() {
+        return id;
+    }
 
-    // Setters
-    public void setAge(int age) { this.age = age; }
-    public void setVaccination(boolean vaccination) { this.vaccination = vaccination; }
-    public void setSterilization(boolean sterilization) { this.sterilization = sterilization; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getImageResId() {
+        return imageResId;
+    }
+
+    public void setImageResId(int imageResId) {
+        this.imageResId = imageResId;
+    }
+
+    public boolean isVaccinated() {
+        return vaccination;
+    }
+
+    public void setVaccination(boolean vaccination) {
+        this.vaccination = vaccination;
+    }
+
+    public boolean isSterilized() {
+        return sterilization;
+    }
+
+    public void setSterilization(boolean sterilization) {
+        this.sterilization = sterilization;
+    }
 }
 

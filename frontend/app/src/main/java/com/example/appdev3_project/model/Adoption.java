@@ -10,6 +10,8 @@ public class Adoption implements Serializable {
     private User user;
     private Dog dog;
 
+    public Adoption() { }
+
     public Adoption(String status, LocalDateTime datetime, Dog dog) {
         this.status = status;
         this.datetime = datetime;
