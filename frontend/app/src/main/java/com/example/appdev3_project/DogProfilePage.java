@@ -2,12 +2,19 @@ package com.example.appdev3_project;
 
 import com.example.appdev3_project.model.Dog;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class DogProfilePage extends AppCompatActivity {
     private ImageView dogImage;
@@ -17,6 +24,9 @@ public class DogProfilePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dog_profile_page);
+
+        // Initialize NavBar
+        HelperFunctions.initializeNavBar(DogProfilePage.this);
 
         // Initialize views
         dogImage = findViewById(R.id.dog_image);
@@ -44,4 +54,5 @@ public class DogProfilePage extends AppCompatActivity {
             dogImage.setImageResource(dog.getImageResId());
         }
     }
+
 }

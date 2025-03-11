@@ -1,11 +1,13 @@
 package com.example.appdev3_project.model;
 
-public class Dog { // @Ruby change this if u want
+public class Dog {
+
+    // add id
     private String name;
     private String gender;
-    private String age;
-    private String vaccination;
-    private String sterilization;
+    private String age; // change to int
+    private String vaccination; // change to bool
+    private String sterilization; // change to bool
     private int imageResId; // Resource ID for image
     private String bio;
 

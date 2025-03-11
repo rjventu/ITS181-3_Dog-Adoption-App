@@ -14,7 +14,7 @@
 
         <!-- Dog Image -->
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/content_dog_img"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:background="@drawable/stephen_account_rounded_box_terracotta"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/content_dog_name"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/label_age"
+            android:id="@+id/label_dog_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -45,10 +45,10 @@
             android:text="Age:"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/content_dog_name" />
 
         <TextView
-            android:id="@+id/content_age"
+            android:id="@+id/content_dog_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -57,11 +57,11 @@
             android:justificationMode="inter_word"
             android:text="[Age]"
             android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/label_age"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintStart_toEndOf="@+id/label_dog_age"
+            app:layout_constraintTop_toBottomOf="@+id/content_dog_name" />
 
         <TextView
-            android:id="@+id/label_gender"
+            android:id="@+id/label_dog_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -71,10 +71,10 @@
             android:text="Gender:"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_age" />
+            app:layout_constraintTop_toBottomOf="@+id/label_dog_age" />
 
         <TextView
-            android:id="@+id/content_gender"
+            android:id="@+id/content_dog_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -83,11 +83,11 @@
             android:justificationMode="inter_word"
             android:text="[Gender]"
             android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/label_gender"
-            app:layout_constraintTop_toBottomOf="@+id/label_age" />
+            app:layout_constraintStart_toEndOf="@+id/label_dog_gender"
+            app:layout_constraintTop_toBottomOf="@+id/label_dog_age" />
 
         <TextView
-            android:id="@+id/label_status"
+            android:id="@+id/label_dog_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -97,10 +97,10 @@
             android:text="Status:"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_gender" />
+            app:layout_constraintTop_toBottomOf="@+id/label_dog_gender" />
 
         <TextView
-            android:id="@+id/content_status"
+            android:id="@+id/content_dog_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -109,8 +109,8 @@
             android:justificationMode="inter_word"
             android:text="[Status]"
             android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/label_status"
-            app:layout_constraintTop_toBottomOf="@+id/label_gender" />
+            app:layout_constraintStart_toEndOf="@+id/label_dog_status"
+            app:layout_constraintTop_toBottomOf="@+id/label_dog_gender" />
 
         <!-- Dog Name -->
 

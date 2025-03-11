@@ -8,16 +8,17 @@
     android:background="#DED0C4"
     tools:context=".Adoption_Applications_Page">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="412dp"
-        android:layout_height="60dp"
-        android:background="#D77A61"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="1dp" />
+    <!--NAV BAR-->
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#D77A61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/app_title"
         android:layout_width="221dp"
         android:layout_height="36dp"
         android:layout_marginStart="17dp"
@@ -28,32 +29,41 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/go_adoption"
         android:layout_width="25.45dp"
         android:layout_height="25.45dp"
-        android:layout_marginStart="314dp"
         android:layout_marginTop="18dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="#00FFFFFF"
-        android:clickable="true"
         android:contextClickable="true"
         android:src="@drawable/paw"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/go_profile"
         app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/go_profile"
         android:layout_width="33dp"
         android:layout_height="33dp"
-        android:layout_marginStart="354dp"
+        android:layout_gravity="end"
         android:layout_marginTop="14dp"
+        android:layout_marginEnd="17dp"
         android:backgroundTint="#00FFFFFF"
-        android:clickable="true"
         android:contextClickable="true"
         android:src="@drawable/user"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="visible"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- END NAV BAR -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

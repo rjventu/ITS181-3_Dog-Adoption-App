@@ -14,15 +14,16 @@ android:layout_height="match_parent">
         tools:context=".Home_Page">
 
         <!--NAV BAR-->
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#D77A61"
-            tools:layout_editor_absoluteX="-1dp"
-            tools:layout_editor_absoluteY="1dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/app_title"
             android:layout_width="221dp"
             android:layout_height="36dp"
             android:layout_marginStart="17dp"
@@ -66,6 +67,10 @@ android:layout_height="match_parent">
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- END NAV BAR -->
+
+        <!-- MAIN CONTENT -->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

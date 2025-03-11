@@ -15,7 +15,7 @@
 
         <!--CHANGED TO HOME_PAGE-->
 
-        <!-- CURRENT SET TO TEST HAHA-->
+        <!-- CURRENT SET TO TEST -->
         <activity
             android:name=".HomePage"
             android:exported="true">
@@ -27,6 +27,9 @@
 
         <!-- OTHER NAV -->
         <activity android:name=".DogAdoptionPage" android:exported="true" />
+        <activity android:name=".DogProfilePage" android:exported="true" />
+        <activity android:name=".ApplicantDashboardPage" android:exported="true" />
+
 
         <meta-data
             android:name="preloaded_fonts"

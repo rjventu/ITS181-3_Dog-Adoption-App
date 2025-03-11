@@ -3,7 +3,13 @@ package com.example.appdev3_project;
 import com.example.appdev3_project.adapter.DogAdapter;
 import com.example.appdev3_project.model.Dog;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +26,9 @@ public class DogAdoptionPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dog_adoption_page);
+
+        // Initialize NavBar
+        HelperFunctions.initializeNavBar(DogAdoptionPage.this);
 
         // RECYCLEVIEW CODE
             // Initialize RecyclerView

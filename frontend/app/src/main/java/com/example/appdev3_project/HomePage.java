@@ -1,5 +1,6 @@
 package com.example.appdev3_project;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -23,37 +24,8 @@ public class HomePage extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.home_page);
 
-        // Find ImageButton NOT WORKING??? IDK WHY HUHU
-        ImageButton goAdoption = findViewById(R.id.go_adoption);
-        ImageButton goProfile = findViewById(R.id.go_profile);
-
-//
-//        if (goAdoption == null) {
-//            Log.e("HomePage", "go_adoption is NULL! Check XML ID.");
-//        } else {
-//            Log.d("HomePage", "go_adoption found!");
-//        }
-
-        // Set goAdoption click listener
-        goAdoption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Log.d("HomePage", "go_adoption clicked!");
-                Toast.makeText(HomePage.this, "Button Clicked!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(HomePage.this, DogAdoptionPage.class);
-                startActivity(intent);
-            }
-        });
-
-        // Set goProfile click listener
-        goProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(HomePage.this, "Button Clicked!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(HomePage.this, DogAdoptionPage.class);
-                startActivity(intent);
-            }
-        });
+        // Initialize NavBar
+        HelperFunctions.initializeNavBar(HomePage.this);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.home), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
