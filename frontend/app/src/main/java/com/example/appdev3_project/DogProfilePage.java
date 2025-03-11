@@ -21,14 +21,14 @@ public class DogProfilePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dog_profile_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.dog_profile), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        HelperFunctions.initializeNavBar(DogProfilePage.this);
+        NavBarUtil.initializeNavBar(DogProfilePage.this);
 
         // Initialize views
         dogImage = findViewById(R.id.dog_image);

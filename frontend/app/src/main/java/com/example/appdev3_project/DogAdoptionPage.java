@@ -24,14 +24,14 @@ public class DogAdoptionPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dog_adoption_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.dog_adoption), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        HelperFunctions.initializeNavBar(DogAdoptionPage.this);
+        NavBarUtil.initializeNavBar(DogAdoptionPage.this);
 
         // RECYCLEVIEW CODE
             // Initialize RecyclerView

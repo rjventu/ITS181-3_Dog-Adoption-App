@@ -12,19 +12,20 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appdev3_project.model.User;
 
-public class ApplicantEditPage extends AppCompatActivity {
+public class ApplicantAccountViewPage extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.applicant_account_details_edit_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        setContentView(R.layout.applicant_account_view_page);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.applicant_account_view), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        HelperFunctions.initializeNavBar(ApplicantEditPage.this);
+        NavBarUtil.initializeNavBar(ApplicantAccountViewPage.this);
 
         // Get data from Intent
         Intent intent = getIntent();
@@ -37,34 +38,21 @@ public class ApplicantEditPage extends AppCompatActivity {
             EditText phone = (EditText) findViewById(R.id.view_user_phone);
             EditText address = (EditText) findViewById(R.id.view_user_address);
 
-            // Display User details
+            // DIsplay User details
             username.setText(user.getUsername());
             password.setText(user.getPassword());
             name.setText(user.getName());
             phone.setText(user.getContact());
             address.setText(user.getAddress());
+
         }
 
-        // Configure Cancel Button
-        Button cancelButton = findViewById(R.id.button_account_cancel);
-        cancelButton.setOnClickListener(view -> {
+        // Configure Edit Button
+        Button viewButton = findViewById(R.id.button_account_edit);
+        viewButton.setOnClickListener(view -> {
             if (intent != null && intent.hasExtra("user")) {
                 User user = (User) intent.getSerializableExtra("user");
-                Intent intent2 = new Intent(ApplicantEditPage.this, ApplicantViewPage.class);
-                intent2.putExtra("user", user);
-                startActivity(intent2);
-            }
-        });
-
-        // Configure Save Button
-        Button saveButton = findViewById(R.id.button_account_save);
-        saveButton.setOnClickListener(view -> {
-            if (intent != null && intent.hasExtra("user")) {
-                User user = (User) intent.getSerializableExtra("user");
-
-                // add code to persist data
-
-                Intent intent2 = new Intent(ApplicantEditPage.this, ApplicantViewPage.class);
+                Intent intent2 = new Intent(ApplicantAccountViewPage.this, ApplicantAccountEditPage.class);
                 intent2.putExtra("user", user);
                 startActivity(intent2);
             }

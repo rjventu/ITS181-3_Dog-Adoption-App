@@ -32,14 +32,14 @@ public class ApplicantDashboardPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.applicant_dashboard_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.applicant_dashboard), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        HelperFunctions.initializeNavBar(ApplicantDashboardPage.this);
+        NavBarUtil.initializeNavBar(ApplicantDashboardPage.this);
 
         // RECYCLEVIEW CODE
         // Initialize RecyclerView
@@ -62,7 +62,7 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         // Configure View button
         Button viewButton = findViewById(R.id.button_account_view);
         viewButton.setOnClickListener(view -> {
-            Intent intent = new Intent(ApplicantDashboardPage.this, ApplicantViewPage.class);
+            Intent intent = new Intent(ApplicantDashboardPage.this, ApplicantAccountViewPage.class);
             intent.putExtra("user", user);
             startActivity(intent);
         });

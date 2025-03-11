@@ -19,14 +19,14 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.adoption_applications_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adoption_applications), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        HelperFunctions.initializeNavBar(AdoptionApplicationsPage.this);
+        NavBarUtil.initializeNavBar(AdoptionApplicationsPage.this);
 
         // Get data from Intent
         Intent intent = getIntent();

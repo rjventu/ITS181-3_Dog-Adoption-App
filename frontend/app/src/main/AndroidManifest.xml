@@ -28,10 +28,15 @@
         <!-- OTHER NAV -->
         <activity android:name=".DogAdoptionPage" android:exported="true" />
         <activity android:name=".DogProfilePage" android:exported="true" />
+        <activity android:name=".SignInApplicantPage" android:exported="true" />
+        <activity android:name=".SignInAdminPage" android:exported="true" />
+        <activity android:name=".RegisterApplicantPage" android:exported="true" />
+        <!-- APPLICANT PANEL -->
         <activity android:name=".ApplicantDashboardPage" android:exported="true" />
-        <activity android:name=".ApplicantViewPage" android:exported="true" />
-        <activity android:name=".ApplicantEditPage" android:exported="true" />
+        <activity android:name=".ApplicantAccountViewPage" android:exported="true" />
+        <activity android:name=".ApplicantAccountEditPage" android:exported="true" />
         <activity android:name=".AdoptionApplicationsPage" android:exported="true" />
+        <!-- ADMIN PANEL -->
 
 
         <meta-data
