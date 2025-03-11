@@ -29,6 +29,9 @@
         <activity android:name=".DogAdoptionPage" android:exported="true" />
         <activity android:name=".DogProfilePage" android:exported="true" />
         <activity android:name=".ApplicantDashboardPage" android:exported="true" />
+        <activity android:name=".ApplicantViewPage" android:exported="true" />
+        <activity android:name=".ApplicantEditPage" android:exported="true" />
+        <activity android:name=".AdoptionApplicationsPage" android:exported="true" />
 
 
         <meta-data

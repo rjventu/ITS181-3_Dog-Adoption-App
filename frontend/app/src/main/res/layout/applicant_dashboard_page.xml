@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DED0C4"
-    tools:context=".Adoption_Applications_Page">
+    tools:context=".AdoptionApplicationsPage">
 
     <!--NAV BAR-->
 
@@ -109,6 +109,7 @@
                 android:background="@drawable/stephen_account_rounded_box_white" />
 
             <TextView
+                android:id="@+id/welcome_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -124,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/stephen_account_rounded_box_terracotta"
+                android:backgroundTint="#D77A61"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"

@@ -14,28 +14,29 @@
 
         <!-- Dog Image -->
         <ImageView
-            android:id="@+id/content_dog_img"
+            android:id="@+id/content_dog_image"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:background="@drawable/stephen_account_rounded_box_terracotta"
             android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/content_dog_name"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/jost_black"
             android:text="[Dog Name]"
             android:textAlignment="textStart"
-            android:textSize="14sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/label_dog_age"
+            android:id="@+id/content_dog_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -43,25 +44,12 @@
             android:fontFamily="@font/jost_black"
             android:justificationMode="inter_word"
             android:text="Age:"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/content_dog_name" />
 
         <TextView
-            android:id="@+id/content_dog_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/jost"
-            android:justificationMode="inter_word"
-            android:text="[Age]"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/label_dog_age"
-            app:layout_constraintTop_toBottomOf="@+id/content_dog_name" />
-
-        <TextView
-            android:id="@+id/label_dog_gender"
+            android:id="@+id/content_dog_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -69,25 +57,12 @@
             android:fontFamily="@font/jost_black"
             android:justificationMode="inter_word"
             android:text="Gender:"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_dog_age" />
+            app:layout_constraintTop_toBottomOf="@+id/content_dog_age" />
 
         <TextView
-            android:id="@+id/content_dog_gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/jost"
-            android:justificationMode="inter_word"
-            android:text="[Gender]"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/label_dog_gender"
-            app:layout_constraintTop_toBottomOf="@+id/label_dog_age" />
-
-        <TextView
-            android:id="@+id/label_dog_status"
+            android:id="@+id/content_dog_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -95,32 +70,9 @@
             android:fontFamily="@font/jost_black"
             android:justificationMode="inter_word"
             android:text="Status:"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_dog_gender" />
-
-        <TextView
-            android:id="@+id/content_dog_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/jost"
-            android:justificationMode="inter_word"
-            android:text="[Status]"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/label_dog_status"
-            app:layout_constraintTop_toBottomOf="@+id/label_dog_gender" />
-
-        <!-- Dog Name -->
-
-        <!-- Dog Gender -->
-
-        <!-- Dog Age -->
-
-        <!-- Vaccination Status -->
-
-        <!-- Sterilization Status -->
+            app:layout_constraintTop_toBottomOf="@+id/content_dog_gender" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

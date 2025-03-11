@@ -1,15 +1,19 @@
 package com.example.appdev3_project.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appdev3_project.DogProfilePage;
 import com.example.appdev3_project.R;
 import com.example.appdev3_project.model.Adoption;
+import com.example.appdev3_project.model.Dog;
 
 import java.util.List;
 
@@ -33,10 +37,19 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
     @Override
     public void onBindViewHolder(@NonNull AdoptionViewHolder holder, int position) {
         Adoption adoption = adoptionsList.get(position);
-        holder.dogName.setText(adoption.getDog().getName());
-        holder.dogAge.setText(adoption.getDog().getAge());
-        holder.dogGender.setText(adoption.getDog().getGender());
-        holder.dogStatus.setText(adoption.getStatus());
+        Dog dog = adoption.getDog();
+        holder.dogName.setText(dog.getName());
+        holder.dogAge.setText("Age: " + dog.getAge() + " years");
+        holder.dogGender.setText("Gender: " + dog.getGender());
+        holder.dogStatus.setText("Status: " + adoption.getStatus());
+        holder.dogImage.setImageResource(dog.getImageResId());
+
+        // Set click listener to open DogProfilePage
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), DogProfilePage.class);
+            intent.putExtra("dog", dog);  // Send the Dog object
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
@@ -46,6 +59,7 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
 
     static class AdoptionViewHolder extends RecyclerView.ViewHolder {
         TextView dogName, dogAge, dogGender, dogStatus;
+        ImageView dogImage;
 
         public AdoptionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +67,7 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
             dogAge = itemView.findViewById(R.id.content_dog_age);
             dogGender = itemView.findViewById(R.id.content_dog_gender);
             dogStatus = itemView.findViewById(R.id.content_dog_status);
+            dogImage = itemView.findViewById(R.id.content_dog_image);
         }
     }
 }

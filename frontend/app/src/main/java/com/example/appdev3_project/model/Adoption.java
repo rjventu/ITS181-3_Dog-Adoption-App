@@ -1,8 +1,9 @@
 package com.example.appdev3_project.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Adoption {
+public class Adoption implements Serializable {
     private Long id;
     private String status;
     private LocalDateTime datetime;
@@ -19,7 +20,6 @@ public class Adoption {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -27,7 +27,6 @@ public class Adoption {
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
@@ -35,7 +34,6 @@ public class Adoption {
     public LocalDateTime getDatetime() {
         return datetime;
     }
-
     public void setDatetime(LocalDateTime datetime) {
         this.datetime = datetime;
     }
@@ -43,7 +41,6 @@ public class Adoption {
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
@@ -51,7 +48,6 @@ public class Adoption {
     public Dog getDog() {
         return dog;
     }
-
     public void setDog(Dog dog) {
         this.dog = dog;
     }

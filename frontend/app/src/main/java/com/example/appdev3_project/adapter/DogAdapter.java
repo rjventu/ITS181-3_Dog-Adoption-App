@@ -1,8 +1,10 @@
 package com.example.appdev3_project.adapter;
 
+import com.example.appdev3_project.DogProfilePage;
 import com.example.appdev3_project.R;
 import com.example.appdev3_project.model.Dog;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +34,17 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.DogViewHolder> {
         Dog dog = dogList.get(position);
         holder.dogName.setText(dog.getName());
         holder.dogGender.setText("Gender: " + dog.getGender());
-        holder.dogAge.setText("Age: " + dog.getAge());
-        holder.dogVaccination.setText("Vaccination: " + dog.getVaccination());
-        holder.dogSterilization.setText("Sterilized: " + dog.getSterilization());
+        holder.dogAge.setText("Age: " + dog.getAge() + " years");
+        holder.dogVaccination.setText("Vaccinated: " + (dog.isVaccinated() ? "Yes" : "No"));
+        holder.dogSterilization.setText("Sterilized: " + (dog.isSterilized() ? "Yes" : "No"));
         holder.dogImage.setImageResource(dog.getImageResId());
+
+        // Set click listener to open DogProfilePage
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), DogProfilePage.class);
+            intent.putExtra("dog", dog);  // Send the Dog object
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

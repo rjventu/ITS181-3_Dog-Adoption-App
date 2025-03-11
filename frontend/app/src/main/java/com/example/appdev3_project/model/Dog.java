@@ -1,17 +1,15 @@
 package com.example.appdev3_project.model;
 
-public class Dog {
+import java.io.Serializable;
 
-    // add id
-    private String name;
-    private String gender;
-    private String age; // change to int
-    private String vaccination; // change to bool
-    private String sterilization; // change to bool
-    private int imageResId; // Resource ID for image
-    private String bio;
+public class Dog implements Serializable {
 
-    public Dog(String name, String gender, String age, String vaccination, String sterilization, int imageResId, String bio) {
+    private Long id;
+    private String name, gender, bio;
+    private int age, imageResId;
+    private boolean vaccination, sterilization;
+
+    public Dog(String name, String gender, int age, boolean vaccination, boolean sterilization, int imageResId, String bio) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -21,11 +19,18 @@ public class Dog {
         this.bio = bio;
     }
 
+    // Getters
     public String getName() { return name; }
     public String getGender() { return gender; }
-    public String getAge() { return age; }
-    public String getVaccination() { return vaccination; }
-    public String getSterilization() { return sterilization; }
+    public int getAge() { return age; }
+    public boolean isVaccinated() { return vaccination; }
+    public boolean isSterilized() { return sterilization; }
     public int getImageResId() { return imageResId; }
     public String getBio() { return bio; }
+
+    // Setters
+    public void setAge(int age) { this.age = age; }
+    public void setVaccination(boolean vaccination) { this.vaccination = vaccination; }
+    public void setSterilization(boolean sterilization) { this.sterilization = sterilization; }
 }
+

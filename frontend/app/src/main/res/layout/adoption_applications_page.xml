@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#DED0C4"
-    tools:context=".Adoption_Applications_Page">
+    tools:context=".AdoptionApplicationsPage">
 
     <!--NAV BAR-->
 

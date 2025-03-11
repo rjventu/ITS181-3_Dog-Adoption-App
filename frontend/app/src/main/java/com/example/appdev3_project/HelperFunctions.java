@@ -1,14 +1,10 @@
 package com.example.appdev3_project;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class HelperFunctions {
 
@@ -18,7 +14,8 @@ public class HelperFunctions {
         ImageButton goProfile = activity.findViewById(R.id.go_profile);
 
         if (goAdoption == null || goProfile == null) {
-            return; // Prevents crashes if buttons are missing
+            android.util.Log.e("HelperFunctions", "Navbar button(s) not found in " + activity.getLocalClassName());
+            return;
         }
 
         // Set appTitle click listener
