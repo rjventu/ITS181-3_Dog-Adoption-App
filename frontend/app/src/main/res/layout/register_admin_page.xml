@@ -232,7 +232,7 @@
                     android:ems="10"
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your address"
-                    android:inputType="phone"
+                    android:inputType="text"
                     android:padding="5dp"
                     android:textColor="@color/black" />
 

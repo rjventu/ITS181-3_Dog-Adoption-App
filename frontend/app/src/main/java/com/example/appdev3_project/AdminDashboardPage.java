@@ -63,6 +63,12 @@ public class AdminDashboardPage extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Configure Add Admin button
+        Button addButton = findViewById(R.id.btn_admin_account_add);
+        addButton.setOnClickListener(view -> {
+            startActivity(new Intent(AdminDashboardPage.this, RegisterAdminPage.class));
+        });
+
         // Configure Manage Dogs button
         Button dogsButton = findViewById(R.id.btn_admin_manage_dogs);
         dogsButton.setOnClickListener(view -> {

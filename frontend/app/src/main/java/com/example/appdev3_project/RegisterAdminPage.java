@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterApplicantPage extends AppCompatActivity {
+public class RegisterAdminPage extends AppCompatActivity {
 
     private EditText nameField, emailField, passwordField, passwordConfirmField, phoneField, addressField;
     private Button registerButton;
@@ -32,26 +32,26 @@ public class RegisterApplicantPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.register_applicant_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.user_register), (v, insets) -> {
+        setContentView(R.layout.register_admin_page);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.admin_register), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        MyUtil.initializeNavBar(RegisterApplicantPage.this);
+        MyUtil.initializeNavBar(RegisterAdminPage.this);
 
         // fields
-        nameField = (EditText) findViewById(R.id.register_user_name);
-        emailField = (EditText) findViewById(R.id.register_user_email);
-        passwordField = (EditText) findViewById(R.id.register_user_password);
-        passwordConfirmField = (EditText) findViewById(R.id.register_user_password_conf);
-        phoneField = (EditText) findViewById(R.id.register_user_phone);
-        addressField = (EditText) findViewById(R.id.register_user_address);
+        nameField = (EditText) findViewById(R.id.register_admin_name);
+        emailField = (EditText) findViewById(R.id.register_admin_email);
+        passwordField = (EditText) findViewById(R.id.register_admin_password);
+        passwordConfirmField = (EditText) findViewById(R.id.register_admin_password_conf);
+        phoneField = (EditText) findViewById(R.id.register_admin_phone);
+        addressField = (EditText) findViewById(R.id.register_admin_address);
 
         // buttons
-        registerButton = (Button) findViewById(R.id.btn_submit_user_register_);
+        registerButton = (Button) findViewById(R.id.btn_submit_admin_register_);
 
         authApi = new RetrofitService().getRetrofit().create(AuthApi.class);
 
@@ -74,7 +74,7 @@ public class RegisterApplicantPage extends AppCompatActivity {
             return;
         }
 
-        User newUser = new User(email, password, name, phone, address, "USER");
+        User newUser = new User(email, password, name, phone, address, "ADMIN");
 
         // start API call
         Call<User> call = authApi.register(newUser);
@@ -82,8 +82,8 @@ public class RegisterApplicantPage extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(RegisterApplicantPage.this, "Registration successful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterApplicantPage.this, SignInApplicantPage.class));
+                    Toast.makeText(RegisterAdminPage.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(RegisterAdminPage.this, AdminDashboardPage.class));
                     finish();
                 } else {
                     // extract error message from response and display it
@@ -92,16 +92,16 @@ public class RegisterApplicantPage extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(errorMessage);
                         String message = jsonObject.optString("message", "Login failed");
 
-                        Toast.makeText(RegisterApplicantPage.this, message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterAdminPage.this, message, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
-                        Toast.makeText(RegisterApplicantPage.this, "Unexpected error occurred.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterAdminPage.this, "Unexpected error occurred.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(RegisterApplicantPage.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterAdminPage.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
