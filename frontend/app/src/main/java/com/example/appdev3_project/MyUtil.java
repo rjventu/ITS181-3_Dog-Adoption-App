@@ -6,14 +6,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
+import com.example.appdev3_project.retrofit.RetrofitService;
+import com.example.appdev3_project.retrofit.UserApi;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyUtil {
 
@@ -78,6 +85,42 @@ public class MyUtil {
         adoptions.add(new Adoption("Rejected", LocalDateTime.now(),user, dogs.get(2)));
         adoptions.add(new Adoption("Pending", LocalDateTime.now(),user, dogs.get(3)));
         return adoptions;
+    }
+
+    public interface UserFetchCallback {
+        void onUserFetched(User user);
+        void onError(String errorMessage);
+    }
+
+    public static void fetchUserDetails(Context context, UserFetchCallback callback) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        long userId = sharedPreferences.getLong("userId", -1);
+
+        if (userId == -1) {
+            Toast.makeText(context, "User not logged in.", Toast.LENGTH_SHORT).show();
+            context.startActivity(new Intent(context, SignInApplicantPage.class));
+            return;
+        }
+
+        RetrofitService retrofitService = new RetrofitService();
+        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
+        Call<User> call = userApi.getUserById(userId);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onUserFetched(response.body());
+                } else {
+                    callback.onError("Failed to load user data");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                callback.onError("Network error: " + t.getMessage());
+            }
+        });
     }
 
 }

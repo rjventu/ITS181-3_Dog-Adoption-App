@@ -33,8 +33,6 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
 
     private User user;
     private Dog dog;
-    private RetrofitService retrofitService;
-    private AdoptionApi adoptionApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +48,6 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
         // Initialize NavBar
         MyUtil.initializeNavBar(AdoptionApplicationsPage.this);
 
-        // Initialize Retrofit
-        retrofitService = new RetrofitService();
-        adoptionApi = retrofitService.getRetrofit().create(AdoptionApi.class);
-
         // Get dog data from Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("dog")) {
@@ -63,51 +57,29 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
         }
 
         // Get user data from database
-        fetchUserDetails();
+        MyUtil.fetchUserDetails(this, new MyUtil.UserFetchCallback() {
+            @Override
+            public void onUserFetched(User fetchedUser) {
+                user = fetchedUser;
+                TextView name = findViewById(R.id.application_name);
+                TextView email = findViewById(R.id.application_email);
+                TextView phone = findViewById(R.id.application_phone);
+                TextView address = findViewById(R.id.application_address);
+
+                name.setText("Name: " + user.getName());
+                email.setText("Email: " + user.getUsername());
+                phone.setText("Phone: " + user.getContact());
+                address.setText("Address: " + user.getAddress());
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(AdoptionApplicationsPage.this, errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Button submitButton = findViewById(R.id.btn_application_submit);
         submitButton.setOnClickListener(view -> submitAdoption());
-    }
-
-    // fetch user details from the backend using userId
-    private void fetchUserDetails() {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        long userId = sharedPreferences.getLong("userId", -1); // Get stored user ID
-
-        if (userId == -1) {
-            Toast.makeText(this, "User not logged in!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, SignInApplicantPage.class));
-            finish();
-            return;
-        }
-
-        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
-        Call<User> call = userApi.getUserById(userId); // Fetch by ID
-
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    user = response.body();
-                    TextView name = findViewById(R.id.application_name);
-                    TextView email = findViewById(R.id.application_email);
-                    TextView phone = findViewById(R.id.application_phone);
-                    TextView address = findViewById(R.id.application_address);
-
-                    name.setText("Name: " + user.getName());
-                    email.setText("Email: " + user.getUsername());
-                    phone.setText("Phone: " + user.getContact());
-                    address.setText("Name: " + user.getAddress());
-                } else {
-                    Toast.makeText(AdoptionApplicationsPage.this, "Failed to load user data", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(AdoptionApplicationsPage.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     // submit adoption request to backend
@@ -116,6 +88,10 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
             Toast.makeText(this, "Error: Missing user or dog data", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Initialize Retrofit
+        RetrofitService retrofitService = new RetrofitService();
+        AdoptionApi adoptionApi = retrofitService.getRetrofit().create(AdoptionApi.class);
 
         Adoption adoption = new Adoption();
         Call<Adoption> call = adoptionApi.addAdoption(user.getId(), dog.getId(), adoption);
