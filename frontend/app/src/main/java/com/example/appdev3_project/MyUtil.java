@@ -6,9 +6,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class NavBarUtil {
+import com.example.appdev3_project.model.Adoption;
+import com.example.appdev3_project.model.Dog;
+import com.example.appdev3_project.model.User;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyUtil {
 
     public static void initializeNavBar(Activity activity) {
         TextView appTitle = activity.findViewById(R.id.app_title);
@@ -22,7 +29,6 @@ public class NavBarUtil {
 
         // Set appTitle click listener
         appTitle.setOnClickListener(view -> {
-//            Toast.makeText(activity, "Navigating to Home Page", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(activity, HomePage.class);
             activity.startActivity(intent);
         });
@@ -32,12 +38,6 @@ public class NavBarUtil {
             Intent intent = new Intent(activity, DogAdoptionPage.class);
             activity.startActivity(intent);
         });
-
-        // Set goProfile click listener
-//        goProfile.setOnClickListener(v -> {
-//            Intent intent = new Intent(activity, SignInApplicantPage.class);
-//            activity.startActivity(intent);
-//        });
 
         // Set goProfile click listener with authentication check
         goProfile.setOnClickListener(v -> {
@@ -55,6 +55,29 @@ public class NavBarUtil {
                 activity.startActivity(intent);
             }
         });
+    }
+
+    public User getSampleUser(){
+        User user = new User("myemailaddress@gmail.com", "password", "John Doe", "09221234567", "101 Sunshine Boulevard", "Applicant");
+        return user;
+    }
+
+    public List<Dog> getSampleDogs() {
+        List<Dog> dogs = new ArrayList<>();
+        dogs.add(new Dog((long) 1, "Bravo", "Male", 2, true, true, R.drawable.bravo_male_adult, "text text text"));
+        dogs.add(new Dog((long) 2, "Blackie", "Male", 5, true, true, R.drawable.blackie_male_adult, "text text text"));
+        dogs.add(new Dog((long) 3, "Biscuit", "Female", 1, false, true, R.drawable.biscuit_female_adult, "text text text"));
+        dogs.add(new Dog((long) 4, "Big Whitey", "Male", 2, false, true, R.drawable.big_whitey_male_adult, "text text text"));
+        return dogs;
+    }
+
+    public List<Adoption> getSampleAdoptions(List<Dog> dogs) {
+        List<Adoption> adoptions = new ArrayList<>();
+        adoptions.add(new Adoption("Pending", LocalDateTime.now(),dogs.get(0)));
+        adoptions.add(new Adoption("Approved", LocalDateTime.now(),dogs.get(1)));
+        adoptions.add(new Adoption("Rejected", LocalDateTime.now(),dogs.get(2)));
+        adoptions.add(new Adoption("Pending", LocalDateTime.now(),dogs.get(3)));
+        return adoptions;
     }
 
 }

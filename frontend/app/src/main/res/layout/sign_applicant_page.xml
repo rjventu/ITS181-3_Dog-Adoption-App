@@ -181,6 +181,7 @@
                     android:backgroundTint="#D77A61"
                     android:clickable="true"
                     android:fontFamily="@font/jost_black"
+                    android:textColor="#FFFFFF"
                     android:text="LOGIN"
                     android:textSize="16sp" />
 

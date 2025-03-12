@@ -13,12 +13,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/application")
 public class ApplicationController {
-    @Autowired
-    private EmailService emailService;
+    // @Autowired
+    // private EmailService emailService;
 
     @PostMapping("/send")
     public ResponseEntity<Map<String, String>> submitApplication(@RequestBody ApplicationDTO application) {
-        emailService.sendApplicationEmail(application);
+        // emailService.sendApplicationEmail(application);
         System.out.println(application);
         return ResponseEntity.ok(Map.of("message",
                 "Application submitted successfully! We have sent your details to the local vet. " +

@@ -1,6 +1,8 @@
 package com.example.appdev3_project;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,7 +41,7 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(ApplicantDashboardPage.this);
+        MyUtil.initializeNavBar(ApplicantDashboardPage.this);
 
         // RECYCLEVIEW CODE
         // Initialize RecyclerView
@@ -47,15 +49,15 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
 
         // Generate sample data
-        dogList = getSampleDogs();
-        adoptionList = getSampleAdoptions(dogList);
+        dogList = new MyUtil().getSampleDogs();
+        adoptionList = new MyUtil().getSampleAdoptions(dogList);
 
         // Use RecyclerView adapter
         adoptionAdapter = new AdoptionAdapter(this, adoptionList);
         recyclerView.setAdapter(adoptionAdapter);
 
         // Set welcome message
-        User user = getSampleUser();
+        User user = new MyUtil().getSampleUser();
         TextView welcome = (TextView) findViewById(R.id.applicant_dashboard_welcome_message);
         welcome.setText("Welcome, " + user.getName().split(" ")[0] + "!");
 
@@ -66,21 +68,24 @@ public class ApplicantDashboardPage extends AppCompatActivity {
             intent.putExtra("user", user);
             startActivity(intent);
         });
+
+        // Configure Logout Button
+        Button logoutButton = findViewById(R.id.btn_applicant_account_logout);
+        logoutButton.setOnClickListener(view -> logoutUser());
     }
 
-    private User getSampleUser(){
-        User user = new User("myemailaddress@gmail.com", "password", "John Doe", "09221234567", "101 Sunshine Boulevard", "Applicant");
-        return user;
-    }
+    private void logoutUser() {
+        // clear SharedPreferences session
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
 
-    // Sample data
-    private List<Dog> getSampleDogs() {
-        List<Dog> dogs = new ArrayList<>();
-        dogs.add(new Dog("Bravo", "Male", 2, true, true, R.drawable.bravo_male_adult, "text text text"));
-        dogs.add(new Dog("Blackie", "Male", 5, true, true, R.drawable.blackie_male_adult, "text text text"));
-        dogs.add(new Dog("Biscuit", "Female", 1, false, true, R.drawable.biscuit_female_adult, "text text text"));
-        dogs.add(new Dog("Big Whitey", "Male", 2, false, true, R.drawable.big_whitey_male_adult, "text text text"));
-        return dogs;
+        // redirect user to Sign-In page
+        Intent intent = new Intent(ApplicantDashboardPage.this, SignInApplicantPage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // prevent going back to dashboard
+        startActivity(intent);
+        finish(); // close current activity
     }
 
     private List<Adoption> getSampleAdoptions(List<Dog> dogs) {

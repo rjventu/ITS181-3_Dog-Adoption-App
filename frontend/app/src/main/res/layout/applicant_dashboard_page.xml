@@ -95,7 +95,7 @@
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="200dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,23 +112,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/jost_black"
                 android:text="Welcome! [User]"
                 android:textAlignment="center"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btn_applicant_account_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="80dp"
                 android:backgroundTint="#D77A61"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
+                android:textColor="#FFFFFF"
                 android:text="VIEW PROFILE DETAILS"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_applicant_account_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="130dp"
+                android:backgroundTint="#FFFFFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/jost_black"
+                android:textColor="#D77A61"
+                android:text="LOGOUT"
                 android:textSize="10sp" />
 
 

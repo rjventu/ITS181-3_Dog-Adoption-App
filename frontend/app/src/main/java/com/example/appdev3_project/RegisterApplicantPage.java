@@ -40,7 +40,7 @@ public class RegisterApplicantPage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(RegisterApplicantPage.this);
+        MyUtil.initializeNavBar(RegisterApplicantPage.this);
 
         // fields
         nameField = (EditText) findViewById(R.id.register_user_name);
@@ -92,7 +92,7 @@ public class RegisterApplicantPage extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(errorMessage);
                         String message = jsonObject.optString("message", "Login failed");
 
-                        Toast.makeText(RegisterApplicantPage.this, "ERROR: " + message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterApplicantPage.this, message, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(RegisterApplicantPage.this, "Unexpected error occurred.", Toast.LENGTH_SHORT).show();
                     }

@@ -12,4 +12,5 @@ public class ApplicationDTO {
     private String contactNumber;
     private String address;
     private String dogName;
+    private String reason;
 }

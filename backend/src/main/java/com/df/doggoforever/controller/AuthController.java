@@ -46,16 +46,11 @@ public class AuthController {
     @PostMapping("/sign-in")
     public ResponseEntity<?> login(HttpSession session, @RequestBody User user) {
         User existingUser = authService.matchesUsername(user.getUsername());
-        System.out.println(existingUser);
 
         if (existingUser != null){
             if (passwordService.checkPassword(user.getPassword(), existingUser.getPassword())) {
                 if(Objects.equals(existingUser.getRole(), "USER")){
-                    // Create map with user's email and role
-                    Map<String, String> response = new HashMap<>();
-                    response.put("username", existingUser.getUsername());
-                    response.put("role", existingUser.getRole());
-                    return ResponseEntity.ok(response); // return map and ok response
+                    return ResponseEntity.ok(existingUser); // return user object
                 } else {
                     return ResponseEntity.badRequest().body(Map.of("message", "Please use the admin sign-in form."));
                 }

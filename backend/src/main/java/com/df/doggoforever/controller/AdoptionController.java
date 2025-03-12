@@ -36,8 +36,8 @@ public class AdoptionController {
         return service.getAdoptionsByDogId(id);
     }
 
-    @PostMapping
-    public Adoption addAdoption(@RequestParam Long userId, @RequestParam Long dogId, @RequestBody Adoption adoption) {
+    @PostMapping("/{userId}/{dogId}")
+    public Adoption addAdoption(@PathVariable Long userId, @PathVariable Long dogId, @RequestBody Adoption adoption) {
         return service.addAdoption(userId, dogId, adoption);
     }
 

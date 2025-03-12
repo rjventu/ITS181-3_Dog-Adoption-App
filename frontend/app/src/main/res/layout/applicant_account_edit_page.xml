@@ -188,6 +188,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
+                android:textColor="#FFFFFF"
                 android:text="CANCEL"
                 android:textSize="10sp" />
 
@@ -202,6 +203,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
+                android:textColor="#FFFFFF"
                 android:text="SAVE"
                 android:textSize="10sp" />
 

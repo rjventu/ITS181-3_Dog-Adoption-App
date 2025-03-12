@@ -80,7 +80,7 @@
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="290dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,6 +113,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
+                android:textColor="#FFFFFF"
                 android:text="VIEW PROFILE DETAILS"
                 android:textSize="10sp" />
 
@@ -122,11 +123,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="130dp"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="#D77A61"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
-                android:textColor="#D77A61"
+                android:textColor="#FFFFFF"
                 android:text="MANAGE DOG RECORDS"
                 android:textSize="10sp" />
 
@@ -136,12 +137,26 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="180dp"
+                android:backgroundTint="#D77A61"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/jost_black"
+                android:textColor="#FFFFFF"
+                android:text="MANAGE ADOPTION RECORDS"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/btn_admin_account_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="230dp"
                 android:backgroundTint="#FFFFFF"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
                 android:textColor="#D77A61"
-                android:text="MANAGE ADOPTION RECORDS"
+                android:text="LOGOUT"
                 android:textSize="10sp" />
 
 

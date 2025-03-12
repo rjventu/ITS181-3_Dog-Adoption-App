@@ -42,7 +42,7 @@ public class SignInAdminPage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(SignInAdminPage.this);
+        MyUtil.initializeNavBar(SignInAdminPage.this);
 
         // fields
         usernameField = (EditText) findViewById(R.id.sign_admin_email);
@@ -76,7 +76,7 @@ public class SignInAdminPage extends AppCompatActivity {
                     // save session in SharedPreferences
                     SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", loggedInUser.getUsername());
+                    editor.putLong("userId", loggedInUser.getId());
                     editor.putString("role", role);
                     editor.apply();
 
@@ -91,7 +91,7 @@ public class SignInAdminPage extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(errorMessage);
                         String message = jsonObject.optString("message", "Login failed");
 
-                        Toast.makeText(SignInAdminPage.this, "ERROR: " + message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInAdminPage.this, message, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(SignInAdminPage.this, "Unexpected error occurred.", Toast.LENGTH_SHORT).show();
                     }

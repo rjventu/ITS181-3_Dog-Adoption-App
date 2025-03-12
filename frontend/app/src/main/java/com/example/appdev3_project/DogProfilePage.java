@@ -2,7 +2,9 @@ package com.example.appdev3_project;
 
 import com.example.appdev3_project.model.Dog;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class DogProfilePage extends AppCompatActivity {
     private ImageView dogImage;
     private TextView dogName, dogAge, dogGender, dogVaccination, dogSterilization, dogBio;
+    private Dog dog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,7 @@ public class DogProfilePage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(DogProfilePage.this);
+        MyUtil.initializeNavBar(DogProfilePage.this);
 
         // Initialize views
         dogImage = findViewById(R.id.dog_image);
@@ -42,7 +46,7 @@ public class DogProfilePage extends AppCompatActivity {
         // Get data from Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("dog")) {
-            Dog dog = (Dog) intent.getSerializableExtra("dog");
+            dog = (Dog) intent.getSerializableExtra("dog");
 
             // Display Dog details
             dogName.setText(dog.getName());
@@ -59,15 +63,26 @@ public class DogProfilePage extends AppCompatActivity {
         // Configure adopt button
         TextView goAdopt = findViewById(R.id.go_adopt);
         goAdopt.setOnClickListener(view -> {
-            if (intent != null && intent.hasExtra("dog")) {
-                Dog dog = (Dog) intent.getSerializableExtra("dog");
+            // retrieve session data from SharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+            String role = sharedPreferences.getString("role", null);
+            Long userId = sharedPreferences.getLong("userId", -1);
 
-                Toast.makeText(DogProfilePage.this, "Navigating to Adoption Application Page", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(DogProfilePage.this, AdoptionApplicationsPage.class);
-                intent2.putExtra("dog", dog);
+            // if not logged in, navigate to sign in page
+            if (role == null || userId == -1) {
+                Toast.makeText(DogProfilePage.this, "Please sign in to adopt a dog.", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(DogProfilePage.this, SignInApplicantPage.class);
                 startActivity(intent2);
-            } else {
-                Toast.makeText(DogProfilePage.this, "ERROR: Dog not found!", Toast.LENGTH_SHORT).show();
+            }
+            // if logged in as user with role ADMIN, send error message that only applicants can adopt
+            else if ("ADMIN".equalsIgnoreCase(role)) {
+                Toast.makeText(DogProfilePage.this, "Only applicants can adopt a dog.", Toast.LENGTH_SHORT).show();
+            }
+            // if logged in as user with role USER, navigate to AdoptionApplicationsPage, and pass dog as extra
+            else if ("USER".equalsIgnoreCase(role)) {
+                Intent intent3 = new Intent(DogProfilePage.this, AdoptionApplicationsPage.class);
+                intent3.putExtra("dog", dog);
+                startActivity(intent3);
             }
         });
 

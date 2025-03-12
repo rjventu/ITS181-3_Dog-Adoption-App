@@ -24,7 +24,7 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(ApplicantAccountEditPage.this);
+        MyUtil.initializeNavBar(ApplicantAccountEditPage.this);
 
         // Get data from Intent
         Intent intent = getIntent();

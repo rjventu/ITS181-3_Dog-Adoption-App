@@ -126,6 +126,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
+                android:textColor="#FFFFFF"
                 android:text="EDIT PROFILE"
                 android:textSize="10sp" />
 

@@ -11,7 +11,8 @@ public class Dog implements Serializable {
 
     public Dog() { }
 
-    public Dog(String name, String gender, int age, boolean vaccination, boolean sterilization, int imageResId, String bio) {
+    public Dog(Long id, String name, String gender, int age, boolean vaccination, boolean sterilization, int imageResId, String bio) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;

@@ -42,7 +42,7 @@ public class SignInApplicantPage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(SignInApplicantPage.this);
+        MyUtil.initializeNavBar(SignInApplicantPage.this);
 
         // fields
         usernameField = (EditText) findViewById(R.id.sign_user_email);
@@ -90,7 +90,7 @@ public class SignInApplicantPage extends AppCompatActivity {
                     // save session in SharedPreferences
                     SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("username", loggedInUser.getUsername());
+                    editor.putLong("userId", loggedInUser.getId());
                     editor.putString("role", role);
                     editor.apply();
 
@@ -105,7 +105,7 @@ public class SignInApplicantPage extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(errorMessage);
                         String message = jsonObject.optString("message", "Login failed");
 
-                        Toast.makeText(SignInApplicantPage.this, "ERROR: " + message, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInApplicantPage.this, message, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Toast.makeText(SignInApplicantPage.this, "Unexpected error occurred.", Toast.LENGTH_SHORT).show();
                     }

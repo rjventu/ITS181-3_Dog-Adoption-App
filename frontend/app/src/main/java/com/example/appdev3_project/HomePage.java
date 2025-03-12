@@ -22,7 +22,7 @@ public class HomePage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        NavBarUtil.initializeNavBar(HomePage.this);
+        MyUtil.initializeNavBar(HomePage.this);
     }
 
 }
