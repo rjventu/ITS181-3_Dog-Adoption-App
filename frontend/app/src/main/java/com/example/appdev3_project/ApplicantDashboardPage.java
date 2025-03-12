@@ -55,10 +55,6 @@ public class ApplicantDashboardPage extends AppCompatActivity {
             }
         });
 
-        // Initialize RecyclerView
-        recyclerView = findViewById(R.id.recyclerView_adoptions);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
-
         // Configure View button
         Button viewButton = findViewById(R.id.btn_applicant_account_view);
         viewButton.setOnClickListener(view -> {
@@ -71,7 +67,11 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         Button logoutButton = findViewById(R.id.btn_applicant_account_logout);
         logoutButton.setOnClickListener(view -> logoutUser());
 
-        // Generate sample data
+//        // Initialize RecyclerView
+//        recyclerView = findViewById(R.id.recyclerView_adoptions);
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
+//
+//        // Generate sample data
 //        dogList = new MyUtil().getSampleDogs();
 //        adoptionList = new MyUtil().getSampleAdoptions(user, dogList);
 //

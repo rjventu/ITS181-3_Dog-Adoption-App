@@ -16,12 +16,17 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
+import com.example.appdev3_project.service.UserService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminDashboardPage extends AppCompatActivity {
+
+    private User user;
+    private UserService userService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +40,27 @@ public class AdminDashboardPage extends AppCompatActivity {
         // Initialize NavBar
         MyUtil.initializeNavBar(AdminDashboardPage.this);
 
-        // Set welcome message
-        User user = new MyUtil().getSampleUser();
-        TextView welcome = (TextView) findViewById(R.id.admin_dashboard_welcome_message);
-        welcome.setText("Welcome, Admin " + user.getName().split(" ")[0] + "!");
+        // Get user data from database
+        userService = new UserService(this);
+        userService.fetchUserDetails(new UserService.UserFetchCallback() {
+            @Override
+            public void onSuccess(User newUser) {
+                user = newUser;
+                ((TextView) findViewById(R.id.admin_dashboard_welcome_message))
+                        .setText("Welcome, Admin " + user.getName().split(" ")[0] + "!");
+            }
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(AdminDashboardPage.this, "User not found!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Configure View button
         Button viewButton = findViewById(R.id.btn_admin_account_view);
         viewButton.setOnClickListener(view -> {
-            Toast.makeText(AdminDashboardPage.this, "Clicked view button", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(AdminDashboardPage.this, ApplicantAccountViewPage.class);
-//            intent.putExtra("user", user);
-//            startActivity(intent);
+            Intent intent = new Intent(AdminDashboardPage.this, AdminAccountViewPage.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
         });
 
         // Configure Manage Dogs button

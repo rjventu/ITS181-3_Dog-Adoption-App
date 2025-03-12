@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import retrofit2.Response;
 public class SignInAdminPage extends AppCompatActivity {
 
     private EditText usernameField, passwordField;
-    private Button loginButton, goToUserRegister, goToAdminSign;
+    private Button loginButton;
     private AuthApi authApi;
 
     @Override
@@ -100,6 +101,7 @@ public class SignInAdminPage extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                Log.e("SignInAdminPage", "error: ", t);
                 Toast.makeText(SignInAdminPage.this, "Login failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

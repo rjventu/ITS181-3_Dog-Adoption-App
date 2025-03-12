@@ -14,22 +14,22 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.appdev3_project.model.User;
 import com.example.appdev3_project.service.UserService;
 
-public class ApplicantAccountEditPage extends AppCompatActivity {
+public class AdminAccountEditPage extends AppCompatActivity {
 
     EditText emailField, passwordField, nameField, phoneField, addressField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_account_edit_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.admin_account_edit), (v, insets) -> {
+        setContentView(R.layout.applicant_account_edit_page);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.applicant_account_edit), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         // Initialize NavBar
-        MyUtil.initializeNavBar(ApplicantAccountEditPage.this);
+        MyUtil.initializeNavBar(AdminAccountEditPage.this);
 
         // Get data from Intent
         Intent intent = getIntent();
@@ -37,11 +37,11 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
             User user = (User) intent.getSerializableExtra("user");
 
             // Display User details
-            emailField = (EditText) findViewById(R.id.admin_edit_user_email);
-            passwordField = (EditText) findViewById(R.id.admin_edit_user_pass);
-            nameField = (EditText) findViewById(R.id.admin_edit_user_name);
-            phoneField = (EditText) findViewById(R.id.admin_edit_user_phone);
-            addressField = (EditText) findViewById(R.id.admin_edit_user_address);
+            emailField = (EditText) findViewById(R.id.applicant_edit_user_email);
+            passwordField = (EditText) findViewById(R.id.applicant_edit_user_pass);
+            nameField = (EditText) findViewById(R.id.applicant_edit_user_name);
+            phoneField = (EditText) findViewById(R.id.applicant_edit_user_phone);
+            addressField = (EditText) findViewById(R.id.applicant_edit_user_address);
 
             emailField.setText(user.getUsername());
             passwordField.setText(user.getPassword());
@@ -51,18 +51,18 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
         }
 
         // Configure Cancel Button
-        Button cancelButton = findViewById(R.id.btn_admin_account_cancel);
+        Button cancelButton = findViewById(R.id.btn_applicant_account_cancel);
         cancelButton.setOnClickListener(view -> {
             if (intent != null && intent.hasExtra("user")) {
                 User user = (User) intent.getSerializableExtra("user");
-                Intent intent2 = new Intent(ApplicantAccountEditPage.this, ApplicantAccountViewPage.class);
+                Intent intent2 = new Intent(AdminAccountEditPage.this, AdminAccountViewPage.class);
                 intent2.putExtra("user", user);
                 startActivity(intent2);
             }
         });
 
         // Configure Save Button
-        Button saveButton = findViewById(R.id.btn_admin_account_save);
+        Button saveButton = findViewById(R.id.btn_applicant_account_save);
         saveButton.setOnClickListener(view -> {
             if (intent != null && intent.hasExtra("user")) {
                 User user = (User) intent.getSerializableExtra("user");
@@ -75,7 +75,7 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
                     @Override
                     public void onSuccess(User updatedUser) {
                         Toast.makeText(getApplicationContext(), "User updated successfully!", Toast.LENGTH_SHORT).show();
-                        Intent intent2 = new Intent(ApplicantAccountEditPage.this, ApplicantAccountViewPage.class);
+                        Intent intent2 = new Intent(AdminAccountEditPage.this, AdminAccountViewPage.class);
                         intent2.putExtra("user", updatedUser);
                         intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent2);

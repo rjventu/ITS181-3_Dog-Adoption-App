@@ -42,6 +42,8 @@
         <activity android:name=".AdoptionApplicationsPage" android:exported="true" />
         <!-- ADMIN PANEL -->
         <activity android:name=".AdminDashboardPage" android:exported="true" />
+        <activity android:name=".AdminAccountViewPage" android:exported="true" />
+        <activity android:name=".AdminAccountEditPage" android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
