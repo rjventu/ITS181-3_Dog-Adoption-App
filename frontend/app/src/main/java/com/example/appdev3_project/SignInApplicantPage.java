@@ -96,6 +96,7 @@ public class SignInApplicantPage extends AppCompatActivity {
 
                     // redirect to Applicant Dashboard
                     Intent intent = new Intent(SignInApplicantPage.this, ApplicantDashboardPage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 } else {

@@ -26,11 +26,11 @@ public class HomePage extends AppCompatActivity {
         // Initialize NavBar
         MyUtil.initializeNavBar(HomePage.this);
 
-        // Clear session [FOR TESTING ONLY]
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
+//        // Clear session [FOR TESTING ONLY]
+//        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.clear();
+//        editor.apply();
     }
 
 }

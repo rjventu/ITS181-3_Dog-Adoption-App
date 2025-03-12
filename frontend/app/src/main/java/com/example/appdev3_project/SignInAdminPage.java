@@ -83,6 +83,7 @@ public class SignInAdminPage extends AppCompatActivity {
 
                     // redirect to Admin Dashboard
                     Intent intent = new Intent(SignInAdminPage.this, AdminDashboardPage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 } else {

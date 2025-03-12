@@ -145,6 +145,7 @@ android:layout_height="match_parent">
                     android:layout_marginTop="180dp"
                     android:layout_marginBottom="30dp"
                     android:fontFamily="@font/jost"
+                    android:textColor="@color/black"
                     android:text="At DOGGOFOREVER, we're dedicated to finding loving forever homes for dogs of all ages. We believe every dog deserves a chance, and our non-profit adoption center works tirelessly to connect them with kind-hearted families. We prioritize the health and happiness of our dogs, providing top-notch medical care, proper nutrition, and plenty of love. We operate on the values of compassion, respect, and a commitment to animal welfare.\n\nWe rely on the generosity of our community to thrive. Whether it's through adoption, volunteering, or donations, your support allows us to help more animals in need. By adopting, you're not just gaining a loyal companion, you're also making room for us to rescue another dog and combat overpopulation. Many of our dogs come from shelters or difficult situations, and we're giving them a second chance at a happy life.\n\nWe're committed to supporting you and your new pet for a lifetime, offering resources on training and care. We have dogs of all personalities, sizes, and ages, each thoroughly assessed to ensure a good match with their future family. We encourage you to visit us or explore our online gallery to find your perfect canine companion and join us in making a lasting impact, one wagging tail at a time." />
 
             </androidx.cardview.widget.CardView>
@@ -214,6 +215,7 @@ android:layout_height="match_parent">
                     android:layout_marginTop="180dp"
                     android:layout_marginBottom="30dp"
                     android:fontFamily="@font/jost"
+                    android:textColor="@color/black"
                     android:text=" DOGGOFOREVER is dedicated to rescuing, rehabilitating, and rehoming dogs from all walks of life. We provide each dog with medical care, socialization, and the essentials they need to thrive while awaiting adoption. Our goal is not only to find homes but also to support adopters with resources on training and care. From puppies to senior dogs, every dog deserves a chance, and we’re here to make sure they find loving, responsible owners.\n\nBeyond adoptions, DOGGOFOREVER works actively in the community to raise awareness about responsible pet ownership and the importance of adopting from shelters. Through events, education programs, and partnerships, we aim to make a positive impact on both animals and people. We’re more than an adoption center; we’re a community of dog lovers who believe every dog deserves a forever home. Thank you for supporting our mission to change lives, one adoption at a time. " />
 
             </androidx.cardview.widget.CardView>
@@ -283,6 +285,7 @@ android:layout_height="match_parent">
                     android:layout_marginTop="180dp"
                     android:layout_marginBottom="30dp"
                     android:fontFamily="@font/jost"
+                    android:textColor="@color/black"
                     android:text="PHONE: (555) 867-3421 \n\nWe're here to help you find the perfect furry friend! Our team is passionate about helping both dogs and prospective adopters find their forever match. Feel free to follow us on social media for updates, success stories, and upcoming events. We’re excited to connect with you and welcome you into the DOGGOFOREVER family! If you have any questions about our adoption process, volunteering, or donations, please reach out. You can contact us by phone or by visiting our adoption center. " />
 
             </androidx.cardview.widget.CardView>
