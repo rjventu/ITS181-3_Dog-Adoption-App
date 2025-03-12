@@ -12,10 +12,10 @@ public class Adoption implements Serializable {
 
     public Adoption() { }
 
-    public Adoption(String status, LocalDateTime datetime, Dog dog) {
+    public Adoption(String status, LocalDateTime datetime, User user, Dog dog) {
         this.status = status;
         this.datetime = datetime;
-//        this.user = user;
+        this.user = user;
         this.dog = dog;
     }
 

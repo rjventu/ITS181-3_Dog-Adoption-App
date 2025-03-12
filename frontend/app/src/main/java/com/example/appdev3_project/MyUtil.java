@@ -67,16 +67,16 @@ public class MyUtil {
         dogs.add(new Dog((long) 1, "Bravo", "Male", 2, true, true, R.drawable.bravo_male_adult, "text text text"));
         dogs.add(new Dog((long) 2, "Blackie", "Male", 5, true, true, R.drawable.blackie_male_adult, "text text text"));
         dogs.add(new Dog((long) 3, "Biscuit", "Female", 1, false, true, R.drawable.biscuit_female_adult, "text text text"));
-        dogs.add(new Dog((long) 4, "Big Whitey", "Male", 2, false, true, R.drawable.big_whitey_male_adult, "text text text"));
+        dogs.add(new Dog((long) 4, "Big Whitey", "Male", 2, false, true, R.drawable.big_whitey_male_adult, "text text text")); //wont show up in db
         return dogs;
     }
 
-    public List<Adoption> getSampleAdoptions(List<Dog> dogs) {
+    public List<Adoption> getSampleAdoptions(User user, List<Dog> dogs) {
         List<Adoption> adoptions = new ArrayList<>();
-        adoptions.add(new Adoption("Pending", LocalDateTime.now(),dogs.get(0)));
-        adoptions.add(new Adoption("Approved", LocalDateTime.now(),dogs.get(1)));
-        adoptions.add(new Adoption("Rejected", LocalDateTime.now(),dogs.get(2)));
-        adoptions.add(new Adoption("Pending", LocalDateTime.now(),dogs.get(3)));
+        adoptions.add(new Adoption("Pending", LocalDateTime.now(),user, dogs.get(0)));
+        adoptions.add(new Adoption("Approved", LocalDateTime.now(),user, dogs.get(1)));
+        adoptions.add(new Adoption("Rejected", LocalDateTime.now(),user, dogs.get(2)));
+        adoptions.add(new Adoption("Pending", LocalDateTime.now(),user, dogs.get(3)));
         return adoptions;
     }
 

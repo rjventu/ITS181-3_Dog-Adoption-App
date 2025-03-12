@@ -34,15 +34,15 @@ public class DogAdoptionPage extends AppCompatActivity {
         MyUtil.initializeNavBar(DogAdoptionPage.this);
 
         // RECYCLEVIEW CODE
-            // Initialize RecyclerView
-            recyclerView = findViewById(R.id.recyclerView_dogs);
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns grid
+        // Initialize RecyclerView
+        recyclerView = findViewById(R.id.recyclerView_dogs);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 columns grid
 
-            // Load dog data (sample data for now)
-            dogList = new MyUtil().getSampleDogs();
-            dogAdapter = new DogAdapter(dogList);
+        // Load dog data (sample data for now)
+        dogList = new MyUtil().getSampleDogs();
+        dogAdapter = new DogAdapter(dogList);
 
-            recyclerView.setAdapter(dogAdapter);
+        recyclerView.setAdapter(dogAdapter);
     }
 
 }

@@ -43,6 +43,11 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         // Initialize NavBar
         MyUtil.initializeNavBar(ApplicantDashboardPage.this);
 
+        // Set welcome message
+        User user = new MyUtil().getSampleUser();
+        TextView welcome = (TextView) findViewById(R.id.applicant_dashboard_welcome_message);
+        welcome.setText("Welcome, " + user.getName().split(" ")[0] + "!");
+
         // RECYCLEVIEW CODE
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recyclerView_adoptions);
@@ -50,16 +55,11 @@ public class ApplicantDashboardPage extends AppCompatActivity {
 
         // Generate sample data
         dogList = new MyUtil().getSampleDogs();
-        adoptionList = new MyUtil().getSampleAdoptions(dogList);
+        adoptionList = new MyUtil().getSampleAdoptions(user, dogList);
 
         // Use RecyclerView adapter
         adoptionAdapter = new AdoptionAdapter(this, adoptionList);
         recyclerView.setAdapter(adoptionAdapter);
-
-        // Set welcome message
-        User user = new MyUtil().getSampleUser();
-        TextView welcome = (TextView) findViewById(R.id.applicant_dashboard_welcome_message);
-        welcome.setText("Welcome, " + user.getName().split(" ")[0] + "!");
 
         // Configure View button
         Button viewButton = findViewById(R.id.btn_applicant_account_view);
@@ -87,14 +87,4 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         startActivity(intent);
         finish(); // close current activity
     }
-
-    private List<Adoption> getSampleAdoptions(List<Dog> dogs) {
-        List<Adoption> adoptions = new ArrayList<>();
-        adoptions.add(new Adoption("Pending", LocalDateTime.now(),dogs.get(0)));
-        adoptions.add(new Adoption("Approved", LocalDateTime.now(),dogs.get(1)));
-        adoptions.add(new Adoption("Rejected", LocalDateTime.now(),dogs.get(2)));
-        adoptions.add(new Adoption("Pending", LocalDateTime.now(),dogs.get(3)));
-        return adoptions;
-    }
-
 }

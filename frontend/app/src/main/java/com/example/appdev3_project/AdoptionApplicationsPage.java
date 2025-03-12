@@ -69,7 +69,7 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
         submitButton.setOnClickListener(view -> submitAdoption());
     }
 
-    // fetch user details from the backend using username
+    // fetch user details from the backend using userId
     private void fetchUserDetails() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
         long userId = sharedPreferences.getLong("userId", -1); // Get stored user ID
@@ -124,7 +124,10 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
             @Override
             public void onResponse(Call<Adoption> call, Response<Adoption> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(AdoptionApplicationsPage.this, "Adoption request submitted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdoptionApplicationsPage.this, "Adoption application submitted!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AdoptionApplicationsPage.this, ApplicantDashboardPage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                     finish();
                 } else {
                     Toast.makeText(AdoptionApplicationsPage.this, "Submission failed", Toast.LENGTH_SHORT).show();

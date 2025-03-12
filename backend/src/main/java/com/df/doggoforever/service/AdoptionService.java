@@ -36,6 +36,10 @@ public class AdoptionService {
         return adoptionRepository.findByDogId(dogId);
     }
 
+    public boolean adoptionExists(Long userId, Long dogId) {
+        return adoptionRepository.findByUserIdAndDogId(userId, dogId) != null;
+    }    
+
     public Adoption addAdoption(Long userId, Long dogId, Adoption adoption) {
 
         adoption.setUser(userService.getUserById(userId));
