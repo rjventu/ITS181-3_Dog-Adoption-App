@@ -1,8 +1,8 @@
 package com.example.appdev3_project;
 
+import com.bumptech.glide.Glide;
 import com.example.appdev3_project.model.Dog;
-import com.example.appdev3_project.retrofit.AdoptionApi;
-import com.example.appdev3_project.retrofit.RetrofitService;
+import com.example.appdev3_project.service.AdoptionService;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,14 +17,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DogProfilePage extends AppCompatActivity {
     private ImageView dogImage;
     private TextView dogName, dogAge, dogGender, dogVaccination, dogSterilization, dogBio, goAdopt;
     private Dog dog;
+    private SharedPreferences sharedPreferences;
+    private Long userId;
+    private String role;
+    private AdoptionService adoptionService;
 
 
     @Override
@@ -50,6 +51,11 @@ public class DogProfilePage extends AppCompatActivity {
         dogBio = findViewById(R.id.dog_bio);
         goAdopt = findViewById(R.id.go_adopt);
 
+        // Retrieve user session
+        sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
+        userId = sharedPreferences.getLong("userId", -1);
+        role = sharedPreferences.getString("role", null);
+
         // Get data from Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("dog")) {
@@ -63,65 +69,53 @@ public class DogProfilePage extends AppCompatActivity {
             dogSterilization.setText("Sterilized: " + (dog.isSterilized() ? "Yes" : "No"));
             dogBio.setText(dog.getBio());
 
-            // Set image
-            dogImage.setImageResource(dog.getImageResId());
+            // Load image using Glide
+            Glide.with(this)
+                    .load(dog.getImg())
+                    .placeholder(R.drawable.default_dog)
+                    .error(R.drawable.default_dog)
+                    .into(dogImage);
 
-            checkIfAdoptionExists();
+            // Check adoption if it exists
+            if (userId != -1 && "USER".equalsIgnoreCase(role)) {
+                checkIfAdoptionExists();
+            }
 
         }
 
+        // Add listener to adopt button
         goAdopt.setOnClickListener(view -> adoptDog());
 
     }
 
     private void checkIfAdoptionExists() {
-
-        // retrieve session data from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        Long userId = sharedPreferences.getLong("userId", -1);
-
-        // initialize retrofitService
-        RetrofitService retrofitService = new RetrofitService();
-        AdoptionApi adoptionApi = retrofitService.getRetrofit().create(AdoptionApi.class);
-
-        // start api call
-        Call<Boolean> call = adoptionApi.checkAdoptionExists(userId, dog.getId());
-        call.enqueue(new Callback<Boolean>() {
+        adoptionService = new AdoptionService(this);
+        adoptionService.checkIfAdoptionExists(userId, dog.getId(), new AdoptionService.AdoptionCheckCallback() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    boolean exists = response.body();
-                    if (exists) {
-                        goAdopt.setEnabled(false);
-                        goAdopt.setText("Application Submitted");
-                    } else {
-                        goAdopt.setEnabled(true);
-                    }
-                } else {
+            public void onResult(boolean exists) {
+                if (exists) {
+                    goAdopt.setEnabled(false);
+                    goAdopt.setText("Application Submitted");
+                }else{
                     goAdopt.setEnabled(true);
+                    goAdopt.setText("SUBMIT APPLICATION");
                 }
             }
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
+            public void onError(String errorMessage) {
                 goAdopt.setEnabled(true);
                 Toast.makeText(DogProfilePage.this, "Failed to check adoption status", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     private void adoptDog() {
-
-        // retrieve session data from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        String role = sharedPreferences.getString("role", null);
-        Long userId = sharedPreferences.getLong("userId", -1);
-
         // if not logged in, navigate to sign in page
         if (role == null || userId == -1) {
             Toast.makeText(DogProfilePage.this, "Please sign in to adopt a dog.", Toast.LENGTH_SHORT).show();
-            Intent intent2 = new Intent(DogProfilePage.this, SignInApplicantPage.class);
-            startActivity(intent2);
+            startActivity(new Intent(DogProfilePage.this, SignInApplicantPage.class));
         }
         // if logged in as user with role ADMIN, send error message that only applicants can adopt
         else if ("ADMIN".equalsIgnoreCase(role)) {
@@ -129,9 +123,9 @@ public class DogProfilePage extends AppCompatActivity {
         }
         // if logged in as user with role USER, navigate to AdoptionApplicationsPage, and pass dog as extra
         else if ("USER".equalsIgnoreCase(role)) {
-            Intent intent3 = new Intent(DogProfilePage.this, AdoptionApplicationsPage.class);
-            intent3.putExtra("dog", dog);
-            startActivity(intent3);
+            Intent intent = new Intent(DogProfilePage.this, AdoptionApplicationsPage.class);
+            intent.putExtra("dog", dog);
+            startActivity(intent);
         }
     }
 }

@@ -1,24 +1,29 @@
 package com.example.appdev3_project.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Dog implements Serializable {
 
     private Long id;
-    private String name, gender, bio;
-    private int age, imageResId;
-    private boolean vaccination, sterilization;
+    private String name, gender, bio, img;
+    private int age;
+    @SerializedName("vacc")
+    private boolean vaccination;
+    @SerializedName("ster")
+    private boolean sterilization;
 
     public Dog() { }
 
-    public Dog(Long id, String name, String gender, int age, boolean vaccination, boolean sterilization, int imageResId, String bio) {
+    public Dog(Long id, String name, String gender, int age, boolean vaccination, boolean sterilization, String img, String bio) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.vaccination = vaccination;
         this.sterilization = sterilization;
-        this.imageResId = imageResId;
+        this.img = img;
         this.bio = bio;
     }
 
@@ -62,13 +67,9 @@ public class Dog implements Serializable {
         this.age = age;
     }
 
-    public int getImageResId() {
-        return imageResId;
-    }
+    public String getImg() { return img; }
 
-    public void setImageResId(int imageResId) {
-        this.imageResId = imageResId;
-    }
+    public void setImg(String img) { this.img = img; } // Getter for backend image URL
 
     public boolean isVaccinated() {
         return vaccination;

@@ -7,10 +7,14 @@ import android.content.SharedPreferences;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
+import com.example.appdev3_project.retrofit.DogApi;
 import com.example.appdev3_project.retrofit.RetrofitService;
 import com.example.appdev3_project.retrofit.UserApi;
 
@@ -21,8 +25,18 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MyUtil {
+
+    private static Retrofit retrofitInstance;
+
+    public static Retrofit getRetrofitInstance() {
+        if (retrofitInstance == null) {
+            retrofitInstance = new RetrofitService().getRetrofit();
+        }
+        return retrofitInstance;
+    }
 
     public static void initializeNavBar(Activity activity) {
         TextView appTitle = activity.findViewById(R.id.app_title);
@@ -69,14 +83,14 @@ public class MyUtil {
         return user;
     }
 
-    public List<Dog> getSampleDogs() {
-        List<Dog> dogs = new ArrayList<>();
-        dogs.add(new Dog((long) 1, "Bravo", "Male", 2, true, true, R.drawable.bravo_male_adult, "text text text"));
-        dogs.add(new Dog((long) 2, "Blackie", "Male", 5, true, true, R.drawable.blackie_male_adult, "text text text"));
-        dogs.add(new Dog((long) 3, "Biscuit", "Female", 1, false, true, R.drawable.biscuit_female_adult, "text text text"));
-        dogs.add(new Dog((long) 4, "Big Whitey", "Male", 2, false, true, R.drawable.big_whitey_male_adult, "text text text")); //wont show up in db
-        return dogs;
-    }
+//    public List<Dog> getSampleDogs() {
+//        List<Dog> dogs = new ArrayList<>();
+//        dogs.add(new Dog((long) 1, "Bravo", "Male", 2, true, true, R.drawable.bravo_male_adult, "text text text"));
+//        dogs.add(new Dog((long) 2, "Blackie", "Male", 5, true, true, R.drawable.blackie_male_adult, "text text text"));
+//        dogs.add(new Dog((long) 3, "Biscuit", "Female", 1, false, true, R.drawable.biscuit_female_adult, "text text text"));
+//        dogs.add(new Dog((long) 4, "Big Whitey", "Male", 2, false, true, R.drawable.big_whitey_male_adult, "text text text")); //wont show up in db
+//        return dogs;
+//    }
 
     public List<Adoption> getSampleAdoptions(User user, List<Dog> dogs) {
         List<Adoption> adoptions = new ArrayList<>();
@@ -118,6 +132,34 @@ public class MyUtil {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                callback.onError("Network error: " + t.getMessage());
+            }
+        });
+    }
+
+    public interface DogFetchCallback {
+        void onDogsFetched(List<Dog> dogs);
+        void onError(String errorMessage);
+    }
+
+    public static void fetchDogRecords(Context context, DogFetchCallback callback) {
+        RetrofitService retrofitService = new RetrofitService();
+        DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
+
+        Call<List<Dog>> call = dogApi.getAllDogs();
+        call.enqueue(new Callback<List<Dog>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Dog>> call, @NonNull Response<List<Dog>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onDogsFetched(response.body());
+                } else {
+                    callback.onError("Failed to fetch dog records");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Dog>> call, @NonNull Throwable t) {
+                Log.e("DogFetch", "Error fetching dogs", t);
                 callback.onError("Network error: " + t.getMessage());
             }
         });

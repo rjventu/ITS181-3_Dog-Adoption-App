@@ -1,5 +1,6 @@
 package com.example.appdev3_project.adapter;
 
+import com.bumptech.glide.Glide;
 import com.example.appdev3_project.DogProfilePage;
 import com.example.appdev3_project.R;
 import com.example.appdev3_project.model.Dog;
@@ -37,12 +38,18 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.DogViewHolder> {
         holder.dogAge.setText("Age: " + dog.getAge() + " years");
         holder.dogVaccination.setText("Vaccinated: " + (dog.isVaccinated() ? "Yes" : "No"));
         holder.dogSterilization.setText("Sterilized: " + (dog.isSterilized() ? "Yes" : "No"));
-        holder.dogImage.setImageResource(dog.getImageResId());
+
+        // Use Glide to load the image from URL
+        Glide.with(holder.itemView.getContext())
+                .load(dog.getImg()) // Load image URL
+                .placeholder(R.drawable.default_dog)
+                .error(R.drawable.default_dog)
+                .into(holder.dogImage);
 
         // Set click listener to open DogProfilePage
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), DogProfilePage.class);
-            intent.putExtra("dog", dog);  // Send the Dog object
+            intent.putExtra("dog", dog);
             v.getContext().startActivity(intent);
         });
     }

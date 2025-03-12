@@ -1,8 +1,6 @@
 package com.example.appdev3_project;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,24 +13,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
-import com.example.appdev3_project.retrofit.RetrofitService;
-import com.example.appdev3_project.retrofit.AdoptionApi;
-import com.example.appdev3_project.retrofit.UserApi;
-
-import java.time.LocalDateTime;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.example.appdev3_project.service.AdoptionService;
+import com.example.appdev3_project.service.UserService;
 
 
 public class AdoptionApplicationsPage extends AppCompatActivity {
 
     private User user;
     private Dog dog;
+    private UserService userService;
+    private AdoptionService adoptionService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,69 +44,49 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("dog")) {
             dog = (Dog) intent.getSerializableExtra("dog");
-            TextView dogName = findViewById(R.id.application_dog_name);
-            dogName.setText(dog.getName());
+            ((TextView) findViewById(R.id.application_dog_name)).setText(dog.getName());
         }
 
         // Get user data from database
-        MyUtil.fetchUserDetails(this, new MyUtil.UserFetchCallback() {
+        userService = new UserService(this);
+        userService.fetchUserDetails(new UserService.UserFetchCallback() {
             @Override
-            public void onUserFetched(User fetchedUser) {
-                user = fetchedUser;
-                TextView name = findViewById(R.id.application_name);
-                TextView email = findViewById(R.id.application_email);
-                TextView phone = findViewById(R.id.application_phone);
-                TextView address = findViewById(R.id.application_address);
-
-                name.setText("Name: " + user.getName());
-                email.setText("Email: " + user.getUsername());
-                phone.setText("Phone: " + user.getContact());
-                address.setText("Address: " + user.getAddress());
+            public void onSuccess(User newUser) {
+                user = newUser;
+                ((TextView) findViewById(R.id.application_name)).setText("Name: " + user.getName());
+                ((TextView) findViewById(R.id.application_email)).setText("Email: " + user.getUsername());
+                ((TextView) findViewById(R.id.application_phone)).setText("Phone: " + user.getContact());
+                ((TextView) findViewById(R.id.application_address)).setText("Address: " + user.getAddress());
             }
 
             @Override
             public void onError(String errorMessage) {
-                Toast.makeText(AdoptionApplicationsPage.this, errorMessage, Toast.LENGTH_SHORT).show();
+
             }
         });
 
+        // Submit adoption request
         Button submitButton = findViewById(R.id.btn_application_submit);
-        submitButton.setOnClickListener(view -> submitAdoption());
-    }
-
-    // submit adoption request to backend
-    private void submitAdoption() {
-        if (user == null || dog == null) {
-            Toast.makeText(this, "Error: Missing user or dog data", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Initialize Retrofit
-        RetrofitService retrofitService = new RetrofitService();
-        AdoptionApi adoptionApi = retrofitService.getRetrofit().create(AdoptionApi.class);
-
-        Adoption adoption = new Adoption();
-        Call<Adoption> call = adoptionApi.addAdoption(user.getId(), dog.getId(), adoption);
-
-        call.enqueue(new Callback<Adoption>() {
-            @Override
-            public void onResponse(Call<Adoption> call, Response<Adoption> response) {
-                if (response.isSuccessful()) {
+        submitButton.setOnClickListener(view -> {
+            adoptionService = new AdoptionService(this);
+            adoptionService.submitAdoption(user.getId(), dog.getId(), new AdoptionService.AdoptionSubmitCallback() {
+                @Override
+                public void onSuccess() {
                     Toast.makeText(AdoptionApplicationsPage.this, "Adoption application submitted!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AdoptionApplicationsPage.this, ApplicantDashboardPage.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
-                } else {
-                    Toast.makeText(AdoptionApplicationsPage.this, "Submission failed", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Adoption> call, Throwable t) {
-                Log.e("AdoptionApp", "Network request failed", t);
-                Toast.makeText(AdoptionApplicationsPage.this, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+                @Override
+                public void onError(String errorMessage) {
+                    Log.e("AdoptionApp", "Network request failed: " + errorMessage);
+                    Toast.makeText(AdoptionApplicationsPage.this, "Network error: " + errorMessage, Toast.LENGTH_SHORT).show();
+                }
+            });
         });
+
     }
+
 }

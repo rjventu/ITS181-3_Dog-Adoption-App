@@ -53,13 +53,13 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView_adoptions);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
 
-        // Generate sample data
-        dogList = new MyUtil().getSampleDogs();
-        adoptionList = new MyUtil().getSampleAdoptions(user, dogList);
-
-        // Use RecyclerView adapter
-        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
-        recyclerView.setAdapter(adoptionAdapter);
+//        // Generate sample data
+//        dogList = new MyUtil().getSampleDogs();
+//        adoptionList = new MyUtil().getSampleAdoptions(user, dogList);
+//
+//        // Use RecyclerView adapter
+//        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
+//        recyclerView.setAdapter(adoptionAdapter);
 
         // Configure View button
         Button viewButton = findViewById(R.id.btn_applicant_account_view);

@@ -42,7 +42,7 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
         holder.dogAge.setText("Age: " + dog.getAge() + " years");
         holder.dogGender.setText("Gender: " + dog.getGender());
         holder.dogStatus.setText("Status: " + adoption.getStatus());
-        holder.dogImage.setImageResource(dog.getImageResId());
+        holder.dogImage.setImageResource(R.drawable.default_dog);
 
         // Set click listener to open DogProfilePage
         holder.itemView.setOnClickListener(v -> {
