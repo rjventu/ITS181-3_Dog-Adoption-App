@@ -143,7 +143,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your email"
                     android:inputType="text"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/sign_admin_password"
@@ -160,7 +161,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your password"
                     android:inputType="textPassword"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/btn_submit_admin_sign"

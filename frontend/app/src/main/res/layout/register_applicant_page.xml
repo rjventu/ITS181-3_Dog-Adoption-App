@@ -152,7 +152,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your name"
                     android:inputType="text"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/register_user_email"
@@ -169,7 +170,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your email"
                     android:inputType="text"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/register_user_password"
@@ -186,7 +188,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your password"
                     android:inputType="textPassword"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/register_user_password_conf"
@@ -203,7 +206,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Confirm your password"
                     android:inputType="textPassword"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/register_user_phone"
@@ -220,7 +224,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your phone number"
                     android:inputType="phone"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <EditText
                     android:id="@+id/register_user_address"
@@ -237,7 +242,8 @@
                     android:fontFamily="@font/jost"
                     android:hint=" Enter your address"
                     android:inputType="text"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:textColor="@color/black" />
 
                 <Button
                     android:id="@+id/btn_submit_user_register_"

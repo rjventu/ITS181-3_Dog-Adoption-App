@@ -50,8 +50,34 @@ public class UserService {
         });
     }
 
+    public void updateUser(User user, UserUpdateCallback callback) {
+        Call<User> call = userApi.updateUser(user.getId(), user);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onError("Failed to update user data");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+    }
+
     public interface UserFetchCallback {
         void onSuccess(User user);
         void onError(String errorMessage);
     }
+
+    public interface UserUpdateCallback {
+        void onSuccess(User updatedUser);
+        void onError(String errorMessage);
+    }
+
 }

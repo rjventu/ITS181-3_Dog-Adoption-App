@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -18,17 +19,13 @@ import com.example.appdev3_project.adapter.AdoptionAdapter;
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import com.example.appdev3_project.service.UserService;
 
 public class ApplicantDashboardPage extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<Dog> dogList;
-    private AdoptionAdapter adoptionAdapter;
-    private List<Adoption> adoptionList;
+    private UserService userService;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,23 +40,24 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         // Initialize NavBar
         MyUtil.initializeNavBar(ApplicantDashboardPage.this);
 
-        // Set welcome message
-        User user = new MyUtil().getSampleUser();
-        TextView welcome = (TextView) findViewById(R.id.applicant_dashboard_welcome_message);
-        welcome.setText("Welcome, " + user.getName().split(" ")[0] + "!");
+        // Get user data from database
+        userService = new UserService(this);
+        userService.fetchUserDetails(new UserService.UserFetchCallback() {
+            @Override
+            public void onSuccess(User newUser) {
+                user = newUser;
+                ((TextView) findViewById(R.id.applicant_dashboard_welcome_message))
+                        .setText("Welcome, " + user.getName().split(" ")[0] + "!");
+            }
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(ApplicantDashboardPage.this, "User not found!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        // RECYCLEVIEW CODE
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recyclerView_adoptions);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
-
-//        // Generate sample data
-//        dogList = new MyUtil().getSampleDogs();
-//        adoptionList = new MyUtil().getSampleAdoptions(user, dogList);
-//
-//        // Use RecyclerView adapter
-//        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
-//        recyclerView.setAdapter(adoptionAdapter);
 
         // Configure View button
         Button viewButton = findViewById(R.id.btn_applicant_account_view);
@@ -72,6 +70,14 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         // Configure Logout Button
         Button logoutButton = findViewById(R.id.btn_applicant_account_logout);
         logoutButton.setOnClickListener(view -> logoutUser());
+
+        // Generate sample data
+//        dogList = new MyUtil().getSampleDogs();
+//        adoptionList = new MyUtil().getSampleAdoptions(user, dogList);
+//
+//        // Use RecyclerView adapter
+//        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
+//        recyclerView.setAdapter(adoptionAdapter);
     }
 
     private void logoutUser() {

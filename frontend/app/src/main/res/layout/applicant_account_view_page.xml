@@ -98,6 +98,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:fontFamily="@font/jost_black"
                 android:text="PROFILE DETAILS"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
         </FrameLayout>
@@ -149,7 +150,7 @@
                 android:background="@drawable/stephen_account_rounded_box_white" />
 
             <EditText
-                android:id="@+id/applicant_view_user_name"
+                android:id="@+id/applicant_view_user_email"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -159,10 +160,11 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:gravity="start|center_horizontal"
-                android:hint="Enter your full name..." /> <!-- True or False -->
+                android:hint="Enter your email..."
+                android:textColor="@android:color/darker_gray" />
 
             <EditText
-                android:id="@+id/applicant_view_user_email"
+                android:id="@+id/applicant_view_user_pass"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -172,10 +174,12 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:gravity="start|center_horizontal"
-                android:hint="Enter your email..." />
+                android:hint="Enter your password..."
+                android:inputType="textPassword"
+                android:textColor="@android:color/darker_gray" />
 
             <EditText
-                android:id="@+id/applicant_view_user_pass"
+                android:id="@+id/applicant_view_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="20dp"
@@ -185,8 +189,8 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:gravity="start|center_horizontal"
-                android:inputType="textPassword"
-                android:hint="Enter your password..." />
+                android:hint="Enter your full name..."
+                android:textColor="@android:color/darker_gray" />
 
             <EditText
                 android:id="@+id/applicant_view_user_phone"
@@ -199,7 +203,8 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:gravity="start|center_horizontal"
-                android:hint="Enter your phone number..." />
+                android:hint="Enter your phone number..."
+                android:textColor="@android:color/darker_gray" />
 
             <EditText
                 android:id="@+id/applicant_view_user_address"
@@ -212,7 +217,8 @@
                 android:enabled="false"
                 android:focusable="false"
                 android:gravity="start|center_horizontal"
-                android:hint="Enter your address..." />
+                android:hint="Enter your address..."
+                android:textColor="@android:color/darker_gray" />
 
         </FrameLayout>
 

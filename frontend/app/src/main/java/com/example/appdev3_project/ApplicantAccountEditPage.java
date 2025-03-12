@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -11,8 +12,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.appdev3_project.model.User;
+import com.example.appdev3_project.service.UserService;
 
 public class ApplicantAccountEditPage extends AppCompatActivity {
+
+    EditText emailField, passwordField, nameField, phoneField, addressField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,18 +36,18 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
         if (intent != null && intent.hasExtra("user")) {
             User user = (User) intent.getSerializableExtra("user");
 
-            EditText username = (EditText) findViewById(R.id.applicant_edit_user_email);
-            EditText password = (EditText) findViewById(R.id.applicant_edit_user_pass);
-            EditText name = (EditText) findViewById(R.id.applicant_edit_user_name);
-            EditText phone = (EditText) findViewById(R.id.applicant_edit_user_phone);
-            EditText address = (EditText) findViewById(R.id.applicant_edit_user_address);
-
             // Display User details
-            username.setText(user.getUsername());
-            password.setText(user.getPassword());
-            name.setText(user.getName());
-            phone.setText(user.getContact());
-            address.setText(user.getAddress());
+            emailField = (EditText) findViewById(R.id.applicant_edit_user_email);
+            passwordField = (EditText) findViewById(R.id.applicant_edit_user_pass);
+            nameField = (EditText) findViewById(R.id.applicant_edit_user_name);
+            phoneField = (EditText) findViewById(R.id.applicant_edit_user_phone);
+            addressField = (EditText) findViewById(R.id.applicant_edit_user_address);
+
+            emailField.setText(user.getUsername());
+            passwordField.setText(user.getPassword());
+            nameField.setText(user.getName());
+            phoneField.setText(user.getContact());
+            addressField.setText(user.getAddress());
         }
 
         // Configure Cancel Button
@@ -61,13 +66,29 @@ public class ApplicantAccountEditPage extends AppCompatActivity {
         saveButton.setOnClickListener(view -> {
             if (intent != null && intent.hasExtra("user")) {
                 User user = (User) intent.getSerializableExtra("user");
+                user.setName(nameField.getText().toString());
+                user.setContact(phoneField.getText().toString());
+                user.setAddress(addressField.getText().toString());
 
-                // add code to persist data
+                UserService userService = new UserService(this);
+                userService.updateUser(user, new UserService.UserUpdateCallback() {
+                    @Override
+                    public void onSuccess(User updatedUser) {
+                        Toast.makeText(getApplicationContext(), "User updated successfully!", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(ApplicantAccountEditPage.this, ApplicantAccountViewPage.class);
+                        intent2.putExtra("user", updatedUser);
+                        intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent2);
+                        finish();
+                    }
 
-                Intent intent2 = new Intent(ApplicantAccountEditPage.this, ApplicantAccountViewPage.class);
-                intent2.putExtra("user", user);
-                startActivity(intent2);
+                    @Override
+                    public void onError(String errorMessage) {
+                        Toast.makeText(getApplicationContext(), "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
+
 }

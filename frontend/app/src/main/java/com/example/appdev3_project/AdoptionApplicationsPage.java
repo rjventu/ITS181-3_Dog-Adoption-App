@@ -61,7 +61,7 @@ public class AdoptionApplicationsPage extends AppCompatActivity {
 
             @Override
             public void onError(String errorMessage) {
-
+                Toast.makeText(AdoptionApplicationsPage.this, "User not found!", Toast.LENGTH_SHORT).show();
             }
         });
 

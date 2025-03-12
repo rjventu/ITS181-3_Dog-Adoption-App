@@ -32,18 +32,12 @@ public class ApplicantAccountViewPage extends AppCompatActivity {
         if (intent != null && intent.hasExtra("user")) {
             User user = (User) intent.getSerializableExtra("user");
 
-            EditText username = (EditText) findViewById(R.id.applicant_view_user_email);
-            EditText password = (EditText) findViewById(R.id.applicant_view_user_pass);
-            EditText name = (EditText) findViewById(R.id.applicant_view_user_name);
-            EditText phone = (EditText) findViewById(R.id.applicant_view_user_phone);
-            EditText address = (EditText) findViewById(R.id.applicant_view_user_address);
-
-            // DIsplay User details
-            username.setText(user.getUsername());
-            password.setText(user.getPassword());
-            name.setText(user.getName());
-            phone.setText(user.getContact());
-            address.setText(user.getAddress());
+            // Display User details
+            ((EditText) findViewById(R.id.applicant_view_user_email)).setText(user.getUsername());
+            ((EditText) findViewById(R.id.applicant_view_user_pass)).setText(user.getPassword());
+            ((EditText) findViewById(R.id.applicant_view_user_name)).setText(user.getName());
+            ((EditText) findViewById(R.id.applicant_view_user_phone)).setText(user.getContact());
+            ((EditText) findViewById(R.id.applicant_view_user_address)).setText(user.getAddress());
 
         }
 

@@ -3,6 +3,8 @@ package com.df.doggoforever.service;
 import com.df.doggoforever.model.User;
 import com.df.doggoforever.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -50,12 +52,21 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
     public User updateUser(Long id, User user) {
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser != null) {
+            
+            System.out.println("User update success");
             existingUser.setName(user.getName());
             existingUser.setContact(user.getContact());
             existingUser.setAddress(user.getAddress());
+
+            System.out.println("Updating user with ID: " + id);
+            System.out.println("New Name: " + user.getName());
+            System.out.println("New Contact: " + user.getContact());
+            System.out.println("New Address: " + user.getAddress());
+
             return userRepository.save(existingUser);
         }
         return null;
