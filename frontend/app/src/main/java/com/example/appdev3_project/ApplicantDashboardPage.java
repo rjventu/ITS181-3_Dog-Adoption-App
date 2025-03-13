@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,12 +21,20 @@ import com.example.appdev3_project.adapter.AdoptionAdapter;
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
+import com.example.appdev3_project.service.AdoptionService;
 import com.example.appdev3_project.service.UserService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ApplicantDashboardPage extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private FrameLayout noAdoptions;
+    private AdoptionAdapter adoptionAdapter;
+    private List<Adoption> adoptionList;
     private UserService userService;
+    private AdoptionService adoptionService;
     private User user;
 
     @Override
@@ -40,6 +50,17 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         // Initialize NavBar
         MyUtil.initializeNavBar(ApplicantDashboardPage.this);
 
+        // Initialize RecyclerView and No Adoptions FrameLayout
+        noAdoptions = findViewById(R.id.frameLayout_no_adoptions);
+        recyclerView = findViewById(R.id.recyclerView_adoptions);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
+        adoptionList = new ArrayList<>();
+        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
+        recyclerView.setAdapter(adoptionAdapter);
+        // Hide both components
+        noAdoptions.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
+
         // Get user data from database
         userService = new UserService(this);
         userService.fetchUserDetails(new UserService.UserFetchCallback() {
@@ -48,11 +69,15 @@ public class ApplicantDashboardPage extends AppCompatActivity {
                 user = newUser;
                 ((TextView) findViewById(R.id.applicant_dashboard_welcome_message))
                         .setText("Welcome, " + user.getName().split(" ")[0] + "!");
+
+                // fetch and display adoption applications
+                fetchAdoptionApplications();
             }
             @Override
             public void onError(String errorMessage) {
                 Toast.makeText(ApplicantDashboardPage.this, "User not found!", Toast.LENGTH_SHORT).show();
             }
+
         });
 
         // Configure View button
@@ -67,6 +92,12 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         Button logoutButton = findViewById(R.id.btn_applicant_account_logout);
         logoutButton.setOnClickListener(view -> logoutUser());
 
+        // Configure Adopt Button
+        Button adoptButton = findViewById(R.id.btn_applicant_adopt);
+        adoptButton.setOnClickListener(view -> {
+            startActivity(new Intent(ApplicantDashboardPage.this, DogAdoptionPage.class));
+        });
+
 //        // Initialize RecyclerView
 //        recyclerView = findViewById(R.id.recyclerView_adoptions);
 //        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
@@ -78,6 +109,37 @@ public class ApplicantDashboardPage extends AppCompatActivity {
 //        // Use RecyclerView adapter
 //        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
 //        recyclerView.setAdapter(adoptionAdapter);
+    }
+
+    private void fetchAdoptionApplications() {
+        if (user == null) return;
+
+        // Get adoption data from database
+        adoptionService = new AdoptionService(this);
+        adoptionService.fetchUserAdoptions(user.getId(), new AdoptionService.AdoptionFetchCallback() {
+            @Override
+            public void onSuccess(List<Adoption> adoptions) {
+                FrameLayout noAdoptions = (FrameLayout) findViewById(R.id.frameLayout_no_adoptions);
+                if(adoptions.isEmpty()){
+                    // show the "No Adoptions" message
+                    noAdoptions.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                }else{
+                    // hide the "No Adoptions" message
+                    noAdoptions.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    // update adoption list data
+                    adoptionList.clear();
+                    adoptionList.addAll(adoptions);
+                    adoptionAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(ApplicantDashboardPage.this, "Failed to load adoptions", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void logoutUser() {

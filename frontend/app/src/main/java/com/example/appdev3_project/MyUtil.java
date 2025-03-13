@@ -29,15 +29,6 @@ import retrofit2.Retrofit;
 
 public class MyUtil {
 
-    private static Retrofit retrofitInstance;
-
-    public static Retrofit getRetrofitInstance() {
-        if (retrofitInstance == null) {
-            retrofitInstance = new RetrofitService().getRetrofit();
-        }
-        return retrofitInstance;
-    }
-
     public static void initializeNavBar(Activity activity) {
         TextView appTitle = activity.findViewById(R.id.app_title);
         ImageButton goAdoption = activity.findViewById(R.id.go_adoption);
@@ -78,11 +69,15 @@ public class MyUtil {
         });
     }
 
-    public User getSampleUser(){
-        User user = new User("myemailaddress@gmail.com", "password", "John Doe", "09221234567", "101 Sunshine Boulevard", "Applicant");
-        return user;
+    public static String getImgUrl(String dogImgName){
+        return "http://192.168.1.5:18080/uploads-dogs/" + dogImgName;
     }
 
+//    public User getSampleUser(){
+//        User user = new User("myemailaddress@gmail.com", "password", "John Doe", "09221234567", "101 Sunshine Boulevard", "Applicant");
+//        return user;
+//    }
+//
 //    public List<Dog> getSampleDogs() {
 //        List<Dog> dogs = new ArrayList<>();
 //        dogs.add(new Dog((long) 1, "Bravo", "Male", 2, true, true, R.drawable.bravo_male_adult, "text text text"));
@@ -91,78 +86,15 @@ public class MyUtil {
 //        dogs.add(new Dog((long) 4, "Big Whitey", "Male", 2, false, true, R.drawable.big_whitey_male_adult, "text text text")); //wont show up in db
 //        return dogs;
 //    }
+//
+//    public List<Adoption> getSampleAdoptions(User user, List<Dog> dogs) {
+//        List<Adoption> adoptions = new ArrayList<>();
+//        adoptions.add(new Adoption("Pending", LocalDateTime.now(),user, dogs.get(0)));
+//        adoptions.add(new Adoption("Approved", LocalDateTime.now(),user, dogs.get(1)));
+//        adoptions.add(new Adoption("Rejected", LocalDateTime.now(),user, dogs.get(2)));
+//        adoptions.add(new Adoption("Pending", LocalDateTime.now(),user, dogs.get(3)));
+//        return adoptions;
+//    }
 
-    public List<Adoption> getSampleAdoptions(User user, List<Dog> dogs) {
-        List<Adoption> adoptions = new ArrayList<>();
-        adoptions.add(new Adoption("Pending", LocalDateTime.now(),user, dogs.get(0)));
-        adoptions.add(new Adoption("Approved", LocalDateTime.now(),user, dogs.get(1)));
-        adoptions.add(new Adoption("Rejected", LocalDateTime.now(),user, dogs.get(2)));
-        adoptions.add(new Adoption("Pending", LocalDateTime.now(),user, dogs.get(3)));
-        return adoptions;
-    }
-
-    public interface UserFetchCallback {
-        void onUserFetched(User user);
-        void onError(String errorMessage);
-    }
-
-    public static void fetchUserDetails(Context context, UserFetchCallback callback) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-        long userId = sharedPreferences.getLong("userId", -1);
-
-        if (userId == -1) {
-            Toast.makeText(context, "User not logged in.", Toast.LENGTH_SHORT).show();
-            context.startActivity(new Intent(context, SignInApplicantPage.class));
-            return;
-        }
-
-        RetrofitService retrofitService = new RetrofitService();
-        UserApi userApi = retrofitService.getRetrofit().create(UserApi.class);
-        Call<User> call = userApi.getUserById(userId);
-
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    callback.onUserFetched(response.body());
-                } else {
-                    callback.onError("Failed to load user data");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                callback.onError("Network error: " + t.getMessage());
-            }
-        });
-    }
-
-    public interface DogFetchCallback {
-        void onDogsFetched(List<Dog> dogs);
-        void onError(String errorMessage);
-    }
-
-    public static void fetchDogRecords(Context context, DogFetchCallback callback) {
-        RetrofitService retrofitService = new RetrofitService();
-        DogApi dogApi = retrofitService.getRetrofit().create(DogApi.class);
-
-        Call<List<Dog>> call = dogApi.getAllDogs();
-        call.enqueue(new Callback<List<Dog>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Dog>> call, @NonNull Response<List<Dog>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    callback.onDogsFetched(response.body());
-                } else {
-                    callback.onError("Failed to fetch dog records");
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<List<Dog>> call, @NonNull Throwable t) {
-                Log.e("DogFetch", "Error fetching dogs", t);
-                callback.onError("Network error: " + t.getMessage());
-            }
-        });
-    }
 
 }

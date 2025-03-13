@@ -57,15 +57,9 @@ public class UserService {
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser != null) {
             
-            System.out.println("User update success");
             existingUser.setName(user.getName());
             existingUser.setContact(user.getContact());
             existingUser.setAddress(user.getAddress());
-
-            System.out.println("Updating user with ID: " + id);
-            System.out.println("New Name: " + user.getName());
-            System.out.println("New Contact: " + user.getContact());
-            System.out.println("New Address: " + user.getAddress());
 
             return userRepository.save(existingUser);
         }

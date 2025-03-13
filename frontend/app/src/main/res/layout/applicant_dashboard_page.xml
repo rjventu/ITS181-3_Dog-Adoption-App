@@ -77,21 +77,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <!-- RecyclerView for Adoptions -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_adoptions"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:overScrollMode="never"
-            android:foregroundGravity="center_horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:clipToPadding="false"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"/>
-
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
@@ -129,8 +114,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
-                android:textColor="#FFFFFF"
                 android:text="VIEW PROFILE DETAILS"
+                android:textColor="#FFFFFF"
                 android:textSize="10sp" />
 
             <Button
@@ -143,8 +128,68 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/jost_black"
-                android:textColor="#D77A61"
                 android:text="LOGOUT"
+                android:textColor="#D77A61"
+                android:textSize="10sp" />
+
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_adoptions"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:overScrollMode="never"
+            android:foregroundGravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:clipToPadding="false"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
+
+        <FrameLayout
+            android:id="@+id/frameLayout_no_adoptions"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="20dp"
+            android:elevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/stephen_account_rounded_box_white" />
+
+            <TextView
+                android:id="@+id/applicant_dashboard_no_adoptions_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/jost_black"
+                android:text="You have no ongoing applications."
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_applicant_adopt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:backgroundTint="#D77A61"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/jost_black"
+                android:text="ADOPT A DOG TODAY!"
+                android:textColor="#FFFFFF"
                 android:textSize="10sp" />
 
 

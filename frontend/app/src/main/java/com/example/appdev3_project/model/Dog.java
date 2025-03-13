@@ -7,8 +7,10 @@ import java.io.Serializable;
 public class Dog implements Serializable {
 
     private Long id;
-    private String name, gender, bio, img;
+    private String name, gender, img;
     private int age;
+    @SerializedName("description")
+    private String bio;
     @SerializedName("vacc")
     private boolean vaccination;
     @SerializedName("ster")

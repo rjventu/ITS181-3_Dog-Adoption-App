@@ -10,11 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.appdev3_project.DogProfilePage;
+import com.example.appdev3_project.MyUtil;
 import com.example.appdev3_project.R;
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.AdoptionViewHolder> {
@@ -42,7 +45,17 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
         holder.dogAge.setText("Age: " + dog.getAge() + " years");
         holder.dogGender.setText("Gender: " + dog.getGender());
         holder.dogStatus.setText("Status: " + adoption.getStatus());
-        holder.dogImage.setImageResource(R.drawable.default_dog);
+
+        // Format submission date
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        holder.dogDate.setText("Submitted on: " + adoption.getDatetime().format(dtf));
+
+        // Use Glide to load the image from URL
+        Glide.with(holder.itemView.getContext())
+                .load(MyUtil.getImgUrl(dog.getImg()))
+                .placeholder(R.drawable.default_dog)
+                .error(R.drawable.default_dog)
+                .into(holder.dogImage);
 
         // Set click listener to open DogProfilePage
         holder.itemView.setOnClickListener(v -> {
@@ -58,7 +71,7 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
     }
 
     static class AdoptionViewHolder extends RecyclerView.ViewHolder {
-        TextView dogName, dogAge, dogGender, dogStatus;
+        TextView dogName, dogAge, dogGender, dogStatus, dogDate;
         ImageView dogImage;
 
         public AdoptionViewHolder(@NonNull View itemView) {
@@ -67,6 +80,7 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
             dogAge = itemView.findViewById(R.id.content_dog_age);
             dogGender = itemView.findViewById(R.id.content_dog_gender);
             dogStatus = itemView.findViewById(R.id.content_dog_status);
+            dogDate = itemView.findViewById(R.id.content_dog_datetime);
             dogImage = itemView.findViewById(R.id.content_dog_image);
         }
     }

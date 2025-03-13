@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -71,7 +72,7 @@ public class DogProfilePage extends AppCompatActivity {
 
             // Load image using Glide
             Glide.with(this)
-                    .load(dog.getImg())
+                    .load(MyUtil.getImgUrl(dog.getImg()))
                     .placeholder(R.drawable.default_dog)
                     .error(R.drawable.default_dog)
                     .into(dogImage);
@@ -94,10 +95,9 @@ public class DogProfilePage extends AppCompatActivity {
             @Override
             public void onResult(boolean exists) {
                 if (exists) {
-                    goAdopt.setEnabled(false);
-                    goAdopt.setText("Application Submitted");
+                    goAdopt.setText("CANCEL APPLICATION");
+                    goAdopt.setOnClickListener(view -> deleteAdoption());
                 }else{
-                    goAdopt.setEnabled(true);
                     goAdopt.setText("SUBMIT APPLICATION");
                 }
             }
@@ -109,6 +109,32 @@ public class DogProfilePage extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void deleteAdoption(){
+        new AlertDialog.Builder(this)
+                .setTitle("Cancel Adoption")
+                .setMessage("Are you sure you want to cancel your adoption application?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    adoptionService.deleteAdoptionByUserAndDog(userId, dog.getId(), new AdoptionService.AdoptionDeleteCallback() {
+                        @Override
+                        public void onSuccess() {
+                            Toast.makeText(DogProfilePage.this, "Adoption application canceled.", Toast.LENGTH_SHORT).show();
+                            // redirect to applicant dashboard
+                            Intent intent = new Intent(DogProfilePage.this, ApplicantDashboardPage.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(String errorMessage) {
+                            Toast.makeText(DogProfilePage.this, "Failed to cancel application: " + errorMessage, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     private void adoptDog() {

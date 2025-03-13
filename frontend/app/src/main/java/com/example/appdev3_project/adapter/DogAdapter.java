@@ -2,6 +2,7 @@ package com.example.appdev3_project.adapter;
 
 import com.bumptech.glide.Glide;
 import com.example.appdev3_project.DogProfilePage;
+import com.example.appdev3_project.MyUtil;
 import com.example.appdev3_project.R;
 import com.example.appdev3_project.model.Dog;
 
@@ -41,7 +42,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.DogViewHolder> {
 
         // Use Glide to load the image from URL
         Glide.with(holder.itemView.getContext())
-                .load(dog.getImg()) // Load image URL
+                .load(MyUtil.getImgUrl(dog.getImg()))
                 .placeholder(R.drawable.default_dog)
                 .error(R.drawable.default_dog)
                 .into(holder.dogImage);

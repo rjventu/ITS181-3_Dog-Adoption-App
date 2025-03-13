@@ -36,13 +36,7 @@ public class DogService {
     }
 
     public List<Dog> getAllDogs() {
-        List<Dog> dogs = dogRepository.findAll();
-        for (Dog dog : dogs) {
-            if (dog.getImg() != null && !dog.getImg().isEmpty()) {
-                dog.setImg("http://192.168.1.5:18080/uploads-dogs/" + dog.getImg()); 
-            }
-        } 
-        return dogs;
+        return dogRepository.findAll();
     }
 
     public Dog getDogById(Long id) {

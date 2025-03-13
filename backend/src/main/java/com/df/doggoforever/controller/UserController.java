@@ -4,8 +4,6 @@ import com.df.doggoforever.model.User;
 import com.df.doggoforever.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,7 +31,6 @@ public class UserController {
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        System.out.println(user);
         return service.updateUser(id, user);
     }
 
@@ -42,8 +39,8 @@ public class UserController {
         service.deleteUser(id);
     }
 
-    @PostMapping("/{id}/upload-image")
-    public User uploadUserImage(@PathVariable Long id, @RequestParam("image") MultipartFile image) {
-        return service.saveUserImage(id, image);
-    }
+    // @PostMapping("/{id}/upload-image")
+    // public User uploadUserImage(@PathVariable Long id, @RequestParam("image") MultipartFile image) {
+    //     return service.saveUserImage(id, image);
+    // }
 }

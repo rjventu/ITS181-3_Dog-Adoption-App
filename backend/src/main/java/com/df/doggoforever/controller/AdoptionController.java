@@ -3,6 +3,7 @@ package com.df.doggoforever.controller;
 import com.df.doggoforever.model.Adoption;
 import com.df.doggoforever.service.AdoptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,13 +53,15 @@ public class AdoptionController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAdoption(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAdoption(@PathVariable Long id) {
         service.deleteAdoption(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/user/{userId}/dog/{dogId}")
-    public void deleteAdoptionByUserAndDog(@PathVariable Long userId, @PathVariable Long dogId) {
+    public ResponseEntity<Void> deleteAdoptionByUserAndDog(@PathVariable Long userId, @PathVariable Long dogId) {
         service.deleteAdoptionByUserAndDog(userId, dogId);
+        return ResponseEntity.noContent().build();
     }
 
 }
