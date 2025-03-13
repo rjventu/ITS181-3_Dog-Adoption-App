@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
+import com.example.appdev3_project.service.AdoptionService;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -27,7 +29,7 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
     TextView name, address, phone, email, date, time,
                 dogName, dogAge, dogGender, dogBio;
     ImageView dogImage;
-    String status;
+    ImageButton editButton;
     Adoption adoption;
     User user;
     Dog dog;
@@ -54,7 +56,7 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
         email = findViewById(R.id.admin_adoptions_view_email);
         date = findViewById(R.id.admin_adoptions_view_date);
         time = findViewById(R.id.admin_adoptions_view_time);
-        dogImage = findViewById(R.id.admin_adoptions_dog_image);
+        dogImage = findViewById(R.id.admin_adoptions_view_dog_image);
         dogName = findViewById(R.id.admin_adoptions_view_dog_name);
         dogAge = findViewById(R.id.admin_adoptions_view_dog_age);
         dogGender = findViewById(R.id.admin_adoptions_view_dog_gender);
@@ -67,6 +69,10 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
         adapter.setDropDownViewResource(R.layout.spinner_item);
         statusSpinner.setAdapter(adapter);
         statusSpinner.setEnabled(false);
+
+        // Configure imageButton
+        editButton = (ImageButton) findViewById(R.id.btn_admin_adoptions_view_edit);
+        editButton.setOnClickListener(view -> editMode());
 
         // Get data from Intent
         Intent intent = getIntent();
@@ -113,6 +119,37 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
                     .into(dogImage);
 
         }
+
+    }
+
+    private void editMode() {
+        editButton.setImageResource(R.drawable.check_btn);
+        editButton.setOnClickListener(view -> saveAdoptionDetails());
+        statusSpinner.setEnabled(true);
+    }
+
+    private void saveAdoptionDetails(){
+
+        // updates adoption status
+        String status = statusSpinner.getSelectedItem().toString();
+        adoption.setStatus(status);
+
+        AdoptionService adoptionService = new AdoptionService(this);
+        adoptionService.updateAdoption(adoption.getId(), adoption, new AdoptionService.AdoptionUpdateCallback() {
+            @Override
+            public void onSuccess(Adoption newAdoption) {
+                Toast.makeText(AdminAdoptionsViewPage.this, "Application updated successfully!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), AdminAdoptionsPage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(getApplicationContext(), "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

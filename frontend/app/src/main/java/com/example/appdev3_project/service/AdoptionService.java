@@ -104,6 +104,28 @@ public class AdoptionService {
         });
     }
 
+    public void updateAdoption(long adoptionId, Adoption adoption, AdoptionUpdateCallback callback) {
+        Call<Adoption> call = adoptionApi.updateAdoption(adoptionId, adoption);
+        call.enqueue(new Callback<Adoption>() {
+            @Override
+            public void onResponse(Call<Adoption> call, Response<Adoption> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onError("Update failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Adoption> call, Throwable t) {
+                callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
     public void deleteAdoption(long adoptionId, AdoptionDeleteCallback callback) {
         Call<Void> call = adoptionApi.deleteAdoption(adoptionId);
         call.enqueue(new Callback<Void>() {
@@ -161,6 +183,11 @@ public class AdoptionService {
 
     public interface AdoptionFetchCallback {
         void onSuccess(List<Adoption> adoptions);
+        void onError(String errorMessage);
+    }
+
+    public interface AdoptionUpdateCallback {
+        void onSuccess(Adoption newAdoption);
         void onError(String errorMessage);
     }
 

@@ -63,8 +63,7 @@ public class AdminAdoptionAdapter extends RecyclerView.Adapter<AdminAdoptionAdap
                 .error(R.drawable.default_dog)
                 .into(holder.dogImage);
 
-        // Configure viewButton
-        holder.viewButton.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), AdminAdoptionsViewPage.class);
             intent.putExtra("adoption", adoption);  // Send the Adoption object
             intent.putExtra("user", user);  // Send the User object
@@ -72,14 +71,6 @@ public class AdminAdoptionAdapter extends RecyclerView.Adapter<AdminAdoptionAdap
             v.getContext().startActivity(intent);
         });
 
-        // Configure editButton
-        holder.editButton.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), AdminAdoptionsViewPage.class);
-            intent.putExtra("adoption", adoption);  // Send the Adoption object
-            intent.putExtra("user", user);  // Send the User object
-            intent.putExtra("dog", dog);  // Send the Dog object
-            v.getContext().startActivity(intent);
-        });
     }
 
     @Override
@@ -100,8 +91,6 @@ public class AdminAdoptionAdapter extends RecyclerView.Adapter<AdminAdoptionAdap
             adoptionTime = itemView.findViewById(R.id.admin_adoptions_adoption_time);
             adoptionStatus = itemView.findViewById(R.id.admin_adoptions_adoption_status);
             dogImage = itemView.findViewById(R.id.admin_adoptions_dog_image);
-            viewButton = itemView.findViewById(R.id.btn_admin_adoptions_view);
-            editButton = itemView.findViewById(R.id.btn_admin_adoptions_edit);
         }
     }
 

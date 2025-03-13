@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -25,10 +26,14 @@ public interface AdoptionApi {
     @GET("/api/adoptions/user/{userId}")
     Call<List<Adoption>> getAdoptionsByUserId(@Path("userId") long userId);
 
+    @PUT("/api/adoptions/{id}")
+    Call<Adoption> updateAdoption(@Path("id") long adoptionId, @Body Adoption adoption);
+
     @DELETE("/api/adoptions/{id}")
     Call<Void> deleteAdoption(@Path("id") long adoptionId);
 
     @DELETE("/api/adoptions/user/{userId}/dog/{dogId}")
     Call<Void> deleteAdoptionByUserAndDog(@Path("userId") long userId, @Path("dogId") long dogId);
+
 
 }
