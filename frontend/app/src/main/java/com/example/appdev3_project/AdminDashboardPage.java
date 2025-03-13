@@ -82,9 +82,7 @@ public class AdminDashboardPage extends AppCompatActivity {
         Button adoptionsButton = findViewById(R.id.btn_admin_manage_adoptions);
         adoptionsButton.setOnClickListener(view -> {
             Toast.makeText(AdminDashboardPage.this, "Clicked manage adoptions button", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(AdminDashboardPage.this, ApplicantAccountViewPage.class);
-//            intent.putExtra("user", user);
-//            startActivity(intent);
+            startActivity(new Intent(AdminDashboardPage.this, AdminAdoptionsPage.class));
         });
 
         // Configure Logout button

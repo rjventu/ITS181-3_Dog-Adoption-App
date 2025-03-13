@@ -1,6 +1,7 @@
 package com.example.appdev3_project.service;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.appdev3_project.model.Adoption;
 import com.example.appdev3_project.retrofit.AdoptionApi;
@@ -37,6 +38,7 @@ public class AdoptionService {
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -57,6 +59,27 @@ public class AdoptionService {
             @Override
             public void onFailure(Call<Adoption> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void fetchAllAdoptions(AllAdoptionsCallback callback) {
+        Call<List<Adoption>> call = adoptionApi.getAllAdoptions();
+        call.enqueue(new Callback<List<Adoption>>() {
+            @Override
+            public void onResponse(Call<List<Adoption>> call, Response<List<Adoption>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.onSuccess(response.body());
+                } else {
+                    callback.onError("Failed to load adoption records.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Adoption>> call, Throwable t) {
+                callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -76,6 +99,7 @@ public class AdoptionService {
             @Override
             public void onFailure(Call<List<Adoption>> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -95,6 +119,7 @@ public class AdoptionService {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -114,6 +139,7 @@ public class AdoptionService {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -125,6 +151,11 @@ public class AdoptionService {
 
     public interface AdoptionSubmitCallback {
         void onSuccess();
+        void onError(String errorMessage);
+    }
+
+    public interface AllAdoptionsCallback {
+        void onSuccess(List<Adoption> adoptions);
         void onError(String errorMessage);
     }
 

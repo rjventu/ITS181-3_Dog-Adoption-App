@@ -19,6 +19,9 @@ public interface AdoptionApi {
     @GET("/api/adoptions/exists")
     Call<Boolean> checkAdoptionExists(@Query("userId") Long userId, @Query("dogId") Long dogId);
 
+    @GET("/api/adoptions")
+    Call<List<Adoption>> getAllAdoptions();
+
     @GET("/api/adoptions/user/{userId}")
     Call<List<Adoption>> getAdoptionsByUserId(@Path("userId") long userId);
 

@@ -1,6 +1,7 @@
 package com.example.appdev3_project.service;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.retrofit.DogApi;
@@ -37,6 +38,7 @@ public class DogService {
             @Override
             public void onFailure(Call<List<Dog>> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

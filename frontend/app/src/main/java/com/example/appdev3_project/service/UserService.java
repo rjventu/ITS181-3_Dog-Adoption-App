@@ -46,6 +46,7 @@ public class UserService {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -66,6 +67,7 @@ public class UserService {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

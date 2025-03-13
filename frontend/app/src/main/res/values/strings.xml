@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AppDev3_Project</string>
+
+    <!-- Spinner Options -->
+    <string-array name="status_options">
+        <item>Pending</item>
+        <item>Accepted</item>
+        <item>Rejected</item>
+    </string-array>
 </resources>
