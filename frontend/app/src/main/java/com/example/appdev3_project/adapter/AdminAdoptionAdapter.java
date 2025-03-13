@@ -74,7 +74,7 @@ public class AdminAdoptionAdapter extends RecyclerView.Adapter<AdminAdoptionAdap
         });
 
         // Configure editButton
-        holder.viewButton.setOnClickListener(v -> {
+        holder.editButton.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), MainActivity2.class);
             intent.putExtra("adoption", adoption);  // Send the Adoption object
             intent.putExtra("user", user);  // Send the User object
