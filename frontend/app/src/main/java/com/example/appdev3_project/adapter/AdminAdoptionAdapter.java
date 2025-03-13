@@ -13,8 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.appdev3_project.DogProfilePage;
-import com.example.appdev3_project.MainActivity2;
+import com.example.appdev3_project.AdminAdoptionsViewPage;
 import com.example.appdev3_project.MyUtil;
 import com.example.appdev3_project.R;
 import com.example.appdev3_project.model.Adoption;
@@ -66,7 +65,7 @@ public class AdminAdoptionAdapter extends RecyclerView.Adapter<AdminAdoptionAdap
 
         // Configure viewButton
         holder.viewButton.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), MainActivity2.class);
+            Intent intent = new Intent(v.getContext(), AdminAdoptionsViewPage.class);
             intent.putExtra("adoption", adoption);  // Send the Adoption object
             intent.putExtra("user", user);  // Send the User object
             intent.putExtra("dog", dog);  // Send the Dog object
@@ -75,7 +74,7 @@ public class AdminAdoptionAdapter extends RecyclerView.Adapter<AdminAdoptionAdap
 
         // Configure editButton
         holder.editButton.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), MainActivity2.class);
+            Intent intent = new Intent(v.getContext(), AdminAdoptionsViewPage.class);
             intent.putExtra("adoption", adoption);  // Send the Adoption object
             intent.putExtra("user", user);  // Send the User object
             intent.putExtra("dog", dog);  // Send the Dog object

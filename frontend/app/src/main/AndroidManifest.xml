@@ -47,7 +47,7 @@
         <activity android:name=".RegisterAdminPage" android:exported="true" />
         <activity android:name=".AdminAdoptionsPage" android:exported="true" />
         <!-- OTHERS -->
-        <activity android:name=".MainActivity2" android:exported="true" />
+        <activity android:name=".AdminAdoptionsViewPage" android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
