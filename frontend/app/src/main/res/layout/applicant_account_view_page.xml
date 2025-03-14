@@ -89,7 +89,7 @@
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@drawable/stephen_account_rounded_box_white" />
+                android:background="@drawable/rounded_box_white" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -116,7 +116,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/stephen_account_rounded_box_white" />
+                android:background="@drawable/rounded_box_white" />
 
             <Button
                 android:id="@+id/btn_applicant_account_edit"
@@ -147,7 +147,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="235dp"
-                android:background="@drawable/stephen_account_rounded_box_white" />
+                android:background="@drawable/rounded_box_white" />
 
             <EditText
                 android:id="@+id/applicant_view_user_email"

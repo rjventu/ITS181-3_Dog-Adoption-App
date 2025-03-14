@@ -19,12 +19,12 @@
             android:id="@+id/spacing_view"
             android:layout_width="0dp"
             android:layout_height="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/admin_adoptions_adoption_status"
+            app:layout_constraintTop_toBottomOf="@+id/admin_dogs_dog_ster"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <ImageView
-            android:id="@+id/admin_adoptions_dog_image"
+            android:id="@+id/admin_dogs_dog_image"
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:background="@drawable/rounded_box_terracotta"
@@ -34,11 +34,11 @@
             app:layout_constraintBottom_toBottomOf="@+id/spacing_view"/>
 
         <TextView
-            android:id="@+id/admin_adoptions_dog_name"
+            android:id="@+id/admin_dogs_dog_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/jost_black"
             android:text="[Dog Name]"
@@ -46,11 +46,11 @@
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/admin_adoptions_dog_image"
+            app:layout_constraintStart_toEndOf="@+id/admin_dogs_dog_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/admin_adoptions_adoption_name"
+            android:id="@+id/admin_dogs_dog_age"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -58,15 +58,15 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/jost"
             android:justificationMode="inter_word"
-            android:text="Applicant:"
+            android:text="Age:"
             android:textColor="#000000"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/admin_adoptions_dog_image"
-            app:layout_constraintTop_toBottomOf="@+id/admin_adoptions_dog_name" />
+            app:layout_constraintStart_toEndOf="@+id/admin_dogs_dog_image"
+            app:layout_constraintTop_toBottomOf="@+id/admin_dogs_dog_name" />
 
         <TextView
-            android:id="@+id/admin_adoptions_adoption_date"
+            android:id="@+id/admin_dogs_dog_gender"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -74,15 +74,15 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/jost"
             android:justificationMode="inter_word"
-            android:text="Date:"
+            android:text="Gender:"
             android:textColor="#000000"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/admin_adoptions_dog_image"
-            app:layout_constraintTop_toBottomOf="@+id/admin_adoptions_adoption_name" />
+            app:layout_constraintStart_toEndOf="@+id/admin_dogs_dog_image"
+            app:layout_constraintTop_toBottomOf="@+id/admin_dogs_dog_age" />
 
         <TextView
-            android:id="@+id/admin_adoptions_adoption_time"
+            android:id="@+id/admin_dogs_dog_vacc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -90,15 +90,15 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/jost"
             android:justificationMode="inter_word"
-            android:text="Time:"
+            android:text="Vaccinated:"
             android:textColor="#000000"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/admin_adoptions_dog_image"
-            app:layout_constraintTop_toBottomOf="@+id/admin_adoptions_adoption_date" />
+            app:layout_constraintStart_toEndOf="@+id/admin_dogs_dog_image"
+            app:layout_constraintTop_toBottomOf="@+id/admin_dogs_dog_gender" />
 
         <TextView
-            android:id="@+id/admin_adoptions_adoption_status"
+            android:id="@+id/admin_dogs_dog_ster"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -106,34 +106,12 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/jost"
             android:justificationMode="inter_word"
-            android:text="Status:"
+            android:text="Sterilized:"
             android:textColor="#000000"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/admin_adoptions_dog_image"
-            app:layout_constraintTop_toBottomOf="@+id/admin_adoptions_adoption_time" />
-
-<!--        <ImageButton-->
-<!--            android:id="@+id/btn_admin_adoptions_view"-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:background="#00FFFFFF"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:srcCompat="@drawable/view_btn" />-->
-
-<!--        <ImageButton-->
-<!--            android:id="@+id/btn_admin_adoptions_edit"-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="10dp"-->
-<!--            android:background="#00FFFFFF"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btn_admin_adoptions_view"-->
-<!--            app:srcCompat="@drawable/edit_btn" />-->
+            app:layout_constraintStart_toEndOf="@+id/admin_dogs_dog_image"
+            app:layout_constraintTop_toBottomOf="@+id/admin_dogs_dog_vacc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

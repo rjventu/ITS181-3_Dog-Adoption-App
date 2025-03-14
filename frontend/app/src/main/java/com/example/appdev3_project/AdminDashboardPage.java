@@ -72,16 +72,12 @@ public class AdminDashboardPage extends AppCompatActivity {
         // Configure Manage Dogs button
         Button dogsButton = findViewById(R.id.btn_admin_manage_dogs);
         dogsButton.setOnClickListener(view -> {
-            Toast.makeText(AdminDashboardPage.this, "Clicked manage dogs button", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(AdminDashboardPage.this, ApplicantAccountViewPage.class);
-//            intent.putExtra("user", user);
-//            startActivity(intent);
+            startActivity(new Intent(AdminDashboardPage.this, AdminDogsPage.class));
         });
 
         // Configure Manage Adoptions button
         Button adoptionsButton = findViewById(R.id.btn_admin_manage_adoptions);
         adoptionsButton.setOnClickListener(view -> {
-            Toast.makeText(AdminDashboardPage.this, "Clicked manage adoptions button", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AdminDashboardPage.this, AdminAdoptionsPage.class));
         });
 

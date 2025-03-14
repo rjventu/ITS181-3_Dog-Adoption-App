@@ -73,7 +73,7 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
         statusSpinner.setEnabled(false);
 
         // Configure imageButton
-        editButton = (ImageButton) findViewById(R.id.btn_admin_adoptions_view_edit);
+        editButton = findViewById(R.id.btn_admin_adoptions_view_edit);
         editButton.setOnClickListener(view -> editMode());
 
         // Get data from Intent

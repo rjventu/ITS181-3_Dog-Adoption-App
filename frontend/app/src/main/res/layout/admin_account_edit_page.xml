@@ -90,7 +90,7 @@
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@drawable/stephen_account_rounded_box_white" />
+                android:background="@drawable/rounded_box_white" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -115,7 +115,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/stephen_account_rounded_box_white" />
+                android:background="@drawable/rounded_box_white" />
 
             <EditText
                 android:id="@+id/admin_edit_user_email"
