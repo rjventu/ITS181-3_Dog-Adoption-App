@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdev3_project.adapter.AdoptionAdapter;
 import com.example.appdev3_project.model.Adoption;
-import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
 import com.example.appdev3_project.service.AdoptionService;
 import com.example.appdev3_project.service.UserService;
@@ -61,8 +60,11 @@ public class ApplicantDashboardPage extends AppCompatActivity {
         noAdoptions.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);
 
-        // Get user data from database
+        // initialize services
         userService = new UserService(this);
+        adoptionService = new AdoptionService(this);
+
+        // Get user data from database
         userService.fetchUserDetails(new UserService.UserFetchCallback() {
             @Override
             public void onSuccess(User newUser) {
@@ -98,24 +100,12 @@ public class ApplicantDashboardPage extends AppCompatActivity {
             startActivity(new Intent(ApplicantDashboardPage.this, DogAdoptionPage.class));
         });
 
-//        // Initialize RecyclerView
-//        recyclerView = findViewById(R.id.recyclerView_adoptions);
-//        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // 1 column grid
-//
-//        // Generate sample data
-//        dogList = new MyUtil().getSampleDogs();
-//        adoptionList = new MyUtil().getSampleAdoptions(user, dogList);
-//
-//        // Use RecyclerView adapter
-//        adoptionAdapter = new AdoptionAdapter(this, adoptionList);
-//        recyclerView.setAdapter(adoptionAdapter);
     }
 
     private void fetchAdoptionApplications() {
         if (user == null) return;
 
         // Get adoption data from database
-        adoptionService = new AdoptionService(this);
         adoptionService.fetchUserAdoptions(user.getId(), new AdoptionService.AdoptionFetchCallback() {
             @Override
             public void onSuccess(List<Adoption> adoptions) {

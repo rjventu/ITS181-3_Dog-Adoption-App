@@ -1,7 +1,5 @@
 package com.example.appdev3_project;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -26,11 +24,6 @@ public class HomePage extends AppCompatActivity {
         // Initialize NavBar
         MyUtil.initializeNavBar(HomePage.this);
 
-//        // Clear session [FOR TESTING ONLY]
-//        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.clear();
-//        editor.apply();
     }
 
 }

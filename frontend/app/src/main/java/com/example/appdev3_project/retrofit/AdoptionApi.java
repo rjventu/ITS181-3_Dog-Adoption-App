@@ -29,11 +29,7 @@ public interface AdoptionApi {
     @PUT("/api/adoptions/{id}")
     Call<Adoption> updateAdoption(@Path("id") long adoptionId, @Body Adoption adoption);
 
-    @DELETE("/api/adoptions/{id}")
-    Call<Void> deleteAdoption(@Path("id") long adoptionId);
-
     @DELETE("/api/adoptions/user/{userId}/dog/{dogId}")
     Call<Void> deleteAdoptionByUserAndDog(@Path("userId") long userId, @Path("dogId") long dogId);
-
 
 }

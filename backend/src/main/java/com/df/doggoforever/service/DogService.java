@@ -43,56 +43,63 @@ public class DogService {
         return dogRepository.findById(id).orElse(null);
     }
 
-    public Dog addDog(Dog dog) {
-        return dogRepository.save(dog);
-    }
-
-    public Dog updateDog(Long id, Dog dog) {
-        Dog existingDog = dogRepository.findById(id).orElse(null);
-        if (existingDog != null) {
-            existingDog.setName(dog.getName());
-            existingDog.setAge(dog.getAge());
-            existingDog.setGender(dog.getGender());
-            existingDog.setVacc(dog.isVacc());
-            existingDog.setSter(dog.isSter());
-            existingDog.setDescription(dog.getDescription());
-            return dogRepository.save(existingDog);
-        }
-        return null;
-    }
-
-    public void deleteDog(Long id) {
-        dogRepository.deleteById(id);
-    }
-
-    public Dog saveDogImage(Long id, MultipartFile image) {
-        Dog dog = dogRepository.findById(id).orElse(null);
-        if (dog == null) {
-            throw new RuntimeException("User not found!");
-        }
-
-        String imageName = dog.getImg();
-        deleteDogImage(imageName);
-
-        String originalFilename = image.getOriginalFilename();
-        String fileExtension = originalFilename != null && originalFilename.contains(".") ?
-                originalFilename.substring(originalFilename.lastIndexOf(".")) : ".jpg"; // Default to .jpg if no extension
-
-        String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
-
-        Path filePath = uploadDir.resolve(uniqueFilename);
-
+    public Dog addDogWithImage(Dog dog, MultipartFile image) {
         try {
+            // save image first
+            String originalFilename = image.getOriginalFilename();
+            String fileExtension = originalFilename != null && originalFilename.contains(".") ?
+                    originalFilename.substring(originalFilename.lastIndexOf(".")) : ".jpg";
+            String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
+            Path filePath = uploadDir.resolve(uniqueFilename);
+            
             Files.copy(image.getInputStream(), filePath);
+            
+            // save dog details with image filename
             dog.setImg(uniqueFilename);
             return dogRepository.save(dog);
+    
         } catch (IOException e) {
             throw new RuntimeException("Failed to store image file", e);
         }
     }
 
+    public Dog updateDogWithImage(Long id, Dog updatedDog, MultipartFile image) {
+        Dog existingDog = dogRepository.findById(id).orElse(null);
+        existingDog.setName(updatedDog.getName());
+        existingDog.setAge(updatedDog.getAge());
+        existingDog.setGender(updatedDog.getGender());
+        existingDog.setVacc(updatedDog.isVacc());
+        existingDog.setSter(updatedDog.isSter());
+        existingDog.setDescription(updatedDog.getDescription());
+    
+        if (image != null && !image.isEmpty()) {
+            deleteDogImage(existingDog.getImg());
+    
+            String originalFilename = image.getOriginalFilename();
+            String fileExtension = originalFilename != null && originalFilename.contains(".") ?
+                    originalFilename.substring(originalFilename.lastIndexOf(".")) : ".jpg";
+            String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
+            Path filePath = uploadDir.resolve(uniqueFilename);
+    
+            try {
+                Files.copy(image.getInputStream(), filePath);
+                existingDog.setImg(uniqueFilename);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to store image file", e);
+            }
+        }
+    
+        return dogRepository.save(existingDog);
+    }
+    
+    public void deleteDog(Long id) {
+        Dog dog = dogRepository.findById(id).orElse(null);
+        deleteDogImage(dog.getImg());
+        dogRepository.deleteById(id);
+    }    
+    
     private void deleteDogImage(String imageName){
-        if (imageName != null && !imageName.isEmpty() && !imageName.equals("default-user.png")) {
+        if (imageName != null && !imageName.isEmpty() && !imageName.equals("default-dog.png")) {
             Path filePath = uploadDir.resolve(imageName);
             try {
                 if (Files.exists(filePath)) {

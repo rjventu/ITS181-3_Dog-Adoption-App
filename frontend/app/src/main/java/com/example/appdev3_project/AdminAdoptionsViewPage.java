@@ -22,7 +22,6 @@ import com.example.appdev3_project.model.User;
 import com.example.appdev3_project.service.AdoptionService;
 
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 
 public class AdminAdoptionsViewPage extends AppCompatActivity {
     private Spinner statusSpinner;
@@ -31,6 +30,7 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
     ImageView dogImage;
     ImageButton editButton;
     Adoption adoption;
+    AdoptionService adoptionService;
     User user;
     Dog dog;
 
@@ -63,6 +63,9 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
         dogVaccination = findViewById(R.id.admin_adoptions_view_dog_vacc);
         dogSterilization = findViewById(R.id.admin_adoptions_view_dog_ster);
         dogBio = findViewById(R.id.admin_adoptions_view_dog_description_text);
+
+        // Initialize services
+        adoptionService = new AdoptionService(this);
 
         // Initialize spinner
         statusSpinner = findViewById(R.id.spinner);
@@ -138,7 +141,6 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
         String status = statusSpinner.getSelectedItem().toString();
         adoption.setStatus(status);
 
-        AdoptionService adoptionService = new AdoptionService(this);
         adoptionService.updateAdoption(adoption.getId(), adoption, new AdoptionService.AdoptionUpdateCallback() {
             @Override
             public void onSuccess(Adoption newAdoption) {

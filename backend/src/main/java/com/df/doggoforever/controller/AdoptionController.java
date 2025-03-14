@@ -22,6 +22,11 @@ public class AdoptionController {
         return service.getAllAdoptions();
     }
 
+    @GetMapping("/exists")
+    public boolean checkIfAdoptionExists(@RequestParam Long userId, @RequestParam Long dogId) {
+        return service.adoptionExists(userId, dogId);
+    }
+
     @GetMapping("/{id}")
     public Adoption getAdoptionById(@PathVariable Long id) {
         return service.getAdoptionById(id);
@@ -37,11 +42,6 @@ public class AdoptionController {
         return service.getAdoptionsByDogId(id);
     }
 
-    @GetMapping("/exists")
-    public boolean checkIfAdoptionExists(@RequestParam Long userId, @RequestParam Long dogId) {
-        return service.adoptionExists(userId, dogId);
-    }
-
     @PostMapping("/{userId}/{dogId}")
     public Adoption addAdoption(@PathVariable Long userId, @PathVariable Long dogId, @RequestBody Adoption adoption) {
         return service.addAdoption(userId, dogId, adoption);
@@ -50,12 +50,6 @@ public class AdoptionController {
     @PutMapping("/{id}")
     public Adoption updateAdoption(@PathVariable Long id, @RequestBody Adoption adoption) {
         return service.updateAdoption(id, adoption);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdoption(@PathVariable Long id) {
-        service.deleteAdoption(id);
-        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/user/{userId}/dog/{dogId}")

@@ -43,28 +43,7 @@ public class AdoptionService {
         });
     }
 
-    public void submitAdoption(long userId, long dogId, AdoptionSubmitCallback callback) {
-        Adoption adoption = new Adoption();
-        Call<Adoption> call = adoptionApi.addAdoption(userId, dogId, adoption);
-        call.enqueue(new Callback<Adoption>() {
-            @Override
-            public void onResponse(Call<Adoption> call, Response<Adoption> response) {
-                if (response.isSuccessful()) {
-                    callback.onSuccess();
-                } else {
-                    callback.onError("Submission failed");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Adoption> call, Throwable t) {
-                callback.onError(t.getMessage());
-                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void fetchAllAdoptions(AllAdoptionsCallback callback) {
+    public void fetchAllAdoptions(AdoptionsFetchAllCallback callback) {
         Call<List<Adoption>> call = adoptionApi.getAllAdoptions();
         call.enqueue(new Callback<List<Adoption>>() {
             @Override
@@ -104,6 +83,27 @@ public class AdoptionService {
         });
     }
 
+    public void submitAdoption(long userId, long dogId, AdoptionSubmitCallback callback) {
+        Adoption adoption = new Adoption();
+        Call<Adoption> call = adoptionApi.addAdoption(userId, dogId, adoption);
+        call.enqueue(new Callback<Adoption>() {
+            @Override
+            public void onResponse(Call<Adoption> call, Response<Adoption> response) {
+                if (response.isSuccessful()) {
+                    callback.onSuccess();
+                } else {
+                    callback.onError("Submission failed");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Adoption> call, Throwable t) {
+                callback.onError(t.getMessage());
+                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void updateAdoption(long adoptionId, Adoption adoption, AdoptionUpdateCallback callback) {
         Call<Adoption> call = adoptionApi.updateAdoption(adoptionId, adoption);
         call.enqueue(new Callback<Adoption>() {
@@ -118,28 +118,6 @@ public class AdoptionService {
 
             @Override
             public void onFailure(Call<Adoption> call, Throwable t) {
-                callback.onError(t.getMessage());
-                Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-
-    public void deleteAdoption(long adoptionId, AdoptionDeleteCallback callback) {
-        Call<Void> call = adoptionApi.deleteAdoption(adoptionId);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    callback.onSuccess();
-                } else {
-                    callback.onError("Failed to delete adoption");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
                 callback.onError(t.getMessage());
                 Toast.makeText(context, "Network error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -171,18 +149,18 @@ public class AdoptionService {
         void onError(String errorMessage);
     }
 
-    public interface AdoptionSubmitCallback {
-        void onSuccess();
-        void onError(String errorMessage);
-    }
-
-    public interface AllAdoptionsCallback {
+    public interface AdoptionsFetchAllCallback {
         void onSuccess(List<Adoption> adoptions);
         void onError(String errorMessage);
     }
 
     public interface AdoptionFetchCallback {
         void onSuccess(List<Adoption> adoptions);
+        void onError(String errorMessage);
+    }
+
+    public interface AdoptionSubmitCallback {
+        void onSuccess();
         void onError(String errorMessage);
     }
 

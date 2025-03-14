@@ -16,19 +16,6 @@ import java.nio.file.Paths;
 @RestController
 public class ImageController {
 
-    @GetMapping("/uploads/{imageName}")
-    public ResponseEntity<FileSystemResource> getImage(@PathVariable String imageName) {
-        String basePath = "src/main/resources/static/uploads/";
-        Path imagePath = Paths.get(basePath + imageName);
-
-        if (!Files.exists(imagePath)) {
-            imagePath = Paths.get(basePath + "default-user.png");
-        }
-
-        FileSystemResource file = new FileSystemResource(imagePath);
-        return ResponseEntity.ok(file);
-    }
-
     @GetMapping("/uploads-dogs/{imageName}")
     public ResponseEntity<FileSystemResource> getDogImage(@PathVariable String imageName) {
         String basePath = "src/main/resources/static/uploads-dogs/";

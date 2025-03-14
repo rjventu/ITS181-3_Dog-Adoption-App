@@ -1,7 +1,9 @@
 package com.example.appdev3_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class AdminDogsPage extends AppCompatActivity {
     private AdminDogAdapter dogAdapter;
     private List<Dog> dogList;
     private DogService dogService;
+    private Button addDog;
     
 
     @Override
@@ -55,13 +58,23 @@ public class AdminDogsPage extends AppCompatActivity {
         noDogs.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);
 
+        // initialize services
+        dogService = new DogService(this);
+
+        // fetch dog records from database
         fetchDogRecords();
+
+        // configure add dog button
+        addDog = findViewById(R.id.btn_admin_dogs_add);
+        addDog.setOnClickListener(view -> {
+            startActivity(new Intent(AdminDogsPage.this, AdminDogsAddPage.class));
+        });
+
     }
 
     private void fetchDogRecords(){
 
         // get dog data from database
-        dogService = new DogService(this);
         dogService.fetchAllDogs(new DogService.DogFetchCallback() {
             @Override
             public void onSuccess(List<Dog> dogs) {

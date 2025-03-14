@@ -13,14 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.appdev3_project.model.Adoption;
-import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.model.User;
 import com.example.appdev3_project.service.UserService;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AdminDashboardPage extends AppCompatActivity {
 

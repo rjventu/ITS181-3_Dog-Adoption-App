@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -49,6 +53,7 @@
         <activity android:name=".AdminAdoptionsViewPage" android:exported="true" />
         <activity android:name=".AdminDogsPage" android:exported="true" />
         <activity android:name=".AdminDogsViewPage" android:exported="true" />
+        <activity android:name=".AdminDogsAddPage" android:exported="true" />
         <!-- OTHERS -->
 
 

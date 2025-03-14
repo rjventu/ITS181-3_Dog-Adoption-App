@@ -14,11 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdev3_project.adapter.AdminAdoptionAdapter;
-import com.example.appdev3_project.adapter.AdoptionAdapter;
 import com.example.appdev3_project.model.Adoption;
-import com.example.appdev3_project.model.User;
 import com.example.appdev3_project.service.AdoptionService;
-import com.example.appdev3_project.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,14 +54,15 @@ public class AdminAdoptionsPage extends AppCompatActivity {
         noAdoptions.setVisibility(View.GONE);
         recyclerView.setVisibility(View.GONE);
 
+        // initialize services
+        adoptionService = new AdoptionService(this);
+
         fetchAdoptionApplications();
     }
 
     private void fetchAdoptionApplications() {
-
         // get adoption data from database
-        adoptionService = new AdoptionService(this);
-        adoptionService.fetchAllAdoptions(new AdoptionService.AllAdoptionsCallback() {
+        adoptionService.fetchAllAdoptions(new AdoptionService.AdoptionsFetchAllCallback() {
             @Override
             public void onSuccess(List<Adoption> adoptions) {
                 if(adoptions.isEmpty()){

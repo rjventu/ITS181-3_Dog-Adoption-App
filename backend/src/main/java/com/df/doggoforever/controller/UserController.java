@@ -39,8 +39,4 @@ public class UserController {
         service.deleteUser(id);
     }
 
-    // @PostMapping("/{id}/upload-image")
-    // public User uploadUserImage(@PathVariable Long id, @RequestParam("image") MultipartFile image) {
-    //     return service.saveUserImage(id, image);
-    // }
 }

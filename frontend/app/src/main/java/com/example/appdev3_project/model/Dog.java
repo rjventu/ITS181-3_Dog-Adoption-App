@@ -71,7 +71,7 @@ public class Dog implements Serializable {
 
     public String getImg() { return img; }
 
-    public void setImg(String img) { this.img = img; } // Getter for backend image URL
+    public void setImg(String img) { this.img = img; }
 
     public boolean isVaccinated() {
         return vaccination;

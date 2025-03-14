@@ -52,6 +52,9 @@ public class DogProfilePage extends AppCompatActivity {
         dogBio = findViewById(R.id.dog_bio);
         goAdopt = findViewById(R.id.go_adopt);
 
+        // initialize services
+        adoptionService = new AdoptionService(this);
+
         // Retrieve user session
         sharedPreferences = getSharedPreferences("UserSession", Context.MODE_PRIVATE);
         userId = sharedPreferences.getLong("userId", -1);
@@ -90,7 +93,6 @@ public class DogProfilePage extends AppCompatActivity {
     }
 
     private void checkIfAdoptionExists() {
-        adoptionService = new AdoptionService(this);
         adoptionService.checkIfAdoptionExists(userId, dog.getId(), new AdoptionService.AdoptionCheckCallback() {
             @Override
             public void onResult(boolean exists) {

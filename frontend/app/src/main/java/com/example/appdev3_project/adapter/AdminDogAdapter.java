@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.appdev3_project.AdminDogsViewPage;
-import com.example.appdev3_project.DogProfilePage;
 import com.example.appdev3_project.MyUtil;
 import com.example.appdev3_project.R;
 import com.example.appdev3_project.model.Dog;

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#DED0C4"
-        tools:context=".AdminDogsViewPage">
+        tools:context=".AdminDogsAddPage">
 
         <!--NAV BAR-->
 
@@ -98,15 +98,14 @@
                 android:textSize="18sp"
                 android:clickable="false"
                 android:focusable="false"
-                android:visibility="gone"
                 android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="@+id/admin_dogs_view_dog_image"
-                app:layout_constraintEnd_toEndOf="@+id/admin_dogs_view_dog_image"
-                app:layout_constraintStart_toStartOf="@+id/admin_dogs_view_dog_image"
-                app:layout_constraintTop_toTopOf="@+id/admin_dogs_view_dog_image" />
+                app:layout_constraintBottom_toBottomOf="@+id/admin_dogs_add_dog_image"
+                app:layout_constraintEnd_toEndOf="@+id/admin_dogs_add_dog_image"
+                app:layout_constraintStart_toStartOf="@+id/admin_dogs_add_dog_image"
+                app:layout_constraintTop_toTopOf="@+id/admin_dogs_add_dog_image" />
 
             <ImageView
-                android:id="@+id/admin_dogs_view_dog_image"
+                android:id="@+id/admin_dogs_add_dog_image"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_marginTop="30dp"
@@ -138,7 +137,7 @@
                     android:paddingBottom="30dp">
 
                     <TextView
-                        android:id="@+id/admin_dogs_view_dog_name_label"
+                        android:id="@+id/admin_dogs_add_dog_name_label"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -152,7 +151,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/admin_dogs_view_dog_age_label"
+                        android:id="@+id/admin_dogs_add_dog_age_label"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -163,10 +162,10 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_view_dog_name" />
+                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_add_dog_name" />
 
                     <TextView
-                        android:id="@+id/admin_dogs_view_dog_gender_label"
+                        android:id="@+id/admin_dogs_add_dog_gender_label"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -177,10 +176,10 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_view_dog_age" />
+                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_add_dog_age" />
 
                     <TextView
-                        android:id="@+id/admin_dogs_view_dog_vacc_label"
+                        android:id="@+id/admin_dogs_add_dog_vacc_label"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -194,7 +193,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_gender" />
 
                     <TextView
-                        android:id="@+id/admin_dogs_view_dog_ster_label"
+                        android:id="@+id/admin_dogs_add_dog_ster_label"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -208,7 +207,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_vacc" />
 
                     <TextView
-                        android:id="@+id/admin_dogs_view_dog_description_label"
+                        android:id="@+id/admin_dogs_add_dog_description_label"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -222,14 +221,13 @@
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_ster" />
 
                     <EditText
-                        android:id="@+id/admin_dogs_view_dog_name"
+                        android:id="@+id/admin_dogs_add_dog_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="250dp"
                         android:layout_marginEnd="30dp"
                         android:background="@drawable/peach_border_bg"
                         android:ems="10"
-                        android:enabled="false"
                         android:fontFamily="@font/jost"
                         android:gravity="start|top"
                         android:hint="Enter dog name..."
@@ -240,11 +238,11 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_view_dog_name_label"
+                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_add_dog_name_label"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/admin_dogs_view_dog_age"
+                        android:id="@+id/admin_dogs_add_dog_age"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="1dp"
@@ -252,7 +250,6 @@
                         android:layout_marginEnd="30dp"
                         android:background="@drawable/peach_border_bg"
                         android:ems="10"
-                        android:enabled="false"
                         android:fontFamily="@font/jost"
                         android:gravity="start|top"
                         android:hint="Enter dog age in years..."
@@ -263,8 +260,8 @@
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_view_dog_age_label"
-                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_view_dog_name" />
+                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_add_dog_age_label"
+                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_add_dog_name" />
 
                     <RadioGroup
                         android:id="@+id/radioGroup_gender"
@@ -272,8 +269,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal"
-                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_view_dog_gender_label"
-                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_view_dog_age">
+                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_add_dog_gender_label"
+                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_add_dog_age">
 
                         <RadioButton
                             android:id="@+id/radioButton_gender_male"
@@ -282,7 +279,6 @@
                             android:button="@null"
                             android:drawableStart="@drawable/custom_radio_button"
                             android:drawablePadding="5dp"
-                            android:enabled="false"
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Male"
@@ -296,7 +292,6 @@
                             android:button="@null"
                             android:drawableStart="@drawable/custom_radio_button"
                             android:drawablePadding="5dp"
-                            android:enabled="false"
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Female"
@@ -310,7 +305,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal"
-                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_view_dog_vacc_label"
+                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_add_dog_vacc_label"
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_gender">
 
                         <RadioButton
@@ -320,7 +315,6 @@
                             android:button="@null"
                             android:drawableStart="@drawable/custom_radio_button"
                             android:drawablePadding="5dp"
-                            android:enabled="false"
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Yes"
@@ -334,7 +328,6 @@
                             android:button="@null"
                             android:drawableStart="@drawable/custom_radio_button"
                             android:drawablePadding="5dp"
-                            android:enabled="false"
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="No"
@@ -348,7 +341,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal"
-                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_view_dog_ster_label"
+                        app:layout_constraintStart_toEndOf="@+id/admin_dogs_add_dog_ster_label"
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_vacc">
 
                         <RadioButton
@@ -358,7 +351,6 @@
                             android:button="@null"
                             android:drawableStart="@drawable/custom_radio_button"
                             android:drawablePadding="5dp"
-                            android:enabled="false"
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Yes"
@@ -372,7 +364,6 @@
                             android:button="@null"
                             android:drawableStart="@drawable/custom_radio_button"
                             android:drawablePadding="5dp"
-                            android:enabled="false"
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="No"
@@ -381,28 +372,27 @@
                     </RadioGroup>
 
                     <EditText
-                        android:id="@+id/admin_dogs_view_dog_description"
+                        android:id="@+id/admin_dogs_add_dog_description"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="30dp"
                         android:background="@drawable/peachrectangle_border"
-                        android:enabled="false"
                         android:fontFamily="@font/jost"
                         android:gravity="top|start"
+                        android:hint="Enter dog description..."
                         android:minLines="5"
                         android:padding="8dp"
                         android:scrollbars="vertical"
-                        android:text="text text text"
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/admin_dogs_view_dog_description_label" />
+                        app:layout_constraintTop_toBottomOf="@id/admin_dogs_add_dog_description_label" />
 
                     <ImageButton
-                        android:id="@+id/btn_admin_dogs_view_edit"
+                        android:id="@+id/btn_admin_dogs_add_check"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="20dp"
@@ -410,21 +400,8 @@
                         android:background="#00FFFFFF"
                         android:scaleType="centerCrop"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_view_dog_description"
-                        app:srcCompat="@drawable/edit_btn" />
-
-                    <ImageButton
-                        android:id="@+id/btn_admin_dogs_view_delete"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="20dp"
-                        android:background="#00FFFFFF"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_view_dog_description"
-                        app:srcCompat="@drawable/deldog_btn" />
-
+                        app:layout_constraintTop_toBottomOf="@+id/admin_dogs_add_dog_description"
+                        app:srcCompat="@drawable/check_btn" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -437,182 +414,3 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </android.widget.ScrollView>
-
-
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:id="@+id/main"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:background="#DED0C4"-->
-<!--    tools:context=".AdminDogsViewPage">-->
-
-<!--    <View-->
-<!--        android:id="@+id/whitePadding2"-->
-<!--        android:layout_width="365dp"-->
-<!--        android:layout_height="561dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="188dp"-->
-<!--        android:background="@drawable/rounded_white_bg"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView11"-->
-<!--        android:layout_width="363dp"-->
-<!--        android:layout_height="289dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="108dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/rectangle" />-->
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/imageButton3"-->
-<!--        android:layout_width="44dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_marginTop="732dp"-->
-<!--        android:layout_marginEnd="48dp"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/edit_btn" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView30"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="56dp"-->
-<!--        android:layout_marginTop="524dp"-->
-<!--        android:fontFamily="@font/jost"-->
-<!--        android:text="Age:"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView15"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="56dp"-->
-<!--        android:layout_marginTop="484dp"-->
-<!--        android:fontFamily="@font/jost"-->
-<!--        android:text="ID:"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView32"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="56dp"-->
-<!--        android:layout_marginTop="608dp"-->
-<!--        android:fontFamily="@font/jost"-->
-<!--        android:text="Description:"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/button2"-->
-<!--        android:layout_width="106dp"-->
-<!--        android:layout_height="42dp"-->
-<!--        android:layout_marginStart="56dp"-->
-<!--        android:layout_marginTop="732dp"-->
-<!--        android:backgroundTint="#D77A61"-->
-<!--        android:clickable="true"-->
-<!--        android:contextClickable="true"-->
-<!--        android:fontFamily="@font/jost_black"-->
-<!--        android:text="Back"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:textSize="14sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/imageButton6"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="732dp"-->
-<!--        android:layout_marginEnd="100dp"-->
-<!--        android:background="#00FFFFFF"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/deldog_btn" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView31"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="56dp"-->
-<!--        android:layout_marginTop="564dp"-->
-<!--        android:fontFamily="@font/jost"-->
-<!--        android:text="Gender:"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView26"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="140dp"-->
-<!--        android:layout_marginTop="428dp"-->
-<!--        android:fontFamily="@font/jost_black"-->
-<!--        android:text="Dog's Name"-->
-<!--        android:textSize="26sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:background="#D77A61"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="17dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        android:fontFamily="@font/jost"-->
-<!--        android:text="Doggo Forever"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        android:textSize="24sp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/imageButton"-->
-<!--        android:layout_width="25dp"-->
-<!--        android:layout_height="25dp"-->
-<!--        android:layout_marginTop="18dp"-->
-<!--        android:layout_marginEnd="50dp"-->
-<!--        android:backgroundTint="@android:color/transparent"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/paw"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/imageButton2"-->
-<!--        android:layout_width="33dp"-->
-<!--        android:layout_height="33dp"-->
-<!--        android:layout_marginTop="14dp"-->
-<!--        android:layout_marginEnd="10dp"-->
-<!--        android:backgroundTint="@android:color/transparent"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/user"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

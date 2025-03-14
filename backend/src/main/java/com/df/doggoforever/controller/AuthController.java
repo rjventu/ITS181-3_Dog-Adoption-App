@@ -78,27 +78,4 @@ public class AuthController {
         return ResponseEntity.badRequest().body(Map.of("message", "User not found."));
     }
 
-//    public ResponseEntity<?> createSession(HttpSession session, String username) {
-//        session.setAttribute("username", username);
-//        return ResponseEntity.ok(Map.of("sessionId", session.getId()));
-//    }
-//
-//    @GetMapping("/session/get")
-//    public ResponseEntity<?> getSession(HttpSession session) {
-//        String username = (String) session.getAttribute("username");
-//
-//        if (username == null) {
-//            return ResponseEntity.badRequest().body(Map.of("message", "No user session active."));
-//        }
-//
-//        User user  = userService.getUserByUsername(username);
-//        return ResponseEntity.ok(Map.of("user", user));
-//    }
-
-//    @GetMapping("/session/invalidate")
-//    public ResponseEntity<?> invalidateSession(HttpSession session) {
-//        session.invalidate();
-//        return ResponseEntity.ok(Map.of("message", "Logout successful!"));
-//    }
-
 }

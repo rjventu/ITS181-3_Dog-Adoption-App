@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -28,13 +28,11 @@ import com.bumptech.glide.Glide;
 import com.example.appdev3_project.model.Dog;
 import com.example.appdev3_project.service.DogService;
 
-import android.Manifest;
-import android.widget.Toast;
-
 import java.io.File;
 
-public class AdminDogsViewPage extends AppCompatActivity {
+import android.Manifest;
 
+public class AdminDogsAddPage extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final int REQUEST_STORAGE_PERMISSION = 100;
     TextView addMessage;
@@ -42,16 +40,14 @@ public class AdminDogsViewPage extends AppCompatActivity {
     RadioGroup genderGroup, vaccGroup, sterGroup;
     RadioButton dogGenderMale, dogGenderFemale, dogVacc, dogNotVacc, dogSter, dogNotSter;
     ImageView dogImage;
-    ImageButton editButton, deleteButton;
-    Dog dog;
+    ImageButton checkButton;
     DogService dogService;
     Uri selectedImageUri;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.admin_dogs_view_page);
+        setContentView(R.layout.admin_dogs_add_page);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -60,95 +56,34 @@ public class AdminDogsViewPage extends AppCompatActivity {
         });
 
         // Initialize NavBar
-        MyUtil.initializeNavBar(AdminDogsViewPage.this);
+        MyUtil.initializeNavBar(AdminDogsAddPage.this);
 
         // Initialize Views
-        dogName = findViewById(R.id.admin_dogs_view_dog_name);
-        dogAge = findViewById(R.id.admin_dogs_view_dog_age);
-        dogBio = findViewById(R.id.admin_dogs_view_dog_description);
+        dogName = findViewById(R.id.admin_dogs_add_dog_name);
+        dogAge = findViewById(R.id.admin_dogs_add_dog_age);
+        dogBio = findViewById(R.id.admin_dogs_add_dog_description);
         dogGenderMale = findViewById(R.id.radioButton_gender_male);
         dogGenderFemale = findViewById(R.id.radioButton_gender_female);
         dogVacc = findViewById(R.id.radioButton_vacc_yes);
         dogNotVacc = findViewById(R.id.radioButton_vacc_no);
         dogSter = findViewById(R.id.radioButton_ster_yes);
         dogNotSter = findViewById(R.id.radioButton_ster_no);
-        dogImage = findViewById(R.id.admin_dogs_view_dog_image);
+        dogImage = findViewById(R.id.admin_dogs_add_dog_image);
         addMessage = findViewById(R.id.admin_dogs_add_image_message);
+        checkButton = findViewById(R.id.btn_admin_dogs_add_check);
         genderGroup = findViewById(R.id.radioGroup_gender);
         vaccGroup = findViewById(R.id.radioGroup_vacc);
         sterGroup = findViewById(R.id.radioGroup_ster);
 
-        // Initialize services
+        // initialize services
         dogService = new DogService(this);
 
-        // Configure edit button
-        editButton = findViewById(R.id.btn_admin_dogs_view_edit);
-        editButton.setOnClickListener(view -> editMode());
+        // Configure dogImage listener
+        dogImage.setOnClickListener(view -> requestStoragePermission());
 
-        // Configure delete button
-        deleteButton = findViewById(R.id.btn_admin_dogs_view_delete);
-        deleteButton.setOnClickListener(view -> deleteDogRecord());
+        // Configure check button
+        checkButton.setOnClickListener(view -> saveDogRecord());
 
-        // Get data from Intent
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("dog")) {
-            dog = (Dog) intent.getSerializableExtra("dog");
-
-            // Display Dog details
-            dogName.setText(dog.getName());
-            dogAge.setText(String.valueOf(dog.getAge()));
-
-            if(dog.getGender() == "Male"){
-                dogGenderMale.setChecked(true);
-            }else{
-                dogGenderFemale.setChecked(true);
-            }
-
-            if(dog.isVaccinated()){
-                dogVacc.setChecked(true);
-            }else{
-                dogNotVacc.setChecked(true);
-            }
-
-            if(dog.isSterilized()){
-                dogSter.setChecked(true);
-            }else{
-                dogNotSter.setChecked(true);
-            }
-
-            dogBio.setText(dog.getBio());
-
-            // Load image using Glide
-            Glide.with(this)
-                    .load(MyUtil.getImgUrl(dog.getImg()))
-                    .placeholder(R.drawable.default_dog)
-                    .error(R.drawable.default_dog)
-                    .into(dogImage);
-
-        }
-
-    }
-
-    private void editMode(){
-        // Enable fields, radiobuttons,
-        dogName.setEnabled(true);
-        dogAge.setEnabled(true);
-        dogBio.setEnabled(true);
-        dogGenderFemale.setEnabled(true);
-        dogGenderMale.setEnabled(true);
-        dogVacc.setEnabled(true);
-        dogNotVacc.setEnabled(true);
-        dogSter.setEnabled(true);
-        dogNotSter.setEnabled(true);
-        dogImage.setImageResource(R.drawable.rounded_box_terracotta);
-        addMessage.setVisibility(View.VISIBLE);
-
-        // Attach click listener to imageView
-        dogImage.setOnClickListener(view ->  requestStoragePermission());
-
-        // Change pencil icon to check and add listener
-        editButton.setImageResource(R.drawable.check_btn);
-        editButton.setOnClickListener(view -> updateDogRecord());
     }
 
     private void requestStoragePermission() {
@@ -210,8 +145,9 @@ public class AdminDogsViewPage extends AppCompatActivity {
         return filePath;
     }
 
-    private void updateDogRecord(){
-        // validate inputs
+    private void saveDogRecord(){
+
+        // Validate inputs
         String name = dogName.getText().toString().trim();
         String ageText = dogAge.getText().toString().trim();
         String bio = dogBio.getText().toString().trim();
@@ -226,10 +162,14 @@ public class AdminDogsViewPage extends AppCompatActivity {
             return;
         }
 
-        // set dog object's updated details
+        int age = Integer.parseInt(ageText);
+        String gender = isMale ? "Male" : "Female";
+
+        // Create dog object and set details
+        Dog dog = new Dog();
         dog.setName(name);
-        dog.setAge(Integer.parseInt(ageText));
-        dog.setGender(isMale ? "Male" : "Female");
+        dog.setAge(age);
+        dog.setGender(gender);
         dog.setVaccination(isVaccinated);
         dog.setSterilization(isSterilized);
         dog.setBio(bio);
@@ -237,42 +177,19 @@ public class AdminDogsViewPage extends AppCompatActivity {
         // create image file
         File imageFile = new File(getRealPathFromURI(selectedImageUri));
 
-        // send updated dog to database
-        dogService.updateDog(dog, imageFile, success -> {
+        // send dog and image to database
+        dogService.addDog(dog, imageFile, success -> {
             if (success) {
-                Toast.makeText(this, "Dog updated successfully!", Toast.LENGTH_SHORT).show();
-                // on success, return to AdminDogsViewPage
-                Intent intent = new Intent(AdminDogsViewPage.this, AdminDogsPage.class);
+                Toast.makeText(this, "Dog added successfully!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AdminDogsAddPage.this, AdminDogsPage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(this, "Failed to update dog", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Failed to add dog", Toast.LENGTH_SHORT).show();
             }
         });
 
-
     }
 
-    private void deleteDogRecord() {
-        new AlertDialog.Builder(this)
-                .setTitle("Delete Dog")
-                .setMessage("Are you sure you want to delete this dog?")
-                .setPositiveButton("Yes", (dialog, which) -> {
-                    dogService.deleteDog(dog.getId(), success -> {
-                        if (success) {
-                            Toast.makeText(this, "Dog deleted successfully!", Toast.LENGTH_SHORT).show();
-                            // on success, return to AdminDogsViewPage
-                            Intent intent = new Intent(AdminDogsViewPage.this, AdminDogsPage.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(this, "Failed to delete dog", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
 }
