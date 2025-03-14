@@ -27,7 +27,6 @@ public class User {
     private String name;
     private String contact;
     private String address;
-    private String img;
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

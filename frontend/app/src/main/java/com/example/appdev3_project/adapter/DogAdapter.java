@@ -36,7 +36,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.DogViewHolder> {
         Dog dog = dogList.get(position);
         holder.dogName.setText(dog.getName());
         holder.dogGender.setText("Gender: " + dog.getGender());
-        holder.dogAge.setText("Age: " + dog.getAge() + " years");
+        holder.dogAge.setText("Age: " + dog.getAge() + (dog.getAge() == 1 ? " year" : " years"));
         holder.dogVaccination.setText("Vaccinated: " + (dog.isVaccinated() ? "Yes" : "No"));
         holder.dogSterilization.setText("Sterilized: " + (dog.isSterilized() ? "Yes" : "No"));
 

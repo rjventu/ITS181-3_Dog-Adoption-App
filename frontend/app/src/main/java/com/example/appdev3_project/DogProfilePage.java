@@ -67,7 +67,7 @@ public class DogProfilePage extends AppCompatActivity {
 
             // Display Dog details
             dogName.setText(dog.getName());
-            dogAge.setText("Age: " + dog.getAge() + " years");
+            dogAge.setText("Age: " + dog.getAge() + (dog.getAge() == 1 ? " year" : " years"));
             dogGender.setText("Gender: " + dog.getGender());
             dogVaccination.setText("Vaccinated: " + (dog.isVaccinated() ? "Yes" : "No"));
             dogSterilization.setText("Sterilized: " + (dog.isSterilized() ? "Yes" : "No"));

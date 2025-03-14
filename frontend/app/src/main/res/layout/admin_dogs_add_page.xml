@@ -145,7 +145,7 @@
                         android:fontFamily="@font/jost_black"
                         android:paddingTop="2dp"
                         android:text="Name:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -159,7 +159,7 @@
                         android:fontFamily="@font/jost_black"
                         android:paddingTop="2dp"
                         android:text="Age:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/admin_dogs_add_dog_name" />
@@ -173,7 +173,7 @@
                         android:fontFamily="@font/jost_black"
                         android:paddingTop="2dp"
                         android:text="Gender:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/admin_dogs_add_dog_age" />
@@ -187,7 +187,7 @@
                         android:fontFamily="@font/jost_black"
                         android:paddingTop="2dp"
                         android:text="Vaccinated:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_gender" />
@@ -201,7 +201,7 @@
                         android:fontFamily="@font/jost_black"
                         android:paddingTop="2dp"
                         android:text="Sterilized:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_vacc" />
@@ -215,7 +215,7 @@
                         android:fontFamily="@font/jost_black"
                         android:paddingTop="2dp"
                         android:text="Description:"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup_ster" />
@@ -235,7 +235,7 @@
                         android:padding="2dp"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/admin_dogs_add_dog_name_label"
@@ -257,7 +257,7 @@
                         android:padding="2dp"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/admin_dogs_add_dog_age_label"
@@ -282,7 +282,7 @@
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Male"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <RadioButton
@@ -295,7 +295,7 @@
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Female"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
                     </RadioGroup>
 
@@ -318,7 +318,7 @@
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Yes"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <RadioButton
@@ -331,7 +331,7 @@
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="No"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
                     </RadioGroup>
 
@@ -354,7 +354,7 @@
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="Yes"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <RadioButton
@@ -367,7 +367,7 @@
                             android:fontFamily="@font/jost"
                             android:minHeight="24dp"
                             android:text="No"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
                     </RadioGroup>
 
@@ -385,7 +385,7 @@
                         android:minLines="5"
                         android:padding="8dp"
                         android:scrollbars="vertical"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

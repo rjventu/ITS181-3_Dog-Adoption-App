@@ -65,7 +65,7 @@ CREATE TABLE `dog` (
   `ster` bit(1) NOT NULL,
   `vacc` bit(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `dog` (
 
 LOCK TABLES `dog` WRITE;
 /*!40000 ALTER TABLE `dog` DISABLE KEYS */;
-INSERT INTO `dog` VALUES (1,5,'Bond is a friendly and affectionate Great Pyrenees, known for his calm demeanor and loyalty. He loves being around his family and is especially protective. While he enjoys outdoor time, he\'s equally content snuggling with his loved ones. Bond is ideal for a family or individual who appreciates a loyal, gentle companion with a need for both affection and a little space to roam. If you’re looking for a loving, dependable dog, Bond may be the perfect match!','Male','7596eb8c-9f42-4614-abc9-a18b38492d6f.jpg','Bond',_binary '',_binary '\0'),(2,4,'Nala is a cheerful and affectionate female Golden Retriever with a heart full of love. Known for her friendly nature, she enjoys spending time with her family and is always up for a game or a cuddle. Nala’s playful spirit makes her great with children and other pets, and her gentle demeanor ensures she’s a perfect companion for any home. Whether it\'s playing outdoors or snuggling up for some downtime, Nala will bring joy and love to your family. If you\'re looking for a sweet, energetic, and loyal dog, Nala could be the one for you!','Female','fccf80d5-1e6b-49e9-b75d-23184785974b.png','Nala Stomps',_binary '',_binary ''),(3,3,'Bear is a lovable, brown male Newfoundland with a calm and easygoing nature. Known for their gentle giant temperament, Newfoundlands are incredibly loyal and protective, and Bear is no exception. He enjoys being with his family, whether it’s lounging around or going on leisurely walks. His friendly and patient demeanor makes him great with kids and other pets. Bear’s majestic size is matched by a heart full of affection, and he thrives in a home where he can receive plenty of love and attention. If you’re looking for a devoted and loving companion, Bear may be the perfect fit for your family!','Male','6ab85868-ba42-4296-a907-92a3a4365891.jpg','Bear',_binary '',_binary '\0');
+INSERT INTO `dog` VALUES (1,5,'Angel is a gentle soul who brings warmth and joy to everyone.','Female','51046756-f287-4837-91bc-0e70e2faa5f2.jpg','Angel',_binary '\0',_binary ''),(2,3,'Big Whitey is a loyal and loving companion who always stays by your side.','Male','fae593ac-26db-447d-8871-ba4bec6eaa46.jpg','Big Whitey',_binary '',_binary '\0'),(3,2,'Bravo is a spirited and brave pup who’s full of life and excitement.','Male','d06c24c7-6381-40f0-bc80-8b08cfde6500.jpg','Bravo',_binary '\0',_binary '\0'),(4,3,'Sara is a quiet and affectionate friend who loves peaceful moments.','Female','7f84f1be-9cca-466c-bb80-8360cdfa8724.png','Sara',_binary '\0',_binary ''),(5,1,'Harry is curious and playful pup who’s always ready to explore.','Male','641a1511-6ecc-4666-a560-03953c990e96.jpg','Harry',_binary '',_binary '\0'),(6,2,'Charlotte is sweet and charming dog who wins hearts effortlessly.','Female','d3154194-e171-420e-a0d8-1e6ea9dd41fd.jpg','Charlotte',_binary '',_binary '\0');
 /*!40000 ALTER TABLE `dog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,6 @@ CREATE TABLE `user` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `address` varchar(255) DEFAULT NULL,
   `contact` varchar(255) DEFAULT NULL,
-  `img` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(255) DEFAULT NULL,
@@ -160,7 +159,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'319 Cherry Avenue','09221234567','e584e814-76f6-4590-a1d6-2c6920a13524.png','Beth Smith','$2a$10$Aqup902WonCzZq9XDfT81eKskANYquWqan01mhm9fRElcXzEdFKcC','ADMIN','admin@gmail.com'),(2,'100 Cecile Hall','09221234567','d69d8a62-aba2-437f-976b-3f9a93190618.jpg','Anya Forger','$2a$10$hMtGM/pdueM6bGii1cJcgefNPe45Ym2eip/lNnmVkul14VtEROVU6','USER','user@gmail.com');
+INSERT INTO `user` VALUES (1,'319 Cherry Avenue','09228765432','Jane Doe','$2a$10$Aqup902WonCzZq9XDfT81eKskANYquWqan01mhm9fRElcXzEdFKcC','ADMIN','admin@gmail.com'),(2,'100 Cecile Hall','09221234567','John Johnson','$2a$10$hMtGM/pdueM6bGii1cJcgefNPe45Ym2eip/lNnmVkul14VtEROVU6','USER','user@gmail.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -173,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-11 15:10:17
+-- Dump completed on 2025-03-14 20:40:11

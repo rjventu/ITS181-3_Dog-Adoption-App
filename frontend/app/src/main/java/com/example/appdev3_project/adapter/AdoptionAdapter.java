@@ -42,7 +42,7 @@ public class AdoptionAdapter extends RecyclerView.Adapter<AdoptionAdapter.Adopti
         Adoption adoption = adoptionsList.get(position);
         Dog dog = adoption.getDog();
         holder.dogName.setText(dog.getName());
-        holder.dogAge.setText("Age: " + dog.getAge() + " years");
+        holder.dogAge.setText("Age: " + dog.getAge() + (dog.getAge() == 1 ? " year" : " years"));
         holder.dogGender.setText("Gender: " + dog.getGender());
         holder.dogStatus.setText("Status: " + adoption.getStatus());
 
