@@ -311,6 +311,36 @@
                         app:layout_constraintTop_toBottomOf="@id/admin_adoptions_view_dog_age" />
 
                     <TextView
+                        android:id="@+id/admin_adoptions_view_dog_vacc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/jost"
+                        android:text="Vaccinated:"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/admin_adoptions_view_dog_gender" />
+
+                    <TextView
+                        android:id="@+id/admin_adoptions_view_dog_ster"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="30dp"
+                        android:fontFamily="@font/jost"
+                        android:text="Sterilized:"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/admin_adoptions_view_dog_vacc" />
+
+                    <TextView
                         android:id="@+id/admin_adoptions_view_dog_description"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -323,7 +353,7 @@
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/admin_adoptions_view_dog_gender" />
+                        app:layout_constraintTop_toBottomOf="@id/admin_adoptions_view_dog_ster" />
 
                     <TextView
                         android:id="@+id/admin_adoptions_view_dog_description_text"

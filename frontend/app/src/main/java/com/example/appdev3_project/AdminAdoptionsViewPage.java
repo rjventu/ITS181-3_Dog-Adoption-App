@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatterBuilder;
 public class AdminAdoptionsViewPage extends AppCompatActivity {
     private Spinner statusSpinner;
     TextView name, address, phone, email, date, time,
-                dogName, dogAge, dogGender, dogBio;
+                dogName, dogAge, dogGender, dogVaccination, dogSterilization, dogBio;
     ImageView dogImage;
     ImageButton editButton;
     Adoption adoption;
@@ -60,6 +60,8 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
         dogName = findViewById(R.id.admin_adoptions_view_dog_name);
         dogAge = findViewById(R.id.admin_adoptions_view_dog_age);
         dogGender = findViewById(R.id.admin_adoptions_view_dog_gender);
+        dogVaccination = findViewById(R.id.admin_adoptions_view_dog_vacc);
+        dogSterilization = findViewById(R.id.admin_adoptions_view_dog_ster);
         dogBio = findViewById(R.id.admin_adoptions_view_dog_description_text);
 
         // Initialize spinner
@@ -109,6 +111,8 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
             dogName.setText(dog.getName());
             dogAge.setText("Age: " + dog.getAge() + " years");
             dogGender.setText("Gender: " + dog.getGender());
+            dogVaccination.setText("Vaccinated: " + (dog.isVaccinated() ? "Yes" : "No"));
+            dogSterilization.setText("Sterilized: " + (dog.isSterilized() ? "Yes" : "No"));
             dogBio.setText(dog.getBio());
 
             // Load image using Glide
@@ -138,7 +142,7 @@ public class AdminAdoptionsViewPage extends AppCompatActivity {
         adoptionService.updateAdoption(adoption.getId(), adoption, new AdoptionService.AdoptionUpdateCallback() {
             @Override
             public void onSuccess(Adoption newAdoption) {
-                Toast.makeText(AdminAdoptionsViewPage.this, "Application updated successfully!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminAdoptionsViewPage.this, "Adoption application updated successfully!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), AdminAdoptionsPage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

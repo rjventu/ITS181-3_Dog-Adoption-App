@@ -81,7 +81,6 @@ public class AdminAdoptionAdapter extends RecyclerView.Adapter<AdminAdoptionAdap
     static class AdminAdoptionViewHolder extends RecyclerView.ViewHolder {
         TextView dogName, adoptionName, adoptionDate, adoptionTime, adoptionStatus;
         ImageView dogImage;
-        ImageButton viewButton, editButton;
 
         public AdminAdoptionViewHolder(@NonNull View itemView) {
             super(itemView);
