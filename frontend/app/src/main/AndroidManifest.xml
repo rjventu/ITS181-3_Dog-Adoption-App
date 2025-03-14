@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
-
     <application
         android:requestLegacyExternalStorage="true"
         android:allowBackup="true"
@@ -21,9 +20,6 @@
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config">
 
-        <!--CHANGED TO HOME_PAGE-->
-
-        <!-- CURRENT SET TO TEST -->
         <activity
             android:name=".HomePage"
             android:exported="true">
@@ -54,13 +50,10 @@
         <activity android:name=".AdminDogsPage" android:exported="true" />
         <activity android:name=".AdminDogsViewPage" android:exported="true" />
         <activity android:name=".AdminDogsAddPage" android:exported="true" />
-        <!-- OTHERS -->
-
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
 
     </application>
 
