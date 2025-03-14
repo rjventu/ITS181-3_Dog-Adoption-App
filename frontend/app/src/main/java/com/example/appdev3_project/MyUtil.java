@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MyUtil {
 
     public static String getImgUrl(String dogImgName){
-        return "http://192.168.1.5:18080/uploads-dogs/" + dogImgName;
+        return "http://192.168.1.7:18080/uploads-dogs/" + dogImgName;
     }
 
     public static void initializeNavBar(Activity activity) {
