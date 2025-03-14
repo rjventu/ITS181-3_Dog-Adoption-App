@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#DED0C4"
+        tools:context=".Home_Page">
+
+        <!--NAV BAR-->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#D77A61"
+            tools:layout_editor_absoluteX="-1dp"
+            tools:layout_editor_absoluteY="1dp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="221dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/jost"
+            android:text="Doggo Forever"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/go_adoption"
+            android:layout_width="25.45dp"
+            android:layout_height="25.45dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="#00FFFFFF"
+            android:background="@color/white"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:src="@drawable/paw"
+            app:layout_constraintEnd_toStartOf="@+id/go_profile"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/go_profile"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="17dp"
+            android:backgroundTint="#00FFFFFF"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:src="@drawable/user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:longClickable="true">
+
+            <!--CONTENT WRAPPER (Home)-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/content_wrapper_home"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- HEADER WRAPPER -->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/header_wrapper_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="#D77B62"
+                    android:clipChildren="true"
+                    app:cardBackgroundColor="#D77B62"
+                    app:cardCornerRadius="30dp">
+
+                    <!--HEADER CONTENT-->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- HEADER TEXT -->
+                        <TextView
+                            android:id="@+id/headerText_home"
+                            android:layout_width="175dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/jost_black"
+                            android:lineHeight="30dp"
+                            android:text="Give our dogs a forever home!"
+                            android:textColor="@android:color/white"
+                            android:textSize="33sp"
+                            android:textStyle="bold" />
+
+                        <!-- HEADER IMG -->
+                        <ImageView
+                            android:id="@+id/imageView_home"
+                            android:layout_width="wrap_content"
+                            android:layout_height="160dp"
+                            android:layout_gravity="end|bottom"
+                            android:layout_marginEnd="-130dp"
+                            app:srcCompat="@drawable/cute_collie" />
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/content_head_text_1"
+                    android:layout_width="261dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="180dp"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/jost"
+                    android:text="At DOGGOFOREVER, we're dedicated to finding loving forever homes for dogs of all ages. We believe every dog deserves a chance, and our non-profit adoption center works tirelessly to connect them with kind-hearted families. We prioritize the health and happiness of our dogs, providing top-notch medical care, proper nutrition, and plenty of love. We operate on the values of compassion, respect, and a commitment to animal welfare.\n\nWe rely on the generosity of our community to thrive. Whether it's through adoption, volunteering, or donations, your support allows us to help more animals in need. By adopting, you're not just gaining a loyal companion, you're also making room for us to rescue another dog and combat overpopulation. Many of our dogs come from shelters or difficult situations, and we're giving them a second chance at a happy life.\n\nWe're committed to supporting you and your new pet for a lifetime, offering resources on training and care. We have dogs of all personalities, sizes, and ages, each thoroughly assessed to ensure a good match with their future family. We encourage you to visit us or explore our online gallery to find your perfect canine companion and join us in making a lasting impact, one wagging tail at a time." />
+
+            </androidx.cardview.widget.CardView>
+
+            <!--CONTENT WRAPPER (About)-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/content_wrapper_about"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_wrapper_home">
+
+                <!-- HEADER WRAPPER -->
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/header_wrapper_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="#D77B62"
+                    android:clipChildren="true"
+                    app:cardBackgroundColor="#D77B62"
+                    app:cardCornerRadius="30dp">
+
+                    <!--HEADER CONTENT-->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- HEADER TEXT -->
+
+                        <!-- HEADER IMG -->
+                        <TextView
+                            android:id="@+id/headerText_about"
+                            android:layout_width="191dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/jost_black"
+                            android:lineHeight="30dp"
+                            android:text="We're commited to helping our furry friends!"
+                            android:textColor="@android:color/white"
+                            android:textSize="28sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imageView_about"
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:layout_gravity="end|bottom"
+                            android:layout_marginEnd="-50dp"
+                            app:srcCompat="@drawable/cute_dalmatian" />
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/content_head_text_about"
+                    android:layout_width="261dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="180dp"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/jost"
+                    android:text=" DOGGOFOREVER is dedicated to rescuing, rehabilitating, and rehoming dogs from all walks of life. We provide each dog with medical care, socialization, and the essentials they need to thrive while awaiting adoption. Our goal is not only to find homes but also to support adopters with resources on training and care. From puppies to senior dogs, every dog deserves a chance, and we’re here to make sure they find loving, responsible owners.\n\nBeyond adoptions, DOGGOFOREVER works actively in the community to raise awareness about responsible pet ownership and the importance of adopting from shelters. Through events, education programs, and partnerships, we aim to make a positive impact on both animals and people. We’re more than an adoption center; we’re a community of dog lovers who believe every dog deserves a forever home. Thank you for supporting our mission to change lives, one adoption at a time. " />
+
+            </androidx.cardview.widget.CardView>
+
+            <!--CONTENT WRAPPER (About)-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/content_wrapper_contact"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_wrapper_about">
+
+                <!-- HEADER WRAPPER -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/header_wrapper_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="#D77B62"
+                    android:clipChildren="true"
+                    app:cardBackgroundColor="#D77B62"
+                    app:cardCornerRadius="30dp">
+
+                    <!--HEADER CONTENT-->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- HEADER TEXT -->
+                        <TextView
+                            android:id="@+id/headerText_contact"
+                            android:layout_width="175dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/jost_black"
+                            android:lineHeight="30dp"
+                            android:text="Want to get in touch?"
+                            android:textColor="@android:color/white"
+                            android:textSize="33sp"
+                            android:textStyle="bold" />
+
+                        <!-- HEADER IMG -->
+                        <ImageView
+                            android:id="@+id/imageView_contact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="170dp"
+                            android:layout_gravity="end|top"
+                            android:layout_marginEnd="-130dp"
+                            app:srcCompat="@drawable/cute_collie" />
+
+                    </FrameLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/content_head_text_contact"
+                    android:layout_width="261dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="180dp"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/jost"
+                    android:text="PHONE: (555) 867-3421 \n\nWe're here to help you find the perfect furry friend! Our team is passionate about helping both dogs and prospective adopters find their forever match. Feel free to follow us on social media for updates, success stories, and upcoming events. We’re excited to connect with you and welcome you into the DOGGOFOREVER family! If you have any questions about our adoption process, volunteering, or donations, please reach out. You can contact us by phone or by visiting our adoption center. " />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</android.widget.ScrollView>
