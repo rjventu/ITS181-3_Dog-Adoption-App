@@ -32,6 +32,7 @@ import android.Manifest;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Objects;
 
 public class AdminDogsViewPage extends AppCompatActivity {
 
@@ -98,7 +99,7 @@ public class AdminDogsViewPage extends AppCompatActivity {
             dogName.setText(dog.getName());
             dogAge.setText(String.valueOf(dog.getAge()));
 
-            if(dog.getGender() == "Male"){
+            if(Objects.equals(dog.getGender(), "Male")){
                 dogGenderMale.setChecked(true);
             }else{
                 dogGenderFemale.setChecked(true);
